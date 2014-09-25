@@ -1,0 +1,525 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"0x",
+				"0x01"
+			],
+			[
+				"po",
+				"powerf"
+			],
+			[
+				"z",
+				"z"
+			],
+			[
+				"x",
+				"x"
+			],
+			[
+				"do",
+				"down"
+			],
+			[
+				"set",
+				"settemperature"
+			],
+			[
+				"p",
+				"parameter"
+			],
+			[
+				"s",
+				"s"
+			],
+			[
+				"t",
+				"title"
+			],
+			[
+				"xl",
+				"xlabel"
+			],
+			[
+				"gi",
+				"grid"
+			],
+			[
+				"y",
+				"ylabel"
+			],
+			[
+				"DIS",
+				"DISPALX"
+			],
+			[
+				"P",
+				"PROC"
+			],
+			[
+				"CH",
+				"CHANG"
+			],
+			[
+				"VA",
+				"VAR1"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"inp",
+				"Package Control: Install Package"
+			],
+			[
+				"pack ",
+				"Package Control: Remove Package"
+			],
+			[
+				"re pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"packin",
+				"Package Control: Install Package"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"inpa",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: li",
+				"Package Control: List Packages"
+			],
+			[
+				"Package Control: l",
+				"Package Control: List Packages"
+			],
+			[
+				"Package Control: ",
+				"Package Control: List Packages"
+			],
+			[
+				"pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"pain",
+				"Package Control: Install Package"
+			],
+			[
+				"pack in",
+				"Package Control: Install Package"
+			],
+			[
+				"PACKI",
+				"Package Control: Install Package"
+			],
+			[
+				"PACKIN",
+				"Package Control: Install Package"
+			],
+			[
+				"PACK",
+				"Package Control: Remove Package"
+			],
+			[
+				"PACK IN",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request, urllib.error, urllib.parse,os; pf='Package Control.sublime-package'; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); open(os.path.join(ipp,pf),'wb').write(urllib.request.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read()); print('Please restart Sublime Text to finish installation')",
+			"import urllib2,os; pf='Package Control.sublime-package'; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read()); print('Please restart Sublime Text to finish installation')",
+			"import urllib.request, urllib.error, urllib.parse,os; pf='Package Control.sublime-package'; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); open(os.path.join(ipp,pf),'wb').write(urllib.request.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read()); print('Please restart Sublime Text to finish installation')",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) ",
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp =sublime.installed_packages_path(); urllib.request.install_opener(urllib.request.build_opener( urllib.request.ProxyHandler()) );open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen('http://sublime.wbond.net/' + pf.replace(' ','%20')).read())",
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp =",
+			"import urllib.request,os; pf = 'PackageControl.sublime-package'; ipp = sublime.installed_packages_path();urllib.request.install_opener( urllib.request.build_opener(urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf),'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace('','%20')).read())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/USER0_GUI/sub/gui.sublime-project",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/APP/exeplay.c",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/APP/settings.c",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/APP/common.c",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/CMSIS/CM3/DeviceSupport/ST/STM32F10x/stm32f10x.h",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/APP/spb.c",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/GUI/gui.c",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/USER/test.c",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/GUI/edit.h",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/GUI/edit.c",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/GUI/button.h",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/GUI/button.c",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/CORE/core_cm3.h",
+		"/E/Users/JASON_G/Desktop/Flow-master/Flow-master/lib/core_cm4.h",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/CMSIS/CM3/CoreSupport/core_cm3.h",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/PERIPHERAL/LCD/LCD.h",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/PERIPHERAL/LCD/LCD.c",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/STM32F10x_StdPeriph_Driver/inc/stm32f10x_gpio.h",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/USER0_GUI/USER/CONFIG/ourstm400240.h",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/PERIPHERAL/LCD/ILI93.c",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/PERIPHERAL/VS10XX/VS10XX.h",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/PERIPHERAL/ULTRASONIC/ultrasonic.H",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/PERIPHERAL/NRF24L01/G32_Nrf24l01.h",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/HARDWARE/G32_I2c.c",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/USER0_GUI/USER/stm32_config.h",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/HARDWARE/tsensor.c",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/HARDWARE/tsensor.h",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/HARDWARE/step_motor.c",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/HARDWARE/step_motor.h",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/HARDWARE/rtc.c",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/HARDWARE/rtc.h",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/HARDWARE/spi.h",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/HARDWARE/spi.c",
+		"/E/WORK/Project_List/四轴飞行器/小四轴(空心杯)/资料/BAK/ST ARM 创新大赛/3.30-0-/usr/GPIO/GPIO.h",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/HARDWARE/gpio.h",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/HARDWARE/gpio.c",
+		"/E/Users/JASON_G/Desktop/实验34 FLASH模拟EEPROM实验/USER/main.c",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/HARDWARE/stmflash.c",
+		"/E/Users/JASON_G/Desktop/实验34 FLASH模拟EEPROM实验/HARDWARE/STMFLASH/stmflash.c",
+		"/E/Users/JASON_G/Desktop/实验34 FLASH模拟EEPROM实验/STM32F10x_FWLib/src/stm32f10x_flash.c",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/HARDWARE/stmflash.h",
+		"/E/Users/JASON_G/Desktop/实验34 FLASH模拟EEPROM实验/HARDWARE/STMFLASH/stmflash.h",
+		"/E/Users/JASON_G/Desktop/实验1 跑马灯实验/USER/test.c",
+		"/E/Users/JASON_G/Desktop/实验1 跑马灯实验/HARDWARE/LED/led.c",
+		"/E/WORK/Project_List/四轴飞行器/小四轴(空心杯)/资料/BAK/ST ARM 创新大赛/3.30-0-/usr/GPIO/GPIO.c",
+		"/E/Users/JASON_G/Desktop/Flow-master/Flow-master/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_rcc.c",
+		"/E/Users/JASON_G/Desktop/Flow-master/Flow-master/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_rcc.h",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/HARDWARE/led.c",
+		"/E/Users/JASON_G/Desktop/Flow-master/Flow-master/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_flash.c",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/STM32F10x_StdPeriph_Driver/src/stm32f10x_flash.c",
+		"/E/Users/JASON_G/Desktop/123",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/PERIPHERAL/LCD/font.h",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/PERIPHERAL/LCD/NOKIA_5110/bmp_pixel.h",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/PERIPHERAL/LCD/NOKIA_5110/nokia_5110.c",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/PERIPHERAL/LCD/NOKIA_5110/nokia_5110.h",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/PERIPHERAL/LCD/NOKIA_5110/write_chinese_string_pixel.h",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/PERIPHERAL/LCD/touch.h",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/PERIPHERAL/LCD/touch.c",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/USER0_GUI/USER/main.c",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/USER0_GUI/USER/APP/user.h",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/USER0_GUI/USER/APP/some.h",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/USER0_GUI/USER/APP/some.c",
+		"/E/WORK/Project_List/学习时期文件STM32-Projects/平衡小车/SYSTEM/delay/delay.c",
+		"/E/WORK/Project_List/学习时期文件STM32-Projects/平衡小车/HARDWARE/LCD/touch.c",
+		"/E/WORK/Project_List/学习时期文件STM32-Projects/平衡小车/USER/main.c",
+		"/E/WORK/Project_List/学习时期文件STM32-Projects/平衡小车/HARDWARE/LCD/touch.h",
+		"/E/WORK/Project_List/学习时期文件STM32-Projects/平衡小车/SYSTEM/delay/delay.h",
+		"/E/WORK/Project_List/Contest/electronic design contest/2014_xiaosai/stm32F0/USER0/USER/step_motor.c",
+		"/E/WORK/Project_List/Contest/electronic design contest/2014_xiaosai/stm32F0/USER0/USER/main.c",
+		"/E/Users/JASON_G/Desktop/英语作文/an experience of adventure.txt",
+		"/E/Users/JASON_G/Desktop/英语作文/wealth vs health.txt",
+		"/E/Users/JASON_G/Desktop/英语作文/英语作文.txt",
+		"/E/Users/JASON_G/Desktop/英语作文.txt",
+		"/E/Users/JASON_G/Desktop/an experience of adventure.txt",
+		"/E/Users/JASON_G/Desktop/wealth vs health.txt",
+		"/E/Users/JASON_G/Desktop/英语作文",
+		"/E/Users/JASON_G/Desktop/wealth vs health",
+		"/E/WORK/MATLAB/c12_4.m",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/APP/nesplay.c",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/GUI/guix.h",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/T9INPUT/pyinput.c",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/SYSTEM/delay/delay.c",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/SYSTEM/delay/delay.h",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/SYSTEM/sys/sys.c",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/SYSTEM/sys/sys.h",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/HARDWARE/ADC/adc.c",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/HARDWARE/DMA/dma.c",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/HARDWARE/DHT11/dht11.c",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/HARDWARE/DHT11/dht11.h",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/HARDWARE/DAC/dac.c",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/HARDWARE/CAN/can.c",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/HARDWARE/TIMER/timer.c",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/HARDWARE/STMFLASH/stmflash.c",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/HARDWARE/SRAMLCD/sramlcd.c",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/HARDWARE/RTC/rtc.h",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/HARDWARE/RTC/rtc.c",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/HARDWARE/REMOTE/remote.c",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/USMART/usmart.c",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/APP/3dplay.c",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/APP/picviewer.c",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/APP/ebook.c",
+		"/E/Users/JASON_G/Desktop/实验56 战舰STM32开发板综合实验/APP/spb.h",
+		"/E/WORK/MATLAB/c11_1a.m",
+		"/E/WORK/MATLAB/c11_1b.m",
+		"/E/WORK/MATLAB/c11_1c.m",
+		"/E/WORK/MATLAB/c11_1d.m",
+		"/E/WORK/MATLAB/c11_1e.m",
+		"/E/WORK/MATLAB/c11_2a.m",
+		"/E/WORK/MATLAB/c11_2b.m",
+		"/E/WORK/MATLAB/c11_3a.m",
+		"/E/WORK/MATLAB/c12_1.m",
+		"/E/WORK/MATLAB/c12_2.m",
+		"/E/WORK/MATLAB/c12_3.m",
+		"/E/WORK/MATLAB/c12_5_1_2.m",
+		"/E/WORK/MATLAB/c12_5_2_2.m",
+		"/E/WORK/Project_List/Contest/electronic design contest/2014_xiaosai/stm32F1/USER0/USER/main.c",
+		"/E/WORK/Project_List/Contest/electronic design contest/2014_xiaosai/stm32F1/USER0/USER/APP/user.c",
+		"/E/WORK/Project_List/Contest/electronic design contest/2014_xiaosai/stm32F1/GLIB/PERIPHERAL/HMC5883L/hmc5883l.c",
+		"/E/WORK/Project_List/新苗计划/智能联网太阳方位跟踪系统/CODE/GLIB/PERIPHERAL/LCD/LCD.c",
+		"/E/WORK/Project_List/Contest/electronic design contest/2014_xiaosai/stm32F1/USER0/USER/APP/user.h",
+		"/E/WORK/Project_List/Contest/electronic design contest/2014_xiaosai/stm32F1/GLIB/HARDWARE/adc.c",
+		"/E/WORK/Project_List/新苗计划/智能联网太阳方位跟踪系统/CODE/GLIB/HARDWARE/adc.h",
+		"/E/WORK/Project_List/Contest/electronic design contest/2014_xiaosai/stm32F1/GLIB/PERIPHERAL/LCD/touch.c",
+		"/E/WORK/Project_List/Contest/electronic design contest/2014_xiaosai/stm32F1/USER0/USER/stm32_config.h",
+		"/E/WORK/Project_List/Contest/electronic design contest/2014_xiaosai/stm32F1/GLIB/PERIPHERAL/LCD/font.h",
+		"/E/WORK/Project_List/四轴飞行器/小四轴(空心杯)/MINIFLY_FLY/trunk/BSP/Moto.c",
+		"/E/WORK/Project_List/Contest/electronic design contest/2014_xiaosai/stm32F1/GLIB/PERIPHERAL/LCD/LCD.c"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"E:\\Users\\JASON_G\\Desktop\\实验56 战舰STM32开发板综合实验",
+			"E:\\WORK\\Contest\\BOOTCAMP2014\\STM32F1",
+			"E:\\WORK\\Project_List\\学习时期文件STM32-Projects\\平衡小车",
+			"E:\\WORK\\Project_List\\Contest\\electronic design contest\\2014_xiaosai\\stm32F1",
+			"E:\\WORK\\Linux\\no_os\\src\\6.sdram"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"SN",
+			"序列",
+			"产品序列",
+			"备份寄存器",
+			"序列号",
+			"宽度",
+			"背光",
+			"F",
+			"E",
+			"STM32_FLASH_SIZE",
+			"SIZE",
+			"TDIN",
+			"RCC_LCD_LIGHT",
+			"LCD_RST_Pin",
+			"wealth",
+			"佳木斯快乐舞步健身操",
+			"阿拉伯之夜",
+			"parameter.flag = 9",
+			"parameter.flag == 9",
+			"parameter.flag",
+			"parameter.flag = 10",
+			"parameter.setpower",
+			"setspeed",
+			"speed",
+			"Down",
+			"down",
+			"Button_num",
+			"speed",
+			", 4",
+			".4",
+			". 4",
+			".4",
+			"parameter.power",
+			"FixedCurve",
+			"minpointx",
+			"GPIO_Pin_6",
+			"RCC_APB2Periph_GPIOB",
+			"Curve",
+			"FixedCurve",
+			"LCD_DrawFixedCurve",
+			"big",
+			"FixedCurve",
+			"parameter.flag =",
+			"dianzu",
+			"fenshan",
+			"settemperature",
+			"800",
+			"_CAPTURE_STA",
+			"setpower",
+			"setpoper",
+			"TDIN",
+			"NRF24l01_MOSI_RCC",
+			"pid",
+			")\n",
+			"clea",
+			"LCD_Fill",
+			"Button_num",
+			"mode",
+			"settemperature",
+			"Mode",
+			"mode",
+			"G",
+			"Button_num",
+			"flag",
+			"parameter",
+			"up",
+			"Temperature",
+			"temperature",
+			";//,",
+			"\"\n",
+			"A",
+			"RunTaskA",
+			"timers",
+			"srtc_time",
+			"Steering_Angle1 ",
+			"Steering_Angle ",
+			"PHYS_SDRAM_1",
+			"SDRAM_BANK_SIZE",
+			"CONFIG_NR_DRAM_BANKS",
+			"0x23e00000"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"G",
+			"799",
+			"zuobiaotime",
+			"FixedCurve[Curve]",
+			"Parameter.dianzu",
+			"Parameter.fenshan",
+			"parameter.setpower",
+			"parameter.settemperature",
+			"Temperature",
+			"Steering_Angle.y",
+			"Steering_Angle.x"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 118.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 100.0
+	},
+	"project": "gui.sublime-project",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"D:\\SkyDrive\\文档\\sub\\STM32F1.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+		],
+		"width": 400.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 243.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
