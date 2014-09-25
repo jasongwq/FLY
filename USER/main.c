@@ -370,7 +370,6 @@ int main(void)
         /**
         * 串口
         */
-<<<<<<< HEAD
         RunTaskA(task_6050, 0);
 
         RunTaskA(task_ultrasonic, 1);
@@ -384,20 +383,5 @@ int main(void)
         RunTaskA(task_led, 5);
 
         RunTaskA(task_bmp085, 6);
-=======
-        // RunTaskA(task_6050, 0);
-
-        RunTaskA(task_ultrasonic, 1);
-
-        //RunTaskA(task_pwm_ex, 2);
-
-        RunTaskA(task_cap_rc, 0);
-
-        //RunTaskA(task_hmc5883l, 4);
-
-        //RunTaskA(task_led, 5);
-
-        //RunTaskA(task_bmp085, 6);
->>>>>>> d9da1e0c80fad35f595e9b4d901c99415bfb1ce6
     }
 }
