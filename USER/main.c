@@ -209,7 +209,6 @@ int task_cap_rc(void)
     u32 temp = 0;
     static u16 capok;
     _SS
-    //TIM1_Cap_Init(0XFFFF, 72);
     TIM2_Cap_Init(0XFFFF, 72);
     TIM3_Cap_Init(0XFFFF, 72);
     TIM4_Cap_Init(0XFFFF, 72);
