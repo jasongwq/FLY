@@ -38,11 +38,11 @@ float exInt = 0, eyInt = 0, ezInt = 0;// scaled integral error
 T_float_angle   Att_Angle;  //ATT函数计算出的姿态角
 T_float_angle   Att_Angle_Avg;  //ATT函数计算出的姿态角
 
-
+float compass_yaw;
 void IMUupdate(S_INT16_XYZ *gyr, S_INT16_XYZ *acc, T_float_angle *angle)
 {
-    float ax = acc->X, ay = acc->Y, az = acc->Z;
-    float gx = gyr->X, gy = gyr->Y, gz = gyr->Z;
+    float ax = acc->x, ay = acc->y, az = acc->z;
+    float gx = gyr->x, gy = gyr->y, gz = gyr->z;
     float norm;
     float vx, vy, vz;
     float ex, ey, ez;

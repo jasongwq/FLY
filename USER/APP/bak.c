@@ -28,14 +28,14 @@ void Data_Save(u8 select)
         BKP_WriteBackupRegister(BKP_DR15, (u16)(PID_PID_1.D * 100 ));
         break;
     case 2:
-        BKP_WriteBackupRegister(BKP_DR16, (u16)(ACC_OFFSET.X      ));
-        BKP_WriteBackupRegister(BKP_DR17, (u16)(ACC_OFFSET.Y      ));
-        BKP_WriteBackupRegister(BKP_DR18, (u16)(ACC_OFFSET.Z      ));
+        BKP_WriteBackupRegister(BKP_DR16, (u16)(ACC_OFFSET.x      ));
+        BKP_WriteBackupRegister(BKP_DR17, (u16)(ACC_OFFSET.y      ));
+        BKP_WriteBackupRegister(BKP_DR18, (u16)(ACC_OFFSET.z      ));
         break;
     case 3:
-        BKP_WriteBackupRegister(BKP_DR19, (u16)(GYRO_OFFSET.X     ));
-        BKP_WriteBackupRegister(BKP_DR20, (u16)(GYRO_OFFSET.Y     ));
-        BKP_WriteBackupRegister(BKP_DR21, (u16)(GYRO_OFFSET.Z     ));
+        BKP_WriteBackupRegister(BKP_DR19, (u16)(GYRO_OFFSET.x     ));
+        BKP_WriteBackupRegister(BKP_DR20, (u16)(GYRO_OFFSET.y     ));
+        BKP_WriteBackupRegister(BKP_DR21, (u16)(GYRO_OFFSET.z     ));
         break;
     }
     BKP_WriteBackupRegister(BKP_DR42, 1);
@@ -60,12 +60,12 @@ u16 Data_Read(void)
     PID_PID_1.I = ((float)(BKP_ReadBackupRegister(BKP_DR14)) / 100 );
     PID_PID_1.D = ((float)(BKP_ReadBackupRegister(BKP_DR15)) / 100  );
 
-    ACC_OFFSET.X  =  ((u8)(BKP_ReadBackupRegister(BKP_DR16))        );
-    ACC_OFFSET.Y  =  ((u8)(BKP_ReadBackupRegister(BKP_DR17))        );
-    ACC_OFFSET.Z  =  ((u8)(BKP_ReadBackupRegister(BKP_DR18))        );
-    GYRO_OFFSET.X =  ((u8)(BKP_ReadBackupRegister(BKP_DR19))        );
-    GYRO_OFFSET.Y =  ((u8)(BKP_ReadBackupRegister(BKP_DR20))        );
-    GYRO_OFFSET.Z =  ((u8)(BKP_ReadBackupRegister(BKP_DR21))        );
+    ACC_OFFSET.x  =  ((u8)(BKP_ReadBackupRegister(BKP_DR16))        );
+    ACC_OFFSET.y  =  ((u8)(BKP_ReadBackupRegister(BKP_DR17))        );
+    ACC_OFFSET.z  =  ((u8)(BKP_ReadBackupRegister(BKP_DR18))        );
+    GYRO_OFFSET.x =  ((u8)(BKP_ReadBackupRegister(BKP_DR19))        );
+    GYRO_OFFSET.y =  ((u8)(BKP_ReadBackupRegister(BKP_DR20))        );
+    GYRO_OFFSET.z =  ((u8)(BKP_ReadBackupRegister(BKP_DR21))        );
     return BKP_ReadBackupRegister(BKP_DR42);
 };
 
@@ -93,12 +93,12 @@ void StmFlash_Save(void)
     StmFlash_Buffer[i++] = (u16)(PID_PID_1.P * 100 );
     StmFlash_Buffer[i++] = (u16)(PID_PID_1.I * 100);
     StmFlash_Buffer[i++] = (u16)(PID_PID_1.D * 100 );
-    StmFlash_Buffer[i++] = (u16)(ACC_OFFSET.X      );
-    StmFlash_Buffer[i++] = (u16)(ACC_OFFSET.Y      );
-    StmFlash_Buffer[i++] = (u16)(ACC_OFFSET.Z      );
-    StmFlash_Buffer[i++] = (u16)(GYRO_OFFSET.X     );
-    StmFlash_Buffer[i++] = (u16)(GYRO_OFFSET.Y     );
-    StmFlash_Buffer[i++] = (u16)(GYRO_OFFSET.Z     );
+    StmFlash_Buffer[i++] = (u16)(ACC_OFFSET.x      );
+    StmFlash_Buffer[i++] = (u16)(ACC_OFFSET.y      );
+    StmFlash_Buffer[i++] = (u16)(ACC_OFFSET.z      );
+    StmFlash_Buffer[i++] = (u16)(GYRO_OFFSET.x     );
+    StmFlash_Buffer[i++] = (u16)(GYRO_OFFSET.y     );
+    StmFlash_Buffer[i++] = (u16)(GYRO_OFFSET.z     );
 
     STMFLASH_Write(FLASH_SAVE_ADDR, (u16 *)StmFlash_Buffer, SIZE);
 }
@@ -122,12 +122,12 @@ void StmFlash_Read(void)
     PID_PID_1.P = ((float)(StmFlash_Buffer[i++]) / 100  );
     PID_PID_1.I = ((float)(StmFlash_Buffer[i++]) / 100 );
     PID_PID_1.D = ((float)(StmFlash_Buffer[i++]) / 100  );
-    ACC_OFFSET.X  =  ((u8)(StmFlash_Buffer[i++])        );
-    ACC_OFFSET.Y  =  ((u8)(StmFlash_Buffer[i++])        );
-    ACC_OFFSET.Z  =  ((u8)(StmFlash_Buffer[i++])        );
-    GYRO_OFFSET.X =  ((u8)(StmFlash_Buffer[i++])        );
-    GYRO_OFFSET.Y =  ((u8)(StmFlash_Buffer[i++])        );
-    GYRO_OFFSET.Z =  ((u8)(StmFlash_Buffer[i++])        );
+    ACC_OFFSET.x  =  ((u8)(StmFlash_Buffer[i++])        );
+    ACC_OFFSET.y  =  ((u8)(StmFlash_Buffer[i++])        );
+    ACC_OFFSET.z  =  ((u8)(StmFlash_Buffer[i++])        );
+    GYRO_OFFSET.x =  ((u8)(StmFlash_Buffer[i++])        );
+    GYRO_OFFSET.y =  ((u8)(StmFlash_Buffer[i++])        );
+    GYRO_OFFSET.z =  ((u8)(StmFlash_Buffer[i++])        );
 }
 
 

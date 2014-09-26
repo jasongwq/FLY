@@ -45,28 +45,14 @@ void Control(T_float_angle *att_in, S_INT16_XYZ *gyr_in, T_RC_Data *rc_in, T_Con
     static s32 Alt_Control;
     static char alt_time = 0;
 
+    angle.yaw = att_in->yaw + (rc_in->YAW   - 1500) / 60 + (+(PID_PID_1.P - 10));
+    if (angle.yaw < -180)
+        angle.yaw += 360;
+    else if (angle.yaw > 180)
+        angle.yaw -= 360;
 
-/*
-Y:1611
-R:1478
-P:1477
-30
-*/
-
-/*
-Y:1531
-R:1439
-P:1580
-50
-*/    
-/*  
-1400
-1050
-1050
-*/
-		angle.yaw = att_in->yaw + (rc_in->YAW   - 1500) / 60+(+(PID_PID_1.P-10));
-    angle.rol = att_in->rol - (rc_in->ROLL  - 1500) / 60+(-(PID_PID_1.I-10));
-    angle.pit = att_in->pit + (rc_in->PITCH - 1500) / 60+(+(PID_PID_1.D-10));
+    angle.rol = att_in->rol - (rc_in->ROLL  - 1500) / 60 + (-(PID_PID_1.I - 10));
+    angle.pit = att_in->pit + (rc_in->PITCH - 1500) / 60 + (+(PID_PID_1.D - 10));
     /*****************************************************
     /定高
     *****************************************************/
@@ -118,7 +104,7 @@ P:1580
         pit_i = -INTEGRAL_WINDUP_P;
 
     //if (angle.rol < DEAD_BAND && angle.rol > -DEAD_BAND && angle.pit > -DEAD_BAND && angle.pit < DEAD_BAND)
-        yaw_i += angle.yaw; //积分
+    yaw_i += angle.yaw; //积分
     if (yaw_i > 3000)
         yaw_i = 3000;
     else if (yaw_i < -3000)
@@ -138,9 +124,10 @@ P:1580
     /*****************************************************
     /D
     *****************************************************/
-    PID_ROL.dout = PID_ROL.D * gyr_in->X;
-    PID_PIT.dout = PID_PIT.D * gyr_in->Y;
-    PID_YAW.dout = PID_YAW.D * gyr_in->Z;
+    PID_ROL.dout = PID_ROL.D * gyr_in->x;
+    PID_PIT.dout = PID_PIT.D * gyr_in->y;
+    PID_YAW.dout = PID_YAW.D * gyr_in->z;
+
     if (alt_time == 0)
         PID_ALT.dout = PID_ALT.D * (Alt_LastError - Alt_Error) / 0.030;
     /*****************************************************
@@ -184,6 +171,8 @@ P:1580
     {
         pit_i = 0;
         rol_i = 0;
+        yaw_i = 0;
+        alt_i = 0;
         MOTO1_PWM = 0;
         MOTO2_PWM = 0;
         MOTO3_PWM = 0;

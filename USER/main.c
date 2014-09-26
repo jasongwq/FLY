@@ -30,32 +30,22 @@ void SYS_INIT(void)
 #include "rc.h"
 #include "bak.h"
 
+#define LED1_Init     PA2_OUT
+#define LED1_Toggle {static char i = 0;PAout(2) = i++&0X01;}
+#define LED1_H PAout(2) = 1;
+#define LED1_L PAout(2) = 0;
 int task_led(void)
 {
     _SS
-    PA2_OUT;
-    PAout(2) = 0;
+    LED1_Init;
+    LED1_H;
     while (1)
     {
-        static char i = 0;
         WaitX(100);
         if (RC_Control.ARMED)
-        {
-            PAout(2) = 1;
-        }
+            LED1_H
         else
-        {
-            if (i)
-            {
-                PAout(2) = 1;
-                i = 0;
-            }
-            else
-            {
-                i = 1;
-                PAout(2) = 0;
-            }
-        }
+            LED1_Toggle
     }
     _EE
 }
@@ -86,7 +76,7 @@ int task_ultrasonic(void)
                 temp = TIM1_CAPTURE_VAL_CH1; //得到总的高电平时间
                 //Sys_Printf(USART1, "%dMM\r\n", temp); //打印总的高点平时间
                 //Sys_Printf(USART1, "%dMM\r\n", (temp * 340 / 1000 / 2)); //打印总的高点平时间
-                Alt_ultrasonic = (temp * 340/1000 / 2);
+                Alt_ultrasonic = (temp * 340 / 1000 / 2);
                 //Sys_Printf(USART1, "%dMM\r\n", Alt_ultrasonic);
                 break;
             }
@@ -101,12 +91,10 @@ int task_ultrasonic(void)
 }
 #include "HMC5883L.h"
 #define PI 3.14159265
-
+extern float compass_yaw;
 int task_hmc5883l(void)
 {
     extern S_INT16_XYZ Mag;
-    float β, α, Xr, Yr;
-    //    float angle;
     _SS
     HMC5883L_Init();
     HMC5883L_Calibrate();
@@ -118,28 +106,36 @@ int task_hmc5883l(void)
         /**********430us*************/
         HMC5883L_MultRead(&hmc5883l);//8us
         //HMC5883L_Printf(&hmc5883l);//测试输出角度
-        Mag.X = hmc5883l.hx;
-        Mag.Y = hmc5883l.hy;
-        Mag.Z = hmc5883l.hz;
-        Xr =  Mag.X;
-        Yr =  Mag.Y;
-        β = (Att_Angle.rol + 180) / 180 * PI;
-        α = (Att_Angle.pit + 180) / 180 * PI;
-        Xr = Mag.X * cos(α) + Mag.Y * sin(α) * sin(β) - Mag.Z * cos(β) * sin(α);
-        Yr = Mag.Y * cos(β) + Mag.Z * sin(β);
-        Att_Angle.yaw = atan2(Yr, Xr) * (180 / PI); //160us计算时间
-        /**********430us*************/
-        //来自匿名四轴的磁场解算算法
-        //Att_Angle.yaw=atan2(-Acc.Y*Mag.Z - Acc.Z*Mag.X, Acc.Z*Mag.Y + Acc.X*Mag.Z)* 57.3 * 100;
+        Mag.x = hmc5883l.hx;
+        Mag.y = hmc5883l.hy;
+        Mag.z = hmc5883l.hz;
+        {//来自APM
+            float angle1, angle2,
+                  sin_angle1, sin_angle2,
+                  cos_angle1, cos_angle2,
+                  Xr, Yr;
+
+            angle1 = (Att_Angle.rol + 180) / 180 * PI;
+            angle2 = (-Att_Angle.pit + 180) / 180 * PI;
+            sin_angle1 = sin(angle1);
+            cos_angle1 = cos(angle1);
+            sin_angle2 = sin(angle2);
+            cos_angle2 = cos(angle2);
+						
+            Xr = Mag.x * cos_angle2 * cos_angle2 + Mag.y * sin_angle2 * sin_angle1 - Mag.z * cos_angle1 * sin_angle2;
+            Yr = Mag.y * cos_angle1 + Mag.z * sin_angle1;
+            compass_yaw = atan2(Yr, Xr) * (180 / PI); //160us计算时间
+        }
         WaitX(10);
     }
     _EE
 }
 
+int flag_ACC = 0;
 
 int task_6050(void)
 {
-    extern S_INT16_XYZ Acc, Gyr, Mag;
+    extern S_INT16_XYZ Acc, Gyr, Mag,Average_Acc;
     _SS
     MPU6050_Init();
     if (0 == Data_Read())
@@ -149,36 +145,24 @@ int task_6050(void)
     WaitX(200);
     while (1)
     {
-        WaitX(1);
-        MPU6050_Read();
-        MPU6050_Dataanl();
-        Acc.X = MPU6050_ACC_LAST.X;
-        Acc.Y = MPU6050_ACC_LAST.Y;
-        Acc.Z = MPU6050_ACC_LAST.Z;
-        Gyr.X = MPU6050_GYRO_LAST.X;
-        Gyr.Y = MPU6050_GYRO_LAST.Y;
-        Gyr.Z = MPU6050_GYRO_LAST.Z;
-        Prepare_Data(&Acc, &Acc);
-        WaitX(1);
+        WaitX(2);
         MPU6050_Read();
         MPU6050_Dataanl();//5us
-        Acc.X = MPU6050_ACC_LAST.X;
-        Acc.Y = MPU6050_ACC_LAST.Y;
-        Acc.Z = MPU6050_ACC_LAST.Z;
-        Gyr.X = MPU6050_GYRO_LAST.X;
-        Gyr.Y = MPU6050_GYRO_LAST.Y;
-        Gyr.Z = MPU6050_GYRO_LAST.Z;
-        Prepare_Data(&Acc, &Acc);//4us
-        IMUupdate(&Gyr, &Acc, &Att_Angle);//222us
+        Acc.x = MPU6050_ACC_LAST.x;
+        Acc.y = MPU6050_ACC_LAST.y;
+        Acc.z = MPU6050_ACC_LAST.z;
+        Gyr.x = MPU6050_GYRO_LAST.x;
+        Gyr.y = MPU6050_GYRO_LAST.y;
+        Gyr.z = MPU6050_GYRO_LAST.z;
+        Prepare_Data(&Acc, &Average_Acc);//4us
         Prepare_Data2(&Att_Angle);//24us
-        Control(&Att_Angle, &Gyr, &Rc_D, &RC_Control);//17us
+        flag_ACC = 1;
     }
     _EE
 }
 #include "data_transfer.h"
 #include "control.h"
 #include "pwm.h"
-
 int task_pwm_ex(void)
 {
     _SS
@@ -212,7 +196,7 @@ int task_cap_rc(void)
     TIM2_Cap_Init(0XFFFF, 72);
     TIM3_Cap_Init(0XFFFF, 72);
     TIM4_Cap_Init(0XFFFF, 72);
-		TIM8_Cap_Init(0XFFFF, 72);
+    TIM8_Cap_Init(0XFFFF, 72);
     while (1)
     {
         static u8 utime;
@@ -360,16 +344,28 @@ int task_bmp085(void)
     _EE
 }
 
+int loop_fast(void)//500hz
+{
+    extern S_INT16_XYZ Acc, Average_Acc, Gyr, Mag;
+		_SS
+		_LOOP_SS
+    if (flag_ACC)
+    {
+        IMUupdate(&Gyr, &Average_Acc, &Att_Angle);//222us
+        Control(&Att_Angle, &Gyr, &Rc_D, &RC_Control);//17us
+		}
+		LoopX(2);
+		_EE
+}
 int main(void)
 {
     SYS_INIT();
     /***总循环***/
     while (1)
     {
-        /**
-        * 串口
-        */
-        RunTaskA(task_6050, 0);
+				RunLoop(loop_fast,0);
+				
+        RunTaskA(task_6050, 7);
 
         RunTaskA(task_ultrasonic, 1);
 

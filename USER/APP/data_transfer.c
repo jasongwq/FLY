@@ -15,7 +15,7 @@ extern int32_t MOTO1_PWM, MOTO2_PWM, MOTO3_PWM, MOTO4_PWM;
 u8 Data_Check, Send_Status, Send_Senser, Send_RCData, Send_RC, Send_GpsData, Send_Offset, Send_PID1, Send_PID2, Send_PID3, Send_MotoPwm;
 
 
-S_INT16_XYZ Acc, Gyr, Mag;
+S_INT16_XYZ Acc, Average_Acc, Gyr, Mag;
 void Data_Receive_Anl(u8 *data_buf, u8 num)
 {
     vs16 rc_value_temp;
@@ -155,33 +155,24 @@ void Data_Send_Senser(void)
     data_to_send[_cnt++] = 0xAA;
     data_to_send[_cnt++] = 0x02;
     data_to_send[_cnt++] = 0;
-    data_to_send[_cnt++] = BYTE1(Acc.X);
-    data_to_send[_cnt++] = BYTE0(Acc.X);
-    data_to_send[_cnt++] = BYTE1(Acc.Y);
-    data_to_send[_cnt++] = BYTE0(Acc.Y);
-    data_to_send[_cnt++] = BYTE1(Acc.Z);
-    data_to_send[_cnt++] = BYTE0(Acc.Z);
-    data_to_send[_cnt++] = BYTE1(Gyr.X);
-    data_to_send[_cnt++] = BYTE0(Gyr.X);
-    data_to_send[_cnt++] = BYTE1(Gyr.Y);
-    data_to_send[_cnt++] = BYTE0(Gyr.Y);
-    data_to_send[_cnt++] = BYTE1(Gyr.Z);
-    data_to_send[_cnt++] = BYTE0(Gyr.Z);
-    //    data_to_send[_cnt++] = BYTE1(Mag.X);
-    //    data_to_send[_cnt++] = BYTE0(Mag.X);
-    //    data_to_send[_cnt++] = BYTE1(Mag.Y);
-    //    data_to_send[_cnt++] = BYTE0(Mag.Y);
-    //    data_to_send[_cnt++] = BYTE1(Mag.Z);
-    //    data_to_send[_cnt++] = BYTE0(Mag.Z);
-    vs16 _temp;
-    data_to_send[_cnt++] = BYTE1(MOTO1_PWM);
-    data_to_send[_cnt++] = BYTE0(MOTO1_PWM);
-    _temp = (int16_t)Alt_Error;
-    data_to_send[_cnt++] = BYTE1(_temp);
-    data_to_send[_cnt++] = BYTE0(_temp);
-    _temp = (int16_t)rol_i;
-    data_to_send[_cnt++] = BYTE1(_temp);
-    data_to_send[_cnt++] = BYTE0(_temp);
+    data_to_send[_cnt++] = BYTE1(Acc.x);
+    data_to_send[_cnt++] = BYTE0(Acc.x);
+    data_to_send[_cnt++] = BYTE1(Acc.y);
+    data_to_send[_cnt++] = BYTE0(Acc.y);
+    data_to_send[_cnt++] = BYTE1(Acc.z);
+    data_to_send[_cnt++] = BYTE0(Acc.z);
+    data_to_send[_cnt++] = BYTE1(Gyr.x);
+    data_to_send[_cnt++] = BYTE0(Gyr.x);
+    data_to_send[_cnt++] = BYTE1(Gyr.y);
+    data_to_send[_cnt++] = BYTE0(Gyr.y);
+    data_to_send[_cnt++] = BYTE1(Gyr.z);
+    data_to_send[_cnt++] = BYTE0(Gyr.z);
+    data_to_send[_cnt++] = BYTE1(Mag.x);
+    data_to_send[_cnt++] = BYTE0(Mag.x);
+    data_to_send[_cnt++] = BYTE1(Mag.y);
+    data_to_send[_cnt++] = BYTE0(Mag.y);
+    data_to_send[_cnt++] = BYTE1(Mag.z);
+    data_to_send[_cnt++] = BYTE0(Mag.z);
 
     data_to_send[3] = _cnt - 4;
 
