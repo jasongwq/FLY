@@ -24,5 +24,6 @@ USART3|  B10 B11 |   (C10 C11)  | (D8  D9)  |
 #define AF_USART2_ (0)
 #define AF_USART3_ (0)
 /***USART***/
+      //串口
 /****************************************/
 #endif
