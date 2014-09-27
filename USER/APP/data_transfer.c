@@ -12,8 +12,8 @@ extern int32_t MOTO1_PWM, MOTO2_PWM, MOTO3_PWM, MOTO4_PWM;
 
 #define DATA_TRANSFER_USE_USART
 
-u8 Data_Check, Send_Status, Send_Senser, Send_RCData, Send_RC, Send_GpsData, Send_Offset, Send_PID1, Send_PID2, Send_PID3, Send_MotoPwm;
 
+struct DATA_TRANSFER_SWITCH Ex_ON_OFF,Send;
 
 S_INT16_XYZ Acc, Average_Acc, Gyr, Mag;
 void Data_Receive_Anl(u8 *data_buf, u8 num)
@@ -46,12 +46,12 @@ void Data_Receive_Anl(u8 *data_buf, u8 num)
     //    {
     //        if (*(data_buf + 4) == 0X01)
     //        {
-    //            Send_PID1 = 1;
-    //            Send_PID2 = 1;
-    //            Send_PID3 = 1;
+    //           Send.PID1 = 1;
+    //           Send.PID2 = 1;
+    //           Send.PID3 = 1;
     //        }
     //        if (*(data_buf + 4) == 0X02)
-    //            Send_Offset = 1;
+    //           Send.Offset = 1;
     //    }
     //    if (*(data_buf + 2) == 0X10)                        //PID1
     //    {
@@ -65,7 +65,7 @@ void Data_Receive_Anl(u8 *data_buf, u8 num)
     //        PID_YAW.I = (float)((vs16)(*(data_buf + 18) << 8) | *(data_buf + 19)) / 100;
     //        PID_YAW.D = (float)((vs16)(*(data_buf + 20) << 8) | *(data_buf + 21)) / 100;
     //        Data_Save(1);
-    //        Send_PID1 = 1;
+    //       Send.PID1 = 1;
     //    }
     //    if (*(data_buf + 2) == 0X11)                        //PID2
     //    {
@@ -78,14 +78,14 @@ void Data_Receive_Anl(u8 *data_buf, u8 num)
     //        PID_PID_1.P = (float)((vs16)(*(data_buf + 16) << 8) | *(data_buf + 17)) / 100;
     //        PID_PID_1.I = (float)((vs16)(*(data_buf + 18) << 8) | *(data_buf + 19)) / 100;
     //        PID_PID_1.D = (float)((vs16)(*(data_buf + 20) << 8) | *(data_buf + 21)) / 100;
-    //        Send_PID2 = 1;
+    //       Send.PID2 = 1;
     //    }
     //    if (*(data_buf + 2) == 0X12)                        //PID3
     //    {
     //        PID_PID_2.P = (float)((vs16)(*(data_buf + 4) << 8) | *(data_buf + 5)) / 100;
     //        PID_PID_2.I = (float)((vs16)(*(data_buf + 6) << 8) | *(data_buf + 7)) / 100;
     //        PID_PID_2.D = (float)((vs16)(*(data_buf + 8) << 8) | *(data_buf + 9)) / 100;
-    //        Send_PID3 = 1;
+    //       Send.PID3 = 1;
     //        Data_Save(1);
     //    }
     //    if (*(data_buf + 2) == 0X16)                        //OFFSET
@@ -462,6 +462,51 @@ void Data_Send_MotoPWM(void)
     NRF_TxPacket(data_to_send, _cnt);
 #endif
 }
+void Data_Send_F4(void)
+{
+    u8 _cnt = 0;
+    data_to_send[_cnt++] = 0xAA;
+    data_to_send[_cnt++] = 0xAA;
+    data_to_send[_cnt++] = 0xF4;
+    data_to_send[_cnt++] = 0;
+    data_to_send[_cnt++] = BYTE1(Rc_D.THROTTLE);
+    data_to_send[_cnt++] = BYTE0(Rc_D.THROTTLE);
+    data_to_send[_cnt++] = BYTE1(Rc_D.YAW);
+    data_to_send[_cnt++] = BYTE0(Rc_D.YAW);
+    data_to_send[_cnt++] = BYTE1(Rc_D.ROLL);
+    data_to_send[_cnt++] = BYTE0(Rc_D.ROLL);
+    data_to_send[_cnt++] = BYTE1(Rc_D.PITCH);
+    data_to_send[_cnt++] = BYTE0(Rc_D.PITCH);
+    data_to_send[_cnt++] = BYTE1(Rc_D.AUX1);
+    data_to_send[_cnt++] = BYTE0(Rc_D.AUX1);
+    data_to_send[_cnt++] = BYTE1(Rc_D.AUX2);
+    data_to_send[_cnt++] = BYTE0(Rc_D.AUX2);
+    data_to_send[_cnt++] = BYTE1(Rc_D.AUX3);
+    data_to_send[_cnt++] = BYTE0(Rc_D.AUX3);
+    data_to_send[_cnt++] = BYTE1(Rc_D.AUX4);
+    data_to_send[_cnt++] = BYTE0(Rc_D.AUX4);
+    data_to_send[_cnt++] = BYTE1(Rc_D.AUX5);
+    data_to_send[_cnt++] = BYTE0(Rc_D.AUX5);
+    data_to_send[_cnt++] = BYTE1(Rc_D.AUX6);
+    data_to_send[_cnt++] = BYTE0(Rc_D.AUX6);
+    data_to_send[_cnt++] = BYTE1(Alt_ultrasonic);
+    data_to_send[_cnt++] = BYTE0(Alt_ultrasonic);
+
+
+    data_to_send[3] = _cnt - 4;
+
+    u8 sum = 0;
+    for (u8 i = 0; i < _cnt; i++)
+        sum += data_to_send[i];
+
+    data_to_send[_cnt++] = sum;
+
+#ifdef DATA_TRANSFER_USE_USART
+    Sys_sPrintf(USART1, data_to_send, _cnt);
+#else
+    NRF_TxPacket(data_to_send, _cnt);
+#endif
+}
 void Data_Exchange(void)
 {
 #ifdef DATA_TRANSFER_USE_SPI_NRF
@@ -471,56 +516,61 @@ void Data_Exchange(void)
         return;
 #endif
 
-    if (Send_Status)
+    if (Send.DataF4)
     {
-        Send_Status = 0;
+       Send.DataF4 = 0;
+        Data_Send_F4();
+    }
+    if (Send.Status)
+    {
+       Send.Status = 0;
         Data_Send_Status();
     }
-//    else if (Send_GpsData)
+//    else if (Send.GpsData)
 //    {
-//        Send_GpsData = 0;
+//       Send.GpsData = 0;
 //        //Data_Send_GpsData();
 //    }
-    if (Send_Senser)
+    if (Send.Senser)
     {
-        Send_Senser = 0;
+       Send.Senser = 0;
         Data_Send_Senser();
     }
-//    if (Send_PID1)
+//    if (Send.PID1)
 //    {
-//        Send_PID1 = 0;
+//       Send.PID1 = 0;
 //        Data_Send_PID1();
 //    }
-//    else if (Send_PID2)
+//    else if (Send.PID2)
 //    {
-//        Send_PID2 = 0;
+//       Send.PID2 = 0;
 //        Data_Send_PID2();
 //    }
-//    else if (Send_PID3)
+//    else if (Send.PID3)
 //    {
-//        Send_PID3 = 0;
+//       Send.PID3 = 0;
 //        Data_Send_PID3();
 //    }
-//    if (Send_RC)
+//    if (Send.RC)
 //    {
-//        Send_RC = 0;
+//       Send.RC = 0;
 //        Data_Send_RC();
 //    }
-    if (Send_RCData)
+    if (Send.RCData)
     {
-        Send_RCData = 0;
+       Send.RCData = 0;
         Data_Send_RCData();
     }
 
-//    if (Send_Offset)
+//    if (Send.Offset)
 //    {
-//        Send_Offset = 0;
+//       Send.Offset = 0;
 //        //Data_Send_OFFSET();
 //    }
-//    Send_MotoPwm = 1;
-//    if (Send_MotoPwm)
+//   Send.MotoPwm = 1;
+//    if (Send.MotoPwm)
 //    {
-//        Send_MotoPwm = 0;
+//       Send.MotoPwm = 0;
 //        Data_Send_MotoPWM();
 //    }
 }

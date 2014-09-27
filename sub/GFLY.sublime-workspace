@@ -1,0 +1,512 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"sp",
+				"sprintf"
+			],
+			[
+				"de",
+				"def	#ifndef … #define … #endif"
+			],
+			[
+				"vo",
+				"Voltage_Values"
+			],
+			[
+				"le",
+				"led_t"
+			],
+			[
+				"led",
+				"led_state"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"inp",
+				"Package Control: Install Package"
+			],
+			[
+				"inpack",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 528.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/ESC32/ESC32_KILE/esc32_keil/src/timer.c",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/ESC32/ESC32_KILE/esc32_keil/lib/stm32f10x_adc.c",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/ESC32/ESC32_KILE/esc32_keil/lib/startup_stm32f10x_md.s",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/ESC32/ESC32_KILE/esc32_keil/pro/project.plg",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/GFLY/FLY/USER/APP/data_transfer.c",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/ESC32/ESC32_KILE/esc32_keil/src/main.c",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/OPENPILOT/OpenPilot/flight/targets/boards/coptercontrol/firmware/coptercontrol.c",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/OPENPILOT/OpenPilot/flight/targets/boards/coptercontrol/firmware/pios_board.c",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/OPENPILOT/OpenPilot/flight/targets/boards/coptercontrol/firmware/pios_board_posix.c",
+		"/E/WORK/Contest/ELECTRONIC_DESIGN_CONTEST2014/MSP430_EX/USER/APP/Control.c",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/ESC32/ESC32_KILE/esc32_keil/src/getbuildnum.c",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/ESC32/ESC32_KILE/esc32_keil/src/adc.c",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/ESC32/ESC32_KILE/esc32_keil/src/run.c",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/ESC32/ESC32_KILE/esc32_keil/src/config.c",
+		"/D/SkyDrive/Program Files/Sublime Text Build 3059 x64/Data/Packages/User/Preferences.sublime-settings",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/ESC32/ESC32_KILE/esc32_keil/src/adc.h",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/ESC32/ESC32_KILE/esc32_keil/src/adc",
+		"/J/DATFILE.DAT",
+		"/J/20140415.DAT",
+		"/J/20140920.DAT",
+		"/E/WORK/Project_List/新苗计划/智能联网太阳方位跟踪系统/CODE/GLIB/HARDWARE/gpio.h",
+		"/E/WORK/Project_List/新苗计划/智能联网太阳方位跟踪系统/CODE/USER0/USER/main.c",
+		"/E/WORK/Project_List/新苗计划/智能联网太阳方位跟踪系统/CODE/GLIB/SYSTEM/sys_usart.c",
+		"/E/WORK/Project_List/新苗计划/智能联网太阳方位跟踪系统/CODE/USER0/USER/APP/data_transfer.c",
+		"/J/20140416.DAT",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/main.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/wirish/boards/maple/include/board/board.h",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL_FLYMAPLE/GPIO.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/wirish/stm32f1/wirish_digital.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/support/scripts/win-list-com-ports.py",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1 - 副本/USER1_Steering_Head/USER/main.c",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1 - 副本/USER1_Steering_Head/USER/APP/data_transfer.c",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F0_WIRELESS_USART/USER_STM32F0_WIRELESS_USART/USER/User.h",
+		"/E/WORK/Contest/BOOTCAMP2014/STM32F1/GLIB/HARDWARE/adc.h",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/libmaple/timer.c",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/libmaple/stm32f1/gpio.c",
+		"/E/Users/JASON_G/Desktop/1.py",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/maple-bootloader/dfu.c",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/DataFlash/DataFlash_APM1.cpp",
+		"/E/Users/JASON_G/Desktop/ujgu.bin",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/wirish/boards/maple_mini/include/board/board.h",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/wirish/boards/maple_native/include/board/board.h",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/wirish/boards/maple_RET6/include/board/board.h",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/wirish/boards/olimex_stm32_h103/include/board/board.h",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/wirish/boards/st_stm3220g_eval/include/board/board.h",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/wirish/boards/VLDiscovery/include/board/board.h",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/wirish/stm32f2/wirish_digital.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/wirish/include/wirish/io.h",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL_VRBRAIN/GPIO.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL_PX4/GPIO.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL_Linux/GPIO.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL_Empty/GPIO.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL_AVR/GPIO.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/libraries/Wire/WireBase.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/wirish/HardwareSerial.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/wirish/HardwareSPI.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/wirish/usb_serial.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/libraries/Wire/Wire.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/libraries/LiquidCrystal/LiquidCrystal.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/arm/arm-none-eabi/include/c++/4.4.1/ext/pb_ds/detail/trie_policy/string_trie_e_access_traits_imp.hpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/arm/arm-none-eabi/include/c++/4.4.1/ext/pb_ds/detail/rc_binomial_heap_/rc.hpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/arm/arm-none-eabi/include/c++/4.4.1/ext/pb_ds/detail/pat_trie_/iterators_fn_imps.hpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/arm/arm-none-eabi/include/c++/4.4.1/ext/pb_ds/detail/pat_trie_/internal_node.hpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/arm/arm-none-eabi/include/c++/4.4.1/ext/pb_ds/detail/list_update_map_/iterators_fn_imps.hpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/arm/arm-none-eabi/include/c++/4.4.1/ext/pb_ds/detail/left_child_next_sibling_heap_/iterators_fn_imps.hpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/arm/arm-none-eabi/include/c++/4.4.1/ext/pb_ds/detail/gp_hash_table_map_/iterator_fn_imps.hpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/arm/arm-none-eabi/include/c++/4.4.1/ext/pb_ds/detail/cc_hash_table_map_/iterators_fn_imps.hpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/arm/arm-none-eabi/include/c++/4.4.1/ext/pb_ds/detail/binary_heap_/iterators_fn_imps.hpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/arm/arm-none-eabi/include/c++/4.4.1/ext/pb_ds/detail/bin_search_tree_/iterators_fn_imps.hpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/arm/arm-none-eabi/include/c++/4.4.1/ext/rope",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/arm/arm-none-eabi/include/c++/4.4.1/initializer_list",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL_VRBRAIN/UARTDriver.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL_PX4/UARTDriver.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL_Linux/UARTDriver.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL_Linux/I2CDriver.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL_FLYMAPLE/UARTDriver.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL_FLYMAPLE/I2CDriver.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL_Empty/UARTDriver.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL_Empty/I2CDriver.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL_AVR_SITL/UARTDriver.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL_AVR/UARTDriver.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL_AVR/I2CDriver.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/ArduCopter/commands_logic.pde",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/ArduCopter/control_auto.pde",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/ArduCopter/control_land.pde",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/ArduCopter/Attitude.pde",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/ArduCopter/ArduCopter.pde",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/ArduCopter/APM_Config.h",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/ArduCopter/AP_State.pde",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/ArduCopter/config.h",
+		"/E/Users/JASON_G/Desktop/.c",
+		"/E/Users/JASON_G/Desktop/SI446x_模块资料/E10-系列产品资料包 - 140718/2、DEMO程序/1、基于STM8L101的SI446X范例/SI446x_demo/RX/main.c",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/wirish/boards/maple_RET6/board.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/wirish/boards/VLDiscovery/board.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL/AP_HAL_Boards.h",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_Compass/AP_Compass_HMC5843.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_Compass/Compass.h",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/ArduCopter/Log.pde",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/ArduCopter/system.pde",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/APM_OBC/Failsafe_Board/Failsafe_Board.pde",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_Notify/AP_BoardLED.h",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL_FLYMAPLE/HAL_FLYMAPLE_Class.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/APMrover2/config.h",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/arm/arm-none-eabi/include/pthread.h",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/arm/arm-none-eabi/include/c++/4.4.1/arm-none-eabi/bits/cxxabi_tweaks.h",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/arm/arm-none-eabi/include/c++/4.4.1/arm-none-eabi/armv6-m/bits/c++config.h",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/Tools/autotest/aircraft/arducopter/Models/plus_quad2.dae",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_Notify/ExternalLED.h",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/wirish/include/wirish/wirish_types.h",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL_FLYMAPLE/AnalogIn.h",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/wirish/wirish_digital.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL_FLYMAPLE/AP_HAL_FLYMAPLE_Main.h",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/build/config.mk",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_InertialSensor/AP_InertialSensor_Flymaple.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL_FLYMAPLE/Storage.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL_FLYMAPLE/SPIDriver.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL_FLYMAPLE/Semaphores.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL_FLYMAPLE/Scheduler.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL_FLYMAPLE/RCOutput.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL_FLYMAPLE/RCInput.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL_FLYMAPLE/AP_HAL_FLYMAPLE.h",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL_FLYMAPLE/AnalogSource.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_HAL_FLYMAPLE/AnalogIn.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_Common/c++.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_BattMonitor/AP_BattMonitor.h",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/libraries/AP_Airspeed/AP_Airspeed.cpp",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/mk/apm.mk",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/mk/board_flymaple.mk"
+	],
+	"find":
+	{
+		"height": 21.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"E:\\WORK\\Project_List\\MULTI_ROTOR_TYPE_AIRCRAFT\\APM\\GIT\\ardupilot",
+			"E:\\WORK\\Project_List\\MULTI_ROTOR_TYPE_AIRCRAFT\\APM\\GIT\\ardupilot\\ArduCopter",
+			"E:\\WORK\\Project_List\\MULTI_ROTOR_TYPE_AIRCRAFT\\APM\\GIT\\libmaple",
+			"E:\\WORK\\Project_List\\MULTI_ROTOR_TYPE_AIRCRAFT\\APM\\GIT\\ardupilot",
+			"E:\\WORK\\Project_List\\MULTI_ROTOR_TYPE_AIRCRAFT\\APM\\GIT\\libmaple",
+			"E:\\WORK\\Project_List\\MULTI_ROTOR_TYPE_AIRCRAFT\\APM\\GIT\\ardupilot",
+			"E:\\WORK\\Project_List\\MULTI_ROTOR_TYPE_AIRCRAFT\\APM\\GIT\\libmaple",
+			"E:\\WORK\\Project_List\\MULTI_ROTOR_TYPE_AIRCRAFT\\APM\\GIT\\ardupilot",
+			"E:\\WORK\\Project_List\\MULTI_ROTOR_TYPE_AIRCRAFT\\APM\\GIT\\maple-bootloader",
+			"E:\\WORK\\Project_List\\MULTI_ROTOR_TYPE_AIRCRAFT\\APM\\GIT\\libmaple",
+			"E:\\WORK\\Project_List\\MULTI_ROTOR_TYPE_AIRCRAFT\\APM\\GIT\\ardupilot",
+			"E:\\WORK\\Project_List\\MULTI_ROTOR_TYPE_AIRCRAFT\\APM\\GIT\\ardupilot\\libraries\\AP_Notify",
+			"E:\\WORK\\Project_List\\MULTI_ROTOR_TYPE_AIRCRAFT\\APM\\GIT\\ardupilot\\libraries",
+			"E:\\WORK\\Project_List\\MULTI_ROTOR_TYPE_AIRCRAFT\\APM\\GIT\\ardupilot",
+			"E:\\WORK\\Project_List\\MULTI_ROTOR_TYPE_AIRCRAFT\\APM\\GIT\\libmaple",
+			"E:\\WORK\\Project_List\\MULTI_ROTOR_TYPE_AIRCRAFT\\APM\\GIT\\ardupilot",
+			"E:\\WORK\\Project_List\\MULTI_ROTOR_TYPE_AIRCRAFT\\APM\\GIT\\libmaple",
+			"E:\\WORK\\Project_List\\MULTI_ROTOR_TYPE_AIRCRAFT\\APM\\GIT\\ardupilot",
+			"E:\\WORK\\Project_List\\MULTI_ROTOR_TYPE_AIRCRAFT\\APM\\GIT\\ardupilot\\ArduCopter",
+			"E:\\WORK\\Project_List\\MULTI_ROTOR_TYPE_AIRCRAFT\\APM\\GIT\\libmaple",
+			"E:\\WORK\\Project_List\\MULTI_ROTOR_TYPE_AIRCRAFT\\APM\\GIT\\ardupilot",
+			"E:\\WORK\\Project_List\\MULTI_ROTOR_TYPE_AIRCRAFT\\APM\\GIT\\maple-bootloader",
+			"E:\\WORK\\Project_List\\MULTI_ROTOR_TYPE_AIRCRAFT\\APM\\GIT\\ardupilot",
+			"E:\\WORK\\Project_List\\MULTI_ROTOR_TYPE_AIRCRAFT\\APM\\GIT\\ardupilot\\libraries\\AP_Compass",
+			"E:\\WORK\\Project_List\\MULTI_ROTOR_TYPE_AIRCRAFT\\APM\\GIT\\ardupilot",
+			"E:\\WORK\\Project_List\\MULTI_ROTOR_TYPE_AIRCRAFT\\APM\\GIT\\ardupilot\\libraries\\AC_PID",
+			"E:\\WORK\\Project_List\\MULTI_ROTOR_TYPE_AIRCRAFT\\APM\\GIT\\ardupilot",
+			"E:\\WORK\\Contest\\BOOTCAMP2014\\STM32F1"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"(Send_",
+			" Send_",
+			"Send_",
+			", Send_",
+			", ",
+			"{",
+			", Send_",
+			"SEND_angle",
+			"SERVO_MODE",
+			"periodMicros",
+			"raw",
+			"adcRawData",
+			"ADC2",
+			"ADC1",
+			"DMA_PeripheralBaseAddr",
+			"DMA_MemoryBaseAddr",
+			"adcRawData",
+			"raw",
+			"ADC_VOLTS_PRECISION",
+			"adcAvgAmps",
+			"DMA",
+			"\n    }",
+			"{\n",
+			"\n\n\n",
+			"\n\n",
+			"#ifdef ADC_FAST_SAMPLE",
+			"ADC_FAST_SAMPLE",
+			"ADC_InitStructure",
+			"ADC_FLAG_JEOC",
+			"DATA_TRANSFER_USARTx",
+			"USART3",
+			"USART",
+			"Angle_Offset",
+			"USART_DATA",
+			"TxBuffer",
+			"buf",
+			"Print",
+			"OUT ",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"PF0_OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out",
+			"OUT",
+			"Out"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"(Send.",
+			"Send.",
+			"}",
+			"{",
+			"\n\n",
+			"\n",
+			"",
+			"#if 1 \n//#ifdef ADC_FAST_SAMPLE",
+			"#if 1",
+			"0",
+			"File_DATA",
+			"LED.Key_value",
+			"LED.mode",
+			"LED.state",
+			"TxRxBuf",
+			"_L",
+			"_H",
+			"SCK_L",
+			"SCK_H",
+			"<=",
+			">=",
+			"Set_y",
+			"Set_x",
+			"Circle_R",
+			"result4.",
+			"SPI",
+			"SPI1",
+			"USARTx",
+			"Resu->"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 21.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 242.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 0.0
+	},
+	"project": "GFLY.sublime-project",
+	"replace":
+	{
+		"height": 38.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"D:\\SkyDrive\\文档\\sub\\430_EX.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 209.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

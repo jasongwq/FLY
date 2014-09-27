@@ -77,23 +77,23 @@ TIM1_CH3N    |PB15(!36)|   PB1   |   PE12(100 144)   |
  * (1)启用 (0)不启用
  * AFIO 0-3
  */
-#define CAP_TIM2_CH1  1
-#define CAP_TIM2_CH2  1
+#define CAP_TIM2_CH1  0
+#define CAP_TIM2_CH2  0
 #define CAP_TIM2_CH3  0
 #define CAP_TIM2_CH4  0
 #define CAP_TIM2_AFIO 0
 
-#define CAP_TIM3_CH1  1
-#define CAP_TIM3_CH2  1
+#define CAP_TIM3_CH1  0
+#define CAP_TIM3_CH2  0
 #define CAP_TIM3_CH3  1
-#define CAP_TIM3_CH4  1
-#define CAP_TIM3_AFIO 1
+#define CAP_TIM3_CH4  0
+#define CAP_TIM3_AFIO 3
 
 #define CAP_TIM4_CH1  1
 #define CAP_TIM4_CH2  1
-#define CAP_TIM4_CH3  0
-#define CAP_TIM4_CH4  0
-#define CAP_TIM4_AFIO 1
+#define CAP_TIM4_CH3  1
+#define CAP_TIM4_CH4  1
+#define CAP_TIM4_AFIO 0
 
 #define CAP_TIM5_CH1  0
 #define CAP_TIM5_CH2  0
@@ -107,8 +107,8 @@ TIM1_CH3N    |PB15(!36)|   PB1   |   PE12(100 144)   |
 #define CAP_TIM1_CH4  0
 #define CAP_TIM1_AFIO 0
 
-#define CAP_TIM8_CH1  1
-#define CAP_TIM8_CH2  1
+#define CAP_TIM8_CH1  0
+#define CAP_TIM8_CH2  0
 #define CAP_TIM8_CH3  0
 #define CAP_TIM8_CH4  0
 #define CAP_TIM8_AFIO 0

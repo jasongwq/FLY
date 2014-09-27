@@ -46,7 +46,7 @@ void TIM1_TRG_COM_IRQHandler(void)
     TIM1_TRG_COM_IRQ();
 }
 extern void TIM1_Cap_IRQ(void);
-extern void TIM2_Cap_IRQ(void);
+
 extern void TIM3_Cap_IRQ(void);
 extern void TIM4_Cap_IRQ(void);
 extern void TIM8_Cap_IRQ(void);
@@ -54,23 +54,43 @@ extern void TIM8_Cap_IRQ(void);
 
 void TIM1_UP_IRQHandler(void)
 {
-    TIM1_Cap_IRQ();
+    #include "G32_Timer_Cap_Config.h"
+#if (CAP_TIM8_CH1)||(CAP_TIM8_CH2)||(CAP_TIM8_CH3)||(CAP_TIM8_CH4)
+  extern void TIM8_Cap_IRQ(void);
+	TIM8_Cap_IRQ();
+#endif
 }
 void TIM1_CC_IRQHandler(void)
 {
-	TIM1_Cap_IRQ();
+	#include "G32_Timer_Cap_Config.h"
+#if (CAP_TIM8_CH1)||(CAP_TIM8_CH2)||(CAP_TIM8_CH3)||(CAP_TIM8_CH4)
+  extern void TIM8_Cap_IRQ(void);
+	TIM8_Cap_IRQ();
+#endif
 }
 void TIM8_UP_IRQHandler(void)
 {
-    TIM8_Cap_IRQ();
+    #include "G32_Timer_Cap_Config.h"
+#if (CAP_TIM8_CH1)||(CAP_TIM8_CH2)||(CAP_TIM8_CH3)||(CAP_TIM8_CH4)
+  extern void TIM8_Cap_IRQ(void);
+	TIM8_Cap_IRQ();
+#endif
 }
 void TIM8_CC_IRQHandler(void)
 {
+	#include "G32_Timer_Cap_Config.h"
+#if (CAP_TIM8_CH1)||(CAP_TIM8_CH2)||(CAP_TIM8_CH3)||(CAP_TIM8_CH4)
+  extern void TIM8_Cap_IRQ(void);
 	TIM8_Cap_IRQ();
+#endif
 }
 void TIM2_IRQHandler(void)
 {
+#include "G32_Timer_Cap_Config.h"
+#if (CAP_TIM2_CH1)||(CAP_TIM2_CH2)||(CAP_TIM2_CH3)||(CAP_TIM2_CH4)
+  extern void TIM2_Cap_IRQ(void);
 	TIM2_Cap_IRQ();
+#endif
 }
 void TIM3_IRQHandler(void)
 {

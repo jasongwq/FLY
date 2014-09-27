@@ -17,16 +17,16 @@ void Rc_DataAnl(u16 Rc_Pwm_In[5])
 //    Rc_Data.AUX4            =   Rc_Pwm_In[7];
 //    Rc_Data.AUX5            =   Rc_Pwm_In[8];
 //    Rc_Data.AUX6            =   Rc_Pwm_In[9];
-		Rc_Data.THROTTLE        =   Rc_Pwm_In[4];
-    Rc_Data.YAW             =   Rc_Pwm_In[5];
-    Rc_Data.ROLL            =   Rc_Pwm_In[1];
-    Rc_Data.PITCH           =   Rc_Pwm_In[0];
-    Rc_Data.AUX1            =   Rc_Pwm_In[7];//×ó
-    Rc_Data.AUX2            =   Rc_Pwm_In[6];
-    Rc_Data.AUX3            =   Rc_Pwm_In[8];
-    Rc_Data.AUX4            =   Rc_Pwm_In[9];
-    Rc_Data.AUX5            =   Rc_Pwm_In[2];//ÓÒ
-    Rc_Data.AUX6            =   Rc_Pwm_In[3];
+		Rc_Data.THROTTLE        =   Rc_Pwm_In[0];
+    Rc_Data.YAW             =   Rc_Pwm_In[1];
+    Rc_Data.ROLL            =   Rc_Pwm_In[2];
+    Rc_Data.PITCH           =   Rc_Pwm_In[3];
+    Rc_Data.AUX1            =   Rc_Pwm_In[4];//×ó
+    Rc_Data.AUX2            =   Rc_Pwm_In[0];
+    Rc_Data.AUX3            =   Rc_Pwm_In[1];
+    Rc_Data.AUX4            =   Rc_Pwm_In[2];
+    Rc_Data.AUX5            =   Rc_Pwm_In[3];//ÓÒ
+    Rc_Data.AUX6            =   Rc_Pwm_In[4];
     //    rt_event_send(&Evt_Sys, EVT_RC_GET);
 }
 void Rc_GetValue(T_RC_Data *temp)
@@ -101,5 +101,4 @@ void RC_Analyse(T_RC_Data *rc_data, T_Control *ctl_data)
         else
             fun_cnt3 = 0;
     }
-
 }
