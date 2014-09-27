@@ -23,11 +23,16 @@
 #include <math.h>
 //----------------------------------------------------------------------------------------------------
 // Definitions
-#define Kp 10.0f       // proportional gain governs rate of convergence to accelerometer/magnetometer
-#define Ki 0.008f     // integral gain governs rate of convergence of gyroscope biases
+#define Kp 0.5f       // proportional gain governs rate of convergence to accelerometer/magnetometer
+#define Ki 0.0001//0.008f//0.008f     // integral gain governs rate of convergence of gyroscope biases
 #define halfT 0.001f  // half the sample period(s)
 
 #define Gyro_Gr     0.0010653f
+#define Gyro_G      0.0610351                                //角速度变成度 此参数对应陀螺仪2000度每秒
+//#define Gyro_G 0.060975
+//#define Gyro_Gr        0.0010653                                //角速度变成弧度 此参数对应陀螺仪2000度每秒
+//量程+-2000   16bit
+//4000/65536=0.06103515625 °/LSB
 //---------------------------------------------------------------------------------------------------
 // Variable definitions
 float q0 = 1, q1 = 0, q2 = 0, q3 = 0; // quaternion elements representing the estimated orientation
@@ -36,7 +41,6 @@ float exInt = 0, eyInt = 0, ezInt = 0;// scaled integral error
 // Function
 //====================================================================================================
 T_float_angle   Att_Angle;  //ATT函数计算出的姿态角
-T_float_angle   Att_Angle_Avg;  //ATT函数计算出的姿态角
 
 float compass_yaw;
 void IMUupdate(S_INT16_XYZ *gyr, S_INT16_XYZ *acc, T_float_angle *angle)
@@ -93,6 +97,9 @@ void IMUupdate(S_INT16_XYZ *gyr, S_INT16_XYZ *acc, T_float_angle *angle)
     q2 = q2 / norm;
     q3 = q3 / norm;
     // 四元数规范化
+    static float Yaw_I = 0;
+    Yaw_I = (gyr->z * Gyro_G *0.01);
+    angle->yaw =angle->yaw + Yaw_I;// (0.99) * (angle->yaw + Yaw_I) + (0.01) * (compass_yaw);
     //angle->yaw = atan2(2 * q1 * q2 + 2 * q0 * q3, -2 * q2*q2 - 2 * q3* q3 + 1)* 57.3; // yaw
     angle->pit = asin(-2 * q1 * q3 + 2 * q0 * q2) * 57.3; // pitch
     angle->rol = -atan2(2 * q2 * q3 + 2 * q0 * q1, -2 * q1 * q1 - 2 * q2 * q2 + 1) * 57.3; // roll
@@ -104,83 +111,3 @@ void IMUupdate(S_INT16_XYZ *gyr, S_INT16_XYZ *acc, T_float_angle *angle)
 ////====================================================================================================
 ////////////////////////////////////////////////////////////////////////////////
 
-
-
-
-
-//#define Kp 10.0f                        // proportional gain governs rate of convergence to accelerometer/magnetometer
-//#define Ki 0.008f                          // integral gain governs rate of convergence of gyroscope biases
-//#define halfT 0.001f                   // half the sample period???????
-
-//float q0 = 1, q1 = 0, q2 = 0, q3 = 0;    // quaternion elements representing the estimated orientation
-//float exInt = 0, eyInt = 0, ezInt = 0;    // scaled integral error
-//void IMUupdate(S_INT16_XYZ *gyr, S_INT16_XYZ *acc, T_float_angle *angle)
-//{
-//  float ax = acc->X,ay = acc->Y,az = acc->Z;
-//  float gx = gyr->X,gy = gyr->Y,gz = gyr->Z;
-//  float norm;
-////  float hx, hy, hz, bx, bz;
-//  float vx, vy, vz;// wx, wy, wz;
-//  float ex, ey, ez;
-
-//  // ???????????
-//  float q0q0 = q0*q0;
-//  float q0q1 = q0*q1;
-//  float q0q2 = q0*q2;
-////  float q0q3 = q0*q3;
-//  float q1q1 = q1*q1;
-////  float q1q2 = q1*q2;
-//  float q1q3 = q1*q3;
-//  float q2q2 = q2*q2;
-//  float q2q3 = q2*q3;
-//  float q3q3 = q3*q3;
-//
-//  if(ax*ay*az==0)
-//      return;
-//
-//  gx *= Gyro_Gr;
-//  gy *= Gyro_Gr;
-//  gz *= Gyro_Gr;
-//
-//  norm = sqrt(ax*ax + ay*ay + az*az);       //acc?????
-//  ax = ax /norm;
-//  ay = ay / norm;
-//  az = az / norm;
-
-//  // estimated direction of gravity and flux (v and w)              ?????????/??
-//  vx = 2*(q1q3 - q0q2);                                               //????xyz???
-//  vy = 2*(q0q1 + q2q3);
-//  vz = q0q0 - q1q1 - q2q2 + q3q3 ;
-
-//  // error is sum of cross product between reference direction of fields and direction measured by sensors
-//  ex = (ay*vz - az*vy) ;                                               //???????????????
-//  ey = (az*vx - ax*vz) ;
-//  ez = (ax*vy - ay*vx) ;
-
-//  exInt = exInt + ex * Ki;                                  //???????
-//  eyInt = eyInt + ey * Ki;
-//  ezInt = ezInt + ez * Ki;
-
-//  // adjusted gyroscope measurements
-//  gx = gx + Kp*ex + exInt;                                                //???PI???????,???????
-//  gy = gy + Kp*ey + eyInt;
-//  gz = gz + Kp*ez + ezInt;                                            //???gz????????????????,??????????????
-
-//  // integrate quaternion rate and normalise                         //????????
-//  q0 = q0 + (-q1*gx - q2*gy - q3*gz)*halfT;
-//  q1 = q1 + (q0*gx + q2*gz - q3*gy)*halfT;
-//  q2 = q2 + (q0*gy - q1*gz + q3*gx)*halfT;
-//  q3 = q3 + (q0*gz + q1*gy - q2*gx)*halfT;
-
-//  // normalise quaternion
-//  norm = sqrt(q0*q0 + q1*q1 + q2*q2 + q3*q3);
-//
-//  q0 = q0 / norm;
-//  q1 = q1 / norm;
-//  q2 = q2 / norm;
-//  q3 = q3 / norm;
-
-////  Q_ANGLE.YAW = GYRO_I.Z;//atan2(2 * q1 * q2 + 2 * q0 * q3, -2 * q2*q2 - 2 * q3* q3 + 1)* 57.3; // yaw
-//  angle->pit = asin(-2 * q1 * q3 + 2 * q0* q2)* 57.3 ; // pitch
-//  angle->rol = -atan2(2 * q2 * q3 + 2 * q0 * q1, -2 * q1 * q1 - 2 * q2* q2 + 1)* 57.3; // roll
-//}

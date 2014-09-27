@@ -1,6 +1,7 @@
 #include "Control.h"
 #include "pwm.h"
 #include "usr_usart.h"
+#include "math.h"
 
 
 #define Moto_PwmMax 1000
@@ -36,14 +37,15 @@ s32 Alt_LastError;
 //((1000-(rc_in->THROTTLE - RC_FUN_ZERO))/2/PID_ROL.I)
 #define INTEGRAL_WINDUP_P 4000
 //((1000-(rc_in->THROTTLE - RC_FUN_ZERO))/2/PID_PIT.I)
-
+float Throttle2;// HROTTLE;
+#define INTEGRAL_WINDUP_A 400
 
 void Control(T_float_angle *att_in, S_INT16_XYZ *gyr_in, T_RC_Data *rc_in, T_Control *ctl)
 {
     T_float_angle angle;
-    static u8 Last_Constant_Level = 0;
-    static s32 Alt_Control;
-    static char alt_time = 0;
+//    static u8 Last_Constant_Level = 0;
+//    static s32 Alt_Control;
+//    static char alt_time = 0;
 
     angle.yaw = att_in->yaw + (rc_in->YAW   - 1500) / 60 + (+(PID_PID_1.P - 10));
     if (angle.yaw < -180)
@@ -56,29 +58,39 @@ void Control(T_float_angle *att_in, S_INT16_XYZ *gyr_in, T_RC_Data *rc_in, T_Con
     /*****************************************************
     /定高
     *****************************************************/
-    if (alt_time++ > 15)
-    {
-        alt_time = 0;
-        if (ctl->Constant_Level || Alt_ultrasonic)
-        {
-            if (0 == Last_Constant_Level)
-            {
-                Alt_Control = Alt_ultrasonic;
-            }
-            else
-            {
-                Alt_LastError = Alt_Error;
-                Alt_Error = (Alt_Control - Alt_ultrasonic);
-
-            }
-        }
-        else
-        {
-            Alt_Control = 0;
-            Alt_Error = 0;
-        }//Sys_Printf(USART1, " %d -%d = %d \r\n",Alt_Control,Alt_ultrasonic, Alt_Error);
-        Last_Constant_Level = ctl->Constant_Level;
-    }
+    ctl->ALT_ON_OFF = 0;
+    /*****************************************************
+    /ALT
+    *****************************************************/
+//    if (ctl->ALT_ON_OFF)
+//    {
+//        static int time = 0;
+//        time++;
+//        Alt_Set = (s16)PID_PID_2.I;//(s16)(PID_PID_10.I * 100);
+//        if (time > 15)
+//        {
+//            time = 0;
+//            Alt_Error = Alt_Set - Alt_ultrasonic;
+//            PID_ALT.pout = PID_ALT.P * Alt_Error;
+//            alt_i += Alt_Error; //ç§¯åˆ†
+//            PID_ALT.iout = (PID_ALT.I / 100) * alt_i;
+//            if (PID_ALT.iout > INTEGRAL_WINDUP_A)
+//                PID_ALT.iout = INTEGRAL_WINDUP_A;
+//            else if (alt_i < -INTEGRAL_WINDUP_A)
+//                PID_ALT.iout = -INTEGRAL_WINDUP_A;
+//            PID_ALT.dout = -PID_ALT.D * (Alt_Error_Last - Alt_Error);
+//            Alt_Error_Last = Alt_Error;
+//        }
+//        //     //PID_ALT.dout =  ((Average_Acc.z - 7410) * PID_ALT.D);//
+//        PID_ALT.out  = PID_ALT.pout + PID_ALT.iout + PID_ALT.dout;
+//        Throttle2 = Throttle + PID_ALT.out;
+//        if (Throttle2 < 0)
+//            Throttle2 = 0;
+//    }
+    //    else
+    //    {
+    //        Throttle2 = Throttle;//
+    //    }
 
     /*****************************************************
     /P
@@ -128,8 +140,8 @@ void Control(T_float_angle *att_in, S_INT16_XYZ *gyr_in, T_RC_Data *rc_in, T_Con
     PID_PIT.dout = PID_PIT.D * gyr_in->y;
     PID_YAW.dout = PID_YAW.D * gyr_in->z;
 
-    if (alt_time == 0)
-        PID_ALT.dout = PID_ALT.D * (Alt_LastError - Alt_Error) / 0.030;
+//    if (alt_time == 0)
+//        PID_ALT.dout = PID_ALT.D * (Alt_LastError - Alt_Error) / 0.030;
     /*****************************************************
     /PID
     *****************************************************/
@@ -159,13 +171,15 @@ void Control(T_float_angle *att_in, S_INT16_XYZ *gyr_in, T_RC_Data *rc_in, T_Con
     //
     //if (angle.rol > DEAD_BAND || angle.rol < -DEAD_BAND || angle.pit > DEAD_BAND || angle.pit < -DEAD_BAND)
     //    PID_YAW.OUT = 0;
-
+    Throttle2 = rc_in->THROTTLE - RC_FUN_ZERO;
+    Throttle2 += PID_ALT.OUT;
+    Throttle2 = (Throttle2 * sin(angle.rol) + sin(angle.pit) + 1);
     if (rc_in->THROTTLE > RC_FUN_MIN && ctl->ARMED)
     {
-        MOTO1_PWM = rc_in->THROTTLE - RC_FUN_ZERO - PID_ROL.OUT + PID_PIT.OUT + PID_ALT.OUT - PID_YAW.OUT;
-        MOTO2_PWM = rc_in->THROTTLE - RC_FUN_ZERO + PID_ROL.OUT + PID_PIT.OUT + PID_ALT.OUT + PID_YAW.OUT;
-        MOTO3_PWM = rc_in->THROTTLE - RC_FUN_ZERO + PID_ROL.OUT - PID_PIT.OUT + PID_ALT.OUT - PID_YAW.OUT;
-        MOTO4_PWM = rc_in->THROTTLE - RC_FUN_ZERO - PID_ROL.OUT - PID_PIT.OUT + PID_ALT.OUT + PID_YAW.OUT;
+        MOTO1_PWM = (int32_t)((int)Throttle2 - PID_ROL.OUT + PID_PIT.OUT - PID_YAW.OUT);
+        MOTO2_PWM = (int32_t)((int)Throttle2 + PID_ROL.OUT + PID_PIT.OUT + PID_YAW.OUT);
+        MOTO3_PWM = (int32_t)((int)Throttle2 + PID_ROL.OUT - PID_PIT.OUT - PID_YAW.OUT);
+        MOTO4_PWM = (int32_t)((int)Throttle2 - PID_ROL.OUT - PID_PIT.OUT + PID_YAW.OUT);
     }
     else
     {

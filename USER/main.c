@@ -16,7 +16,9 @@ void SYS_INIT(void)
     delay_init();
     /***中断初始化***/
     NVIC_Configuration();
-    uart_init (115200);
+    //uart_init (115200);
+		uart_init (500000);
+		
     Sys_Printf(USART1, "\r\nUSART1 ok");
     delay_ms(500);
 }
@@ -41,7 +43,7 @@ int task_led(void)
     LED1_H;
     while (1)
     {
-        WaitX(100);
+        WaitX(500);
         if (RC_Control.ARMED)
             LED1_H
         else
@@ -145,7 +147,7 @@ int task_6050(void)
     WaitX(200);
     while (1)
     {
-        WaitX(2);
+        WaitX(1);
         MPU6050_Read();
         MPU6050_Dataanl();//5us
         Acc.x = MPU6050_ACC_LAST.x;
@@ -155,7 +157,6 @@ int task_6050(void)
         Gyr.y = MPU6050_GYRO_LAST.y;
         Gyr.z = MPU6050_GYRO_LAST.z;
         Prepare_Data(&Acc, &Average_Acc);//4us
-        Prepare_Data2(&Att_Angle);//24us
         flag_ACC = 1;
     }
     _EE
@@ -176,8 +177,19 @@ int task_pwm_ex(void)
     //    TIM_SetCompare2(TIM8, 2300);
     while (1)
     {
-        WaitX(25);
+        WaitX(1);
+        Send_Status = 1;
         Data_Exchange();
+        WaitX(1);
+        Send_Senser = 1;
+        Data_Exchange();
+				
+				WaitX(1);
+        Send_RCData = 1;
+        Data_Exchange();
+//        WaitX(20);
+//        Send_MotoPwm = 1;
+//        Data_Exchange();
     }
     _EE
 }
@@ -343,7 +355,7 @@ int task_bmp085(void)
     }
     _EE
 }
-
+T_float_angle   Att_Angle_Avg;  //ATT函数计算出的姿态角
 int loop_fast(void)//500hz
 {
     extern S_INT16_XYZ Acc, Average_Acc, Gyr, Mag;
@@ -351,11 +363,25 @@ int loop_fast(void)//500hz
 		_LOOP_SS
     if (flag_ACC)
     {
+		    Prepare_Data2(&Att_Angle);//24us
         IMUupdate(&Gyr, &Average_Acc, &Att_Angle);//222us
         Control(&Att_Angle, &Gyr, &Rc_D, &RC_Control);//17us
 		}
 		LoopX(2);
 		_EE
+}
+int loop_led(void)
+{
+    _SS
+    LED1_Init;
+    LED1_H;
+    _LOOP_SS
+        if (RC_Control.ARMED)
+            LED1_H
+        else
+            LED1_Toggle
+    LoopX(500);
+    _EE
 }
 int main(void)
 {
@@ -364,19 +390,20 @@ int main(void)
     while (1)
     {
 				RunLoop(loop_fast,0);
+				//RunLoop(loop_led,1);
 				
-        RunTaskA(task_6050, 7);
+        RunTaskA(task_6050, 1);
 
-        RunTaskA(task_ultrasonic, 1);
+//        RunTaskA(task_ultrasonic, 1);
 
         RunTaskA(task_pwm_ex, 2);
 
-        RunTaskA(task_cap_rc, 0);
+//        RunTaskA(task_cap_rc, 0);
 
-        RunTaskA(task_hmc5883l, 4);
+//        RunTaskA(task_hmc5883l, 4);
 
-        RunTaskA(task_led, 5);
+       RunTaskA(task_led, 5);
 
-        RunTaskA(task_bmp085, 6);
+//        RunTaskA(task_bmp085, 6);
     }
 }

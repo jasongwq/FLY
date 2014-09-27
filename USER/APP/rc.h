@@ -7,6 +7,7 @@ typedef struct
 {
     u8      ARMED;
     u8    Constant_Level;
+		u8    	ALT_ON_OFF;
 } T_Control;
 
 extern T_RC_Data Rc_Data;//1000~2000

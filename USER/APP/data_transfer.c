@@ -155,10 +155,18 @@ void Data_Send_Senser(void)
     data_to_send[_cnt++] = 0xAA;
     data_to_send[_cnt++] = 0x02;
     data_to_send[_cnt++] = 0;
-    data_to_send[_cnt++] = BYTE1(Acc.x);
-    data_to_send[_cnt++] = BYTE0(Acc.x);
-    data_to_send[_cnt++] = BYTE1(Acc.y);
-    data_to_send[_cnt++] = BYTE0(Acc.y);
+		    vs16 _temp;
+    _temp = (int)(Acc.x / -100);
+		data_to_send[_cnt++] = BYTE1(_temp);
+    data_to_send[_cnt++] = BYTE0(_temp);
+		_temp = (int)(Acc.y / -100);
+		data_to_send[_cnt++] = BYTE1(_temp);
+    data_to_send[_cnt++] = BYTE0(_temp);
+		
+//    data_to_send[_cnt++] = BYTE1(Acc.x);
+//    data_to_send[_cnt++] = BYTE0(Acc.x);
+//    data_to_send[_cnt++] = BYTE1(Acc.y);
+//    data_to_send[_cnt++] = BYTE0(Acc.y);
     data_to_send[_cnt++] = BYTE1(Acc.z);
     data_to_send[_cnt++] = BYTE0(Acc.z);
     data_to_send[_cnt++] = BYTE1(Gyr.x);
@@ -463,60 +471,56 @@ void Data_Exchange(void)
         return;
 #endif
 
-    //Send_Status = 1;
     if (Send_Status)
     {
         Send_Status = 0;
         Data_Send_Status();
     }
-    else if (Send_GpsData)
-    {
-        Send_GpsData = 0;
-        //Data_Send_GpsData();
-    }
-    //Send_Senser = 1;
+//    else if (Send_GpsData)
+//    {
+//        Send_GpsData = 0;
+//        //Data_Send_GpsData();
+//    }
     if (Send_Senser)
     {
         Send_Senser = 0;
         Data_Send_Senser();
     }
-    //else
-    if (Send_PID1)
-    {
-        Send_PID1 = 0;
-        Data_Send_PID1();
-    }
-    else if (Send_PID2)
-    {
-        Send_PID2 = 0;
-        Data_Send_PID2();
-    }
-    else if (Send_PID3)
-    {
-        Send_PID3 = 0;
-        Data_Send_PID3();
-    }
-    //else
-    if (Send_RC)
-    {
-        Send_RC = 0;
-        Data_Send_RC();
-    }
+//    if (Send_PID1)
+//    {
+//        Send_PID1 = 0;
+//        Data_Send_PID1();
+//    }
+//    else if (Send_PID2)
+//    {
+//        Send_PID2 = 0;
+//        Data_Send_PID2();
+//    }
+//    else if (Send_PID3)
+//    {
+//        Send_PID3 = 0;
+//        Data_Send_PID3();
+//    }
+//    if (Send_RC)
+//    {
+//        Send_RC = 0;
+//        Data_Send_RC();
+//    }
     if (Send_RCData)
     {
         Send_RCData = 0;
         Data_Send_RCData();
     }
 
-    if (Send_Offset)
-    {
-        Send_Offset = 0;
-        //Data_Send_OFFSET();
-    }
-    //Send_MotoPwm = 1;
-    if (Send_MotoPwm)
-    {
-        Send_MotoPwm = 0;
-        Data_Send_MotoPWM();
-    }
+//    if (Send_Offset)
+//    {
+//        Send_Offset = 0;
+//        //Data_Send_OFFSET();
+//    }
+//    Send_MotoPwm = 1;
+//    if (Send_MotoPwm)
+//    {
+//        Send_MotoPwm = 0;
+//        Data_Send_MotoPWM();
+//    }
 }
