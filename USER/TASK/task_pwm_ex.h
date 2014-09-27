@@ -3,9 +3,6 @@
 #include "control.h"
 #include "pwm.h"
 #define EX_BaudRate 2
-
-
-
 int task_pwm_ex(void)
 {
     _SS

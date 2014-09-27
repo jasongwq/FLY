@@ -19,7 +19,7 @@ int task_hmc5883l(void)
         Mag.y = hmc5883l.hy;
         Mag.z = hmc5883l.hz;
         {
-            //??APM
+            //From APM
             float angle1, angle2,
                   sin_angle1, sin_angle2,
                   cos_angle1, cos_angle2,

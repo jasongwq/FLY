@@ -10,23 +10,20 @@ int task_ultrasonic(void)
         static u8 utime;
         WaitX(30 - utime);
         TRIG_H;
-        TIM1_CAPTURE_STA_CH1 = 0; //???????
-        TIM_OC1PolarityConfig(TIM1, TIM_ICPolarity_Rising); //CC1P=0 ????????
+        TIM1_CAPTURE_STA_CH1 = 0;
+        TIM_OC1PolarityConfig(TIM1, TIM_ICPolarity_Rising); //CC1P=0 
         WaitX(1);
         TRIG_L;
         utime = 0;
         while (1)
         {
             WaitX(1);
-            if (TIM1_CAPTURE_STA_CH1 & 0X80) //???????????
+            if (TIM1_CAPTURE_STA_CH1 & 0X80)
             {
                 temp  = TIM1_CAPTURE_STA_CH1 & 0X3F;
                 temp *= 65536;//??????
-                temp = TIM1_CAPTURE_VAL_CH1; //?????????
-                //Sys_Printf(USART1, "%dMM\r\n", temp); //?????????
-                //Sys_Printf(USART1, "%dMM\r\n", (temp * 340 / 1000 / 2)); //?????????
+                temp = TIM1_CAPTURE_VAL_CH1; 
                 Alt_ultrasonic = (temp * 340 / 1000 / 2);
-                //Sys_Printf(USART1, "%dMM\r\n", Alt_ultrasonic);
                 break;
             }
             utime++;
