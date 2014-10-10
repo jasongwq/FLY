@@ -32,7 +32,6 @@ struct DATA_TRANSFER_SWITCH
     char DataF4;
 };
 extern struct DATA_TRANSFER_SWITCH Ex_ON_OFF,Send;
-
 extern u8 Data_Check;
 extern void Data_Exchange(void);
 extern void Data_Send_Senser(void);

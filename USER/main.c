@@ -30,10 +30,12 @@ void SYS_INIT(void)
 #include "filter.h"
 #include "IMU.h"
 #include "Control.h"
+#include "Balance.h"
+
 #include "rc.h"
 #include "bak.h"
-
 #include "./TASK/task_led.h"
+int flag_ACC = 0;
 #include "./TASK/task_6050.h"
 #include "./TASK/task_ultrasonic.h"
 #include "./TASK/task_pwm_ex.h"
@@ -53,15 +55,16 @@ int main(void)
 
         RunTaskA(task_6050, 2);
 
-        //        RunTaskA(task_ultrasonic, 3);
+        RunTaskA(task_ultrasonic, 3);
 
         RunTaskA(task_pwm_ex, 4);
 
         RunTaskA(task_cap_rc, 5);
 
-        //        RunTaskA(task_hmc5883l, 6);
+        RunTaskA(task_hmc5883l, 6);
 
-        //        RunTaskA(task_bmp085, 7);
-        RunTaskA(task_led, 8);
+        RunTaskA(task_bmp085, 7);
+        
+				RunTaskA(task_led, 8);
     }
 }

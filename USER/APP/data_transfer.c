@@ -1,13 +1,13 @@
+#include "data_transfer.h"
 #include "sys.h"
 #include "mpu6050.h"
 #include "usr_usart.h"
 #include "control.h"
+#include "Balance.h"
 #include "IMU.h"
-#include "data_transfer.h"
 #include "rc.h"
 #include "bak.h"
 #include "pwm.h"
-extern int32_t MOTO1_PWM, MOTO2_PWM, MOTO3_PWM, MOTO4_PWM;
 
 
 #define DATA_TRANSFER_USE_USART

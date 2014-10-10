@@ -1,6 +1,7 @@
 #include "bak.h"
 #include "stmflash.h"
 #include "control.h"
+#include "Balance.h"
 void Data_Save(u8 select)
 {
     RCC->APB1ENR |= 1 << 28;//RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);
