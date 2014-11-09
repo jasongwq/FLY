@@ -44,6 +44,9 @@ extern float *yaw_just;
 extern float *rol_just;
 extern float *pit_just;
 
+extern float *KALMAN_Q ;
+extern float *KALMAN_R ;
+extern float *KALMAN_P0 ;
 
 #endif
 

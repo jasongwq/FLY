@@ -20,9 +20,9 @@ void SYS_INIT(void)
     uart3_init(115200);
 
     Sys_Printf(USART1, "\r\nUSART1 ok");
-		Sys_Printf(Printf_USART, "\r\nUSART1 ok");
-		//Sys_Printf(Printf_USART, "\r\nUSART1 ok");
-		
+    Sys_Printf(Printf_USART, "\r\nUSART1 ok");
+    //Sys_Printf(Printf_USART, "\r\nUSART1 ok");
+
     delay_ms(500);
 }
 
@@ -54,30 +54,30 @@ int main(void)
     while (1)
     {
         RunLoop(loop_fast, 0);
-//        RunLoop(loop_led,1);
+        //        RunLoop(loop_led,1);
 
         RunTaskA(task_6050, 2);
 
-       RunTaskA(task_ultrasonic, 3);
-////PWM
-////A0
-////A1
-////C6
-////C7
+        RunTaskA(task_ultrasonic, 3);
+        ////PWM
+        ////A0
+        ////A1
+        ////C6
+        ////C7
         RunTaskA(task_pwm_ex, 4);
 
-////PB 0 1 4 5
-////PD 12 13 
+        ////PB 0 1 4 5
+        ////PD 12 13
 #if VERSIONS ==1
-       // RunTaskA(task_cap_rc, 5);
+        // RunTaskA(task_cap_rc, 5);
 #endif
 #if VERSIONS ==2
-          RunTaskA(task_cap_rc, 5);
+        RunTaskA(task_cap_rc, 5);
 #endif
-//        RunTaskA(task_hmc5883l, 6);
+        //        RunTaskA(task_hmc5883l, 6);
 
-//        RunTaskA(task_bmp085, 7);
-//        
-				RunTaskA(task_led, 8);
+        //        RunTaskA(task_bmp085, 7);
+        //
+        RunTaskA(task_led, 8);
     }
 }

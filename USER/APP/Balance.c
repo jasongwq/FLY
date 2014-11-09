@@ -41,7 +41,8 @@ void Balance_Data(T_float_angle *Att_in, S_INT16_XYZ *Gyr_in, S_INT16_XYZ *Acc_i
 #define INTEGRAL_WINDUP_Y 3000
 #define INTEGRAL_WINDUP_A 400
 //float Throttle2;// HROTTLE;
-static u32 Throttle_OUT, Throttle_IN;
+static u32 Throttle_OUT;
+static u32 Throttle_IN;
 
 int ALT_Control_Out;
 s16 Alt_Error, Alt_Error_Last, Alt_Set;
@@ -80,7 +81,6 @@ void ALT_Control(float ALT_Set)
     Throttle_OUT += PID_ALT.OUT;
 }
 static T_float_angle angle;
-
 void Yaw_Control(void)
 {
     angle.yaw = att_in->yaw + (rc_in->YAW   - 1500) / 10 + (-(*yaw_just - 10));
@@ -170,7 +170,7 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
     Rol_Control();
     Pit_Control();
 		
-    ALT_Control(0);
+    //ALT_Control(0);
 
 
     /*****************************************************
@@ -185,10 +185,10 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
     // MOTO1_PWM     |     MOTO1_PWM
     //               -
     //
-		s16 rolsinjust=sin(att_in->rol)*5;
-		s16 pitsinjust=sin(att_in->pit)*5;
-		if(rolsinjust<0)rolsinjust=-rolsinjust;
-		if(pitsinjust<0)pitsinjust=-rolsinjust;
+//		s16 rolsinjust=sin(att_in->rol)*5;
+//		s16 pitsinjust=sin(att_in->pit)*5;
+//		if(rolsinjust<0)rolsinjust=-rolsinjust;
+//		if(pitsinjust<0)pitsinjust=-rolsinjust;
 		
 		//
 

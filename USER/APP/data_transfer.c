@@ -34,8 +34,11 @@ float *ex_on_off = &PID_PID_2.P;
 #define PID_PID_2_P_MULTIPLYING (1  )
 #define PID_PID_2_I_MULTIPLYING (1  )
 #define PID_PID_2_D_MULTIPLYING (1  )
-#define PID_PID_3_P_MULTIPLYING (1  )
-#define PID_PID_3_I_MULTIPLYING (1  )
+float *KALMAN_Q =&PID_PID_3.P;
+float *KALMAN_R =&PID_PID_3.I;
+float *KALMAN_P0 =&PID_PID_3.D;
+#define PID_PID_3_P_MULTIPLYING (10000  )
+#define PID_PID_3_I_MULTIPLYING (100  )
 #define PID_PID_3_D_MULTIPLYING (1  )
 #define PID_PID_4_P_MULTIPLYING (1  )
 #define PID_PID_4_I_MULTIPLYING (1  )
@@ -71,6 +74,13 @@ float *pit_just  = &PID_PID_12.D;
 #define PID_PID_12_I_MULTIPLYING (100)
 #define PID_PID_12_D_MULTIPLYING (100)
 
+void Ex_Init(void)
+{
+    *KALMAN_Q  = 0.001;
+*KALMAN_R  =  10.0000;
+*KALMAN_P0 =  2210.0000;
+
+}
 void Ex_Anl(void)
 {
     u16 temp = (u16)*ex_on_off;
@@ -80,6 +90,10 @@ void Ex_Anl(void)
     Ex_ON_OFF.DataF2 = Read_Bit(temp, 3);
     Ex_ON_OFF.DataF3 = Read_Bit(temp, 4);
     Ex_ON_OFF.DataF4 = Read_Bit(temp, 5);
+		Ex_ON_OFF.RCData = Read_Bit(temp, 6);
+		Ex_ON_OFF.MotoPwm = Read_Bit(temp, 7);
+		
+		
 }
 struct DATA_TRANSFER_SWITCH Ex_ON_OFF, Send;
 
@@ -620,31 +634,89 @@ void Data_Send_MotoPWM(void)
 }
 void Data_Send_F1(void)
 {
-    u8 _cnt = 0;
-    data_to_send[_cnt++] = 0xAA;
-    data_to_send[_cnt++] = 0xAA;
-    data_to_send[_cnt++] = 0xF1;
-    data_to_send[_cnt++] = 0;
-//		__IO float _tempf;
-//		_tempf = position_x;data_to_send[_cnt++] = BYTE3(_tempf);data_to_send[_cnt++] = BYTE2(_tempf);data_to_send[_cnt++] = BYTE1(_tempf);data_to_send[_cnt++] = BYTE0(_tempf);
-//		_tempf = position_y;data_to_send[_cnt++] = BYTE3(_tempf);data_to_send[_cnt++] = BYTE2(_tempf);data_to_send[_cnt++] = BYTE1(_tempf);data_to_send[_cnt++] = BYTE0(_tempf);
-//		_tempf = position_z;data_to_send[_cnt++] = BYTE3(_tempf);data_to_send[_cnt++] = BYTE2(_tempf);data_to_send[_cnt++] = BYTE1(_tempf);data_to_send[_cnt++] = BYTE0(_tempf);
-		vs16 _temp16;
-    _temp16 = (vs16)(Acc.x  * PID_PID_8_P_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
-    _temp16 = (vs16)(Average_Acc.x  * PID_PID_8_I_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
-		_temp16 = (vs16)(Average2_Acc.x  * PID_PID_8_P_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
-//    _temp16 = (vs16)(Average3_Acc.x  * PID_PID_8_I_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+//    u8 _cnt = 0;
+//    data_to_send[_cnt++] = 0xAA;
+//    data_to_send[_cnt++] = 0xAA;
+//    data_to_send[_cnt++] = 0xF1;
+//    data_to_send[_cnt++] = 0;
+////		__IO float _tempf;
+////		_tempf = position_x;data_to_send[_cnt++] = BYTE3(_tempf);data_to_send[_cnt++] = BYTE2(_tempf);data_to_send[_cnt++] = BYTE1(_tempf);data_to_send[_cnt++] = BYTE0(_tempf);
+////		_tempf = position_y;data_to_send[_cnt++] = BYTE3(_tempf);data_to_send[_cnt++] = BYTE2(_tempf);data_to_send[_cnt++] = BYTE1(_tempf);data_to_send[_cnt++] = BYTE0(_tempf);
+////		_tempf = position_z;data_to_send[_cnt++] = BYTE3(_tempf);data_to_send[_cnt++] = BYTE2(_tempf);data_to_send[_cnt++] = BYTE1(_tempf);data_to_send[_cnt++] = BYTE0(_tempf);
+//		vs16 _temp16;
+//    _temp16 = (vs16)(Acc.x  * PID_PID_8_P_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+//    _temp16 = (vs16)(Average_Acc.x  * PID_PID_8_I_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+//		_temp16 = (vs16)(Average2_Acc.x  * PID_PID_8_P_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+////    _temp16 = (vs16)(Average3_Acc.x  * PID_PID_8_I_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+////		
+//    data_to_send[3] = _cnt - 4;
+//    u8 sum = 0;
+//    for (u8 i = 0; i < _cnt; i++)
+//        sum += data_to_send[i];
+//    data_to_send[_cnt++] = sum;
+//    #ifdef DATA_TRANSFER_USE_USART
+//    Sys_sPrintf(Printf_USART, data_to_send, _cnt);
+//#else
+//    NRF_TxPacket(data_to_send, _cnt);
+//#endif
+}
+void Data_Send_F2(void)
+{
+//extern u32 Throttle_OUT;
+//extern T_float_angle angle;
+
+//    u8 _cnt = 0;
+//    data_to_send[_cnt++] = 0xAA;
+//    data_to_send[_cnt++] = 0xAA;
+//    data_to_send[_cnt++] = 0xF2;
+//    data_to_send[_cnt++] = 0;
+//vs16 _temp16;
+//    _temp16 = (vs16)(PID_PIT.OUT  ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+//    _temp16 = (vs16)(PID_ROL.OUT  ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+//		_temp16 = (vs16)(PID_YAW.OUT  ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+//    _temp16 = (vs16)(angle.pit  ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+//    _temp16 = (vs16)(angle.rol  ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+//		_temp16 = (vs16)(angle.yaw   ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+//		_temp16 = (vs16)(Throttle_OUT   ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);		
+//    data_to_send[3] = _cnt - 4;
+//    u8 sum = 0;
+//    for (u8 i = 0; i < _cnt; i++)
+//        sum += data_to_send[i];
+//    data_to_send[_cnt++] = sum;
+//    #ifdef DATA_TRANSFER_USE_USART
+//    Sys_sPrintf(Printf_USART, data_to_send, _cnt);
+//#else
+//    NRF_TxPacket(data_to_send, _cnt);
+//#endif
+}
+void Data_Send_F3(void)
+{
+//extern u32 Throttle_OUT;
+//extern T_float_angle angle;
+
+//    u8 _cnt = 0;
+//    data_to_send[_cnt++] = 0xAA;
+//    data_to_send[_cnt++] = 0xAA;
+//    data_to_send[_cnt++] = 0xF3;
+//    data_to_send[_cnt++] = 0;
+//vs16 _temp16;
+//    _temp16 = (vs16)(PID_PIT.OUT  * PID_PID_8_P_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+//    _temp16 = (vs16)(PID_ROL.OUT  * PID_PID_8_I_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+//		_temp16 = (vs16)(PID_YAW.OUT  * PID_PID_8_P_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+//    _temp16 = (vs16)(angle.pit  * PID_PID_8_P_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+//    _temp16 = (vs16)(angle.rol  * PID_PID_8_I_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+//		_temp16 = (vs16)(angle.yaw  * PID_PID_8_P_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
 //		
-    data_to_send[3] = _cnt - 4;
-    u8 sum = 0;
-    for (u8 i = 0; i < _cnt; i++)
-        sum += data_to_send[i];
-    data_to_send[_cnt++] = sum;
-    #ifdef DATA_TRANSFER_USE_USART
-    Sys_sPrintf(Printf_USART, data_to_send, _cnt);
-#else
-    NRF_TxPacket(data_to_send, _cnt);
-#endif
+//    data_to_send[3] = _cnt - 4;
+//    u8 sum = 0;
+//    for (u8 i = 0; i < _cnt; i++)
+//        sum += data_to_send[i];
+//    data_to_send[_cnt++] = sum;
+//    #ifdef DATA_TRANSFER_USE_USART
+//    Sys_sPrintf(Printf_USART, data_to_send, _cnt);
+//#else
+//    NRF_TxPacket(data_to_send, _cnt);
+//#endif
 }
 void Data_Send_F4(void)
 {
@@ -665,16 +737,16 @@ void Data_Send_F4(void)
     data_to_send[_cnt++] = BYTE0(Rc_D.AUX1);
     data_to_send[_cnt++] = BYTE1(Rc_D.AUX2);
     data_to_send[_cnt++] = BYTE0(Rc_D.AUX2);
-    data_to_send[_cnt++] = BYTE1(Rc_D.AUX3);
-    data_to_send[_cnt++] = BYTE0(Rc_D.AUX3);
-    data_to_send[_cnt++] = BYTE1(Rc_D.AUX4);
-    data_to_send[_cnt++] = BYTE0(Rc_D.AUX4);
-    data_to_send[_cnt++] = BYTE1(Rc_D.AUX5);
-    data_to_send[_cnt++] = BYTE0(Rc_D.AUX5);
-    data_to_send[_cnt++] = BYTE1(Rc_D.AUX6);
-    data_to_send[_cnt++] = BYTE0(Rc_D.AUX6);
-    data_to_send[_cnt++] = BYTE1(Alt_ultrasonic);
-    data_to_send[_cnt++] = BYTE0(Alt_ultrasonic);
+//    data_to_send[_cnt++] = BYTE1(Rc_D.AUX3);
+//    data_to_send[_cnt++] = BYTE0(Rc_D.AUX3);
+//    data_to_send[_cnt++] = BYTE1(Rc_D.AUX4);
+//    data_to_send[_cnt++] = BYTE0(Rc_D.AUX4);
+//    data_to_send[_cnt++] = BYTE1(Rc_D.AUX5);
+//    data_to_send[_cnt++] = BYTE0(Rc_D.AUX5);
+//    data_to_send[_cnt++] = BYTE1(Rc_D.AUX6);
+//    data_to_send[_cnt++] = BYTE0(Rc_D.AUX6);
+//    data_to_send[_cnt++] = BYTE1(Alt_ultrasonic);
+//    data_to_send[_cnt++] = BYTE0(Alt_ultrasonic);
     data_to_send[3] = _cnt - 4;
     u8 sum = 0;
     for (u8 i = 0; i < _cnt; i++)
@@ -702,14 +774,14 @@ void Data_Exchange(void)
     if (Send.DataF2)
     {
         Send.DataF2 = 0;
-        //        Data_Send_F2();
+        Data_Send_F2();
     }
     if (Send.DataF3)
     {
         Send.DataF3 = 0;
-        //        Data_Send_F3();
+        Data_Send_F3();
     }
-    if (Send.DataF4)
+    if (Send.RCData&&Send.DataF4)
     {
         Send.DataF4 = 0;
         Data_Send_F4();

@@ -5,7 +5,7 @@
 int task_pwm_ex(void)
 {
     _SS
-    //Ex_Init();
+    Ex_Init();
     TIM2_PWM_Init(5000, 36);
     TIM2_PWM_Init(5000, 36);
     TIM8_PWM_Init(5000, 36);
