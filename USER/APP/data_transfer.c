@@ -76,10 +76,18 @@ float *pit_just  = &PID_PID_12.D;
 
 void Ex_Init(void)
 {
-    *KALMAN_Q  = 0.001;
-*KALMAN_R  =  10.0000;
-*KALMAN_P0 =  2210.0000;
-
+*KALMAN_Q  = 0.001;
+*KALMAN_R  =10.0000;
+*KALMAN_P0 =2210.0000;
+PID_ROL.P=4;
+PID_PIT.P=4;
+PID_YAW.P=4;
+PID_ROL.P=0.2;
+PID_PIT.P=0.2;
+PID_YAW.P=0.3;
+*yaw_just=10;
+*rol_just=10;
+*pit_just=10;
 }
 void Ex_Anl(void)
 {

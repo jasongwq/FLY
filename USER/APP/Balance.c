@@ -190,9 +190,6 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
 //		if(rolsinjust<0)rolsinjust=-rolsinjust;
 //		if(pitsinjust<0)pitsinjust=-rolsinjust;
 		
-		//
-
-
     //Throttle_OUT = Throttle_OUT * (rolsinjust+pitsinjust + 1);
     if (rc_in->THROTTLE > RC_FUN_MIN && ctl->ARMED)
     {

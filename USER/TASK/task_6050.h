@@ -8,7 +8,7 @@
 int task_6050(void)
 {
     extern S_INT16_XYZ Acc, Gyr, Mag, Average_Acc;
-    //extern S_INT16_XYZ Average2_Acc, Average3_Acc, Average1_Gyr, Average2_Gyr;
+    extern S_INT16_XYZ Average2_Acc, Average3_Acc, Average1_Gyr, Average2_Gyr;
 
     _SS
     MPU6050_Init();
@@ -30,7 +30,11 @@ int task_6050(void)
         Gyr.y = MPU6050_GYRO_LAST.y;
         Gyr.z = MPU6050_GYRO_LAST.z;
 
-        Prepare_Data(&Acc, &Average_Acc);//4us
+        Average_Acc.x=KalmanFilter((double)Acc.x, *KALMAN_Q, *KALMAN_R, *KALMAN_P0,0);;
+        Average_Acc.y=KalmanFilter((double)Acc.y, *KALMAN_Q, *KALMAN_R, *KALMAN_P0,1);;
+        Average_Acc.z=KalmanFilter((double)Acc.z, *KALMAN_Q, *KALMAN_R, *KALMAN_P0,2);;
+
+        //Prepare_Data(&Acc, &Average_Acc);//4us
         flag_ACC = 1;
     }
     _EE

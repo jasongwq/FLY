@@ -4,7 +4,7 @@
 
 
 extern double KalmanFilter(const double ResrcData,
-					double ProcessNiose_Q,double MeasureNoise_R,double InitialPrediction);
+					double ProcessNiose_Q,double MeasureNoise_R,double InitialPrediction,int i);
 
 					
 
