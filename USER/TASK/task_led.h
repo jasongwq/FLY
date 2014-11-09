@@ -10,7 +10,7 @@ int task_led(void)
     LED1_H;
     while (1)
     {
-        WaitX(500);
+        WaitX(100);
         if (RC_Control.ARMED)
             LED1_H;
         else

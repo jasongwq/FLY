@@ -78,47 +78,47 @@ void Prepare_Data2(T_float_angle *angle_in)
 
 //void Prepare_Data3(S_INT16_XYZ *acc_in, S_INT16_XYZ *gyro_in, S_INT16_XYZ *acc_out)
 //{
-//    //    static float Com_angley;
-//    //    static float Com_anglex;
-//    //        static float angleG;
-//    float omegax =  Gyr_Gain * (gyro_in->X);
-//    float omegay =  Gyr_Gain * (-gyro_in->Y);
-//    //        float omegaz =  Gyr_Gain * (gyro_in->Z);
-//    //
-//    float dt = 1 / 1000.0;  // 微分时间(s)
-//    float angleAy = atan2(acc_in->Y, acc_in->Z) * 180 / pi;
-//    float angleAx = atan2(acc_in->X, acc_in->Z) * 180 / pi;
+//   //    static float Com_angley;
+//   //    static float Com_anglex;
+//   //        static float angleG;
+//   float omegax =  Gyr_Gain * (gyro_in->X);
+//   float omegay =  Gyr_Gain * (-gyro_in->Y);
+//   //        float omegaz =  Gyr_Gain * (gyro_in->Z);
+//   //
+//   float dt = 1 / 1000.0;  // 微分时间(s)
+//   float angleAy = atan2(acc_in->Y, acc_in->Z) * 180 / pi;
+//   float angleAx = atan2(acc_in->X, acc_in->Z) * 180 / pi;
 
-//    // 一阶互补算法
-//    float K;
-//    K = PID_PID_1.I;                              // 对加速度计取值的权重
-//    /*    float A = K / (K + dt);
+//   // 一阶互补算法
+//   float K;
+//   K = PID_PID_1.I;                              // 对加速度计取值的权重
+//   /*    float A = K / (K + dt);
 
-//        Com_anglex = A * (Com_anglex + omegay * dt) + (1 - A) * angleAx;
-//        //acc_in->X = (int16_t)(Com_anglex);
-//        //    //        acc_out->Y=(int16_t)(angleAx);
-//        //    //        angleG = angleG + omegay * dt;           // 对角速度积分得到的角度(degree)
-//        //    //        acc_out->Z=(int16_t)(angleG);
-//        Com_angley = A * (Com_angley + omegax * dt) + (1 - A) * angleAy;
-//        //acc_in->Y = (int16_t)(Com_angley);
+//       Com_anglex = A * (Com_anglex + omegay * dt) + (1 - A) * angleAx;
+//       //acc_in->X = (int16_t)(Com_anglex);
+//       //    //        acc_out->Y=(int16_t)(angleAx);
+//       //    //        angleG = angleG + omegay * dt;           // 对角速度积分得到的角度(degree)
+//       //    //        acc_out->Z=(int16_t)(angleG);
+//       Com_angley = A * (Com_angley + omegax * dt) + (1 - A) * angleAy;
+//       //acc_in->Y = (int16_t)(Com_angley);
 
-//        acc_out->X = sin(Com_anglex * pi / 180) * 7568.0;
-//        acc_out->Y = Com_angley;
-//        acc_out->Z = Com_anglex;
+//       acc_out->X = sin(Com_anglex * pi / 180) * 7568.0;
+//       acc_out->Y = Com_angley;
+//       acc_out->Z = Com_anglex;
 
-//    */
+//   */
 //		    acc_out->Z = acc_in->X;
 
-//        static float y1x;
-//        static float Com2_anglex;
-//        //// 二阶互补算法
-//    //    K = 0;
-//        float x1 = (angleAx - Com2_anglex) * K * K;
-//        y1x = y1x + x1 * dt;
-//        float x2 = y1x + 2 * K * (angleAx - Com2_anglex) + omegax;
-//        Com2_anglex = Com2_anglex + x2 * dt;
-//        acc_out->X=Com2_anglex*100;
-//    // 卡尔曼滤波
+//       static float y1x;
+//       static float Com2_anglex;
+//       //// 二阶互补算法
+//   //    K = 0;
+//       float x1 = (angleAx - Com2_anglex) * K * K;
+//       y1x = y1x + x1 * dt;
+//       float x2 = y1x + 2 * K * (angleAx - Com2_anglex) + omegax;
+//       Com2_anglex = Com2_anglex + x2 * dt;
+//       acc_out->X=Com2_anglex*100;
+//   // 卡尔曼滤波
 ////    Klm_angle += (omega - bias) * dt;          // 先验估计
 ////    P_00 += -(P_10 + P_01) * dt + Q_angle * dt;
 ////    P_01 += -P_11 * dt;

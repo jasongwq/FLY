@@ -28,35 +28,35 @@
 	"buffers":
 	[
 		{
-			"contents": "#include  \"systemInit.h\"\n\n\n//  定义全局的系统时钟变量\nunsigned long TheSysClock = 12000000UL;\n\n\n//  定义KEY\n#define  KEY_PERIPH             SYSCTL_PERIPH_GPIOB\n#define  KEY_PORT               GPIO_PORTB_BASE\n#define  KEY_PIN                GPIO_PIN_5\n\n\n//  防止JTAG失效\nvoid jtagWait(void)\n{\n    SysCtlPeriEnable(KEY_PERIPH);                           //  使能KEY所在的GPIO端口\n    GPIOPinTypeIn(KEY_PORT, KEY_PIN);                       //  设置KEY所在管脚为输入\n\n    if (GPIOPinRead(KEY_PORT, KEY_PIN) == 0x00)             //  若复位时按下KEY，则进入\n    {\n        for (;;);                                           //  死循环，以等待JTAG连接\n    }\n\n    SysCtlPeriDisable(KEY_PERIPH);                          //  禁止KEY所在的GPIO端口\n}\n\n\n//  系统时钟初始化\nvoid clockInit(void)\n{\n/*\n    SysCtlLDOSet(SYSCTL_LDO_2_50V);                         //  设置LDO输出电压\n\n    SysCtlClockSet(SYSCTL_USE_OSC |                         //  系统时钟设置\n                   SYSCTL_OSC_MAIN |                        //  采用主振荡器\n                   SYSCTL_XTAL_6MHZ |                       //  外接6MHz晶振\n                   SYSCTL_SYSDIV_1);                        //  不分频\n*/\n    SysCtlLDOSet(SYSCTL_LDO_2_75V);                         //  配置PLL前须将LDO设为2.75V\n\n    SysCtlClockSet(SYSCTL_USE_PLL |                         //  系统时钟设置，采用PLL\n                   SYSCTL_OSC_MAIN |                        //  主振荡器\n                   SYSCTL_XTAL_6MHZ |                       //  外接6MHz晶振\n                   SYSCTL_SYSDIV_4);                       //  分频结果为50MHz\n\n    TheSysClock = SysCtlClockGet();                         //  获取当前的系统时钟频率\n}\n\n",
-			"file": "/E/WORK/Project_List/READC/Kalman_Fliter/卡尔曼滤波/systemInit.c",
-			"file_size": 1851,
-			"file_write_time": 130583312191820844,
+			"file": "/E/Users/JASON_G/Desktop/AES/AES.h",
 			"settings":
 			{
-				"buffer_size": 1540,
-				"line_ending": "Windows",
-				"scratch": true
-			}
-		},
-		{
-			"contents": "#include  \"systemInit.h\"\n\n\n#define   UART_PERIPH       SYSCTL_PERIPH_UART0\n#define   UART_USE_BASE     UART0_BASE\n#define   GPIO_PERIPH       SYSCTL_PERIPH_GPIOA\n#define   GPIO_USE_BASE     GPIO_PORTA_BASE\n#define   GPIO_PINS         GPIO_PIN_0|GPIO_PIN_1\n#define   BAUDRATE          19200\n\n\n//============================================================================//\n//==                          UART初始化函数                                ==//\n//============================================================================//\n//==入口参数: 无                                                            ==//\n//==出口参数: 无                                                            ==//\n//==返回值:   无                                                            ==//\n//============================================================================//\nvoid UARTInit(void)\n{\n  SysCtlPeripheralEnable(GPIO_PERIPH);        //使能UART所在GPIO端口\n  SysCtlPeripheralEnable(UART_PERIPH);        //使能UART外设\n  GPIOPinTypeUART(GPIO_USE_BASE, GPIO_PINS);  //使能UART所在引脚\n  \n  UARTConfigSet(UART_USE_BASE, BAUDRATE, UART_CONFIG_WLEN_8|\n                                         UART_CONFIG_STOP_ONE|\n                                         UART_CONFIG_PAR_NONE);\n  UARTEnable(UART_USE_BASE);                  //使能UART\n}\n\n\n\n\n\n//============================================================================//\n//==                          长整型转换函数                                ==//\n//============================================================================//\n//==入口参数: LongNum		指定的长整型                                ==//\n//==	      *pArray		指向保存转换后的数据(四字节)                ==//\n//==出口参数: *pArray		指向保存转换后的数据(四字节)                ==//\n//==返回值:   无                                                            ==//\n//============================================================================//\nvoid Long2Char(unsigned long longNum, unsigned char *pArray)\n{\n  unsigned char *pChar=NULL;\n  unsigned char i=0;\n  \n  pChar = (unsigned char*)(&longNum);\n  for (i=0; i<sizeof(long); i++)\n  {\n    *pArray++ = *pChar++;\n  }\n}\n\n\n\n\n\n//============================================================================//\n//==                          长整型数发送函数                              ==//\n//============================================================================//\n//==入口参数: *LArray         指向需要发送的长整型数数组                    ==//\n//==          Num             长整型数据个数                                ==//\n//==出口参数: 无                                                            ==//\n//==返回值:   无                                                            ==//\n//============================================================================//\nvoid LongSend(unsigned long *LArray, unsigned int Num)\n{\n  unsigned int i;\n  unsigned char a[4] = {0};\n  \n  \n  for (i=0; i<Num; i++)\n  {\n    Long2Char(LArray[i], a);\n    UARTCharPut(UART_USE_BASE, a[0]);   //低字节放在低地址,先发送低字节\n    UARTCharPut(UART_USE_BASE, a[1]);\n    UARTCharPut(UART_USE_BASE, a[2]);\n    UARTCharPut(UART_USE_BASE, a[3]);\n  }\n}\n\n\n\n\n\n//============================================================================//\n//==                            整型转换函数                                ==//\n//============================================================================//\n//==入口参数: ShortNum		指定的整型                                  ==//\n//==	      *pArray		指向保存转换后的数据(四字节)                ==//\n//==出口参数: *pArray		指向保存转换后的数据(四字节)                ==//\n//==返回值:   无                                                            ==//\n//============================================================================//\nvoid Short2Char(unsigned short ShortNum, unsigned char *pArray)\n{\n  unsigned char *pChar=NULL;\n  unsigned char i=0;\n  \n  pChar = (unsigned char*)(&ShortNum);\n  for (i=0; i<sizeof(short); i++)\n  {\n    *pArray++ = *pChar++;\n  }\n}\n\n\n\n\n\n//============================================================================//\n//==                            整型数发送函数                              ==//\n//============================================================================//\n//==入口参数: *SArray         指向需要发送的整型数数组                      ==//\n//==          Num             整型数据个数                                  ==//\n//==出口参数: 无                                                            ==//\n//==返回值:   无                                                            ==//\n//============================================================================//\nvoid ShortSend(unsigned short *SArray, unsigned int Num)\n{\n  unsigned int i;\n  unsigned char a[2] = {0};\n  \n  \n  for (i=0; i<Num; i++)\n  {\n    Short2Char(SArray[i], a);\n    UARTCharPut(UART_USE_BASE, a[0]);   //低字节放在低地址,先发送低字节\n    UARTCharPut(UART_USE_BASE, a[1]);\n  }\n}\n\n\n\n\n\n//============================================================================//\n//==                           浮点数转换函数                               ==//\n//============================================================================//\n//==入口参数: FloatNum		指定的浮点数                                ==//\n//==	      *pArray		指向保存转换后的数据(四字节)                ==//\n//==出口参数: *pArray		指向保存转换后的数据(四字节)                ==//\n//==返回值:   无                                                            ==//\n//============================================================================//\nvoid Float2Char(float FloatNum, unsigned char *pArray)\n{\n  unsigned char *pChar=NULL;\n  unsigned char i=0;\n  \n  pChar = (unsigned char*)(&FloatNum);\n  for (i=0; i<sizeof(float); i++)\n  {\n    *pArray++ = *pChar++;\n  }\n}\n\n\n\n\n\n//============================================================================//\n//==                           浮点数发送函数                               ==//\n//============================================================================//\n//==入口参数: *Farray		指向需要发送的浮点数数组                    ==//\n//==	      Num		浮点数个数				    ==//\n//==出口参数: 无                                                            ==//\n//==返回值:   无                                                            ==//\n//============================================================================//\nvoid FloatSend(float *FArray, unsigned int Num)\n{\n  unsigned int i;\n  unsigned char a[4] = {0};\n  \n  \n  for (i=0; i<Num; i++)\n  {\n    Float2Char(FArray[i], a);\n    UARTCharPut(UART_USE_BASE, a[0]);\n    UARTCharPut(UART_USE_BASE, a[1]);\n    UARTCharPut(UART_USE_BASE, a[2]);\n    UARTCharPut(UART_USE_BASE, a[3]);\n  }\n}\n\n\nfloat Watch1[N] = {0};\nfloat Watch2[N] = {0};\nfloat Watch3[N] = {0};\nfloat Watch4[N] = {0};\n\n\n//  主函数（程序入口）\nint main(void)\n{\n    unsigned long ulStart = 0;\n    unsigned long ulStop  = 0;\n    unsigned long ulInterval = 0;\n    \n    jtagWait();                                             //  防止JTAG失效，重要！\n    clockInit();                                            //  时钟初始化：晶振，6MHz\n    UARTInit();\n    srand(SEED);                                            //  模拟噪声\n    \n    \n    \n    TimerLoadSet(TIMER0_BASE, TIMER_A, TheSysClock);        // 设置Timer初值，定时1s\n    TimerEnable(TIMER0_BASE, TIMER_A);                      // 使能Timer计数\n    ulStart = TimerValueGet(TIMER0_BASE, TIMER_A);\n    KalMan();\n    ulStop  = TimerValueGet(TIMER0_BASE, TIMER_A);\n    ulInterval = (ulStart-ulStop) / 50;                     // 计算时间间隔(单位us)\n    \n    \n    \n    FloatSend(Watch1, N);\n    FloatSend(Watch2, N);\n    FloatSend(Watch3, N);\n    FloatSend(Watch4, N);\n    \n    \n    for (;;)\n    {\n    }\n}\n",
-			"file": "/E/WORK/Project_List/READC/Kalman_Fliter/卡尔曼滤波_多传感器融合模拟/main.c",
-			"file_size": 8372,
-			"file_write_time": 130583312191950906,
-			"settings":
-			{
-				"buffer_size": 7386,
-				"line_ending": "Windows",
-				"scratch": true
-			}
-		},
-		{
-			"file": "/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/GFLY/FLY/USER/APP/Control.c",
-			"settings":
-			{
-				"buffer_size": 1537,
+				"buffer_size": 5123,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/E/Users/JASON_G/Desktop/TTS语音合成莫哭了SYN6288/安然之家原创6288/Syn6288/Syn6288.cpp",
+			"settings":
+			{
+				"buffer_size": 891,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/E/Users/JASON_G/Desktop/TTS语音合成莫哭了SYN6288/安然之家原创6288/Syn6288/Syn6288.h",
+			"settings":
+			{
+				"buffer_size": 310,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/E/Users/JASON_G/Desktop/TTS语音合成莫哭了SYN6288/安然之家原创6288/Sound2/Sound2.ino",
+			"settings":
+			{
+				"buffer_size": 300,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -108,8 +108,18 @@
 	],
 	"file_history":
 	[
-		"/E/WORK/Project_List/READC/Kalman_Fliter/卡尔曼滤波2/kalman.c",
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/GFLY/FLY/USER/APP/Control.c",
+		"/E/Users/JASON_G/Desktop/AES/main",
+		"/E/WORK/Project_List/READC/Kalman_Fliter/卡尔曼滤波/systemInit.c",
 		"/E/WORK/Project_List/READC/Kalman_Fliter/卡尔曼滤波_多传感器融合模拟/main.c",
+		"/E/WORK/Contest/BOOTCAMP2014/WIRELESS_USART/STM32-M0_LIB/SYSTEM/sys_usart.c",
+		"/E/WORK/Project_List/新苗计划/智能联网太阳方位跟踪系统/CODE/GLIB/SYSTEM/sys_usart.c",
+		"/E/WORK/Project_List/新苗计划/智能联网太阳方位跟踪系统/CODE/GLIB/SYSTEM/sys_usart.h",
+		"/E/Users/JASON_G/Desktop/FPM10A指纹模块资料/FPM10A例程.c",
+		"/E/WORK/Contest/2013年MSP430创新项目/基于MSP430的指纹识别门禁系统/FINGERPRINT_ATTENDANCE/GLIB/PERIPHERAL/FPM10A/fpmxx.c",
+		"/E/WORK/Contest/2013年MSP430创新项目/基于MSP430的指纹识别门禁系统/FINGERPRINT_ATTENDANCE/GLIB/SYSTEM/sys_os.h",
+		"/E/WORK/Contest/2013年MSP430创新项目/基于MSP430的指纹识别门禁系统/STM32F0/README.md",
+		"/E/WORK/Project_List/READC/Kalman_Fliter/卡尔曼滤波2/kalman.c",
 		"/E/WORK/Project_List/READC/Kalman_Fliter/卡尔曼滤波/main.c",
 		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/GFLY/FLY/USER/APP/Balance.h",
 		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/GFLY/FLY/USER/TASK/loop_fast.h",
@@ -133,7 +143,6 @@
 		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/GFLY/FLY/USER/main.c",
 		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/GFLY/FLY/USER/TASK/task_cap_rc.h",
 		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/GFLY/FLY/USER/TASK/task_bmp085.h",
-		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/GFLY/FLY/USER/APP/Control.c",
 		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/GFLY/FLY/USER/TASK/task_hmc5883l.h",
 		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/GFLY/FLY/USER/TASK/task_pwm_ex.h",
 		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/GFLY/FLY/USER/CONFIG/Usart_Config.h",
@@ -164,7 +173,6 @@
 		"/J/20140920.DAT",
 		"/E/WORK/Project_List/新苗计划/智能联网太阳方位跟踪系统/CODE/GLIB/HARDWARE/gpio.h",
 		"/E/WORK/Project_List/新苗计划/智能联网太阳方位跟踪系统/CODE/USER0/USER/main.c",
-		"/E/WORK/Project_List/新苗计划/智能联网太阳方位跟踪系统/CODE/GLIB/SYSTEM/sys_usart.c",
 		"/E/WORK/Project_List/新苗计划/智能联网太阳方位跟踪系统/CODE/USER0/USER/APP/data_transfer.c",
 		"/J/20140416.DAT",
 		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/main.cpp",
@@ -227,15 +235,7 @@
 		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/ArduCopter/commands_logic.pde",
 		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/ArduCopter/control_auto.pde",
 		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/ArduCopter/control_land.pde",
-		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/ArduCopter/Attitude.pde",
-		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/ArduCopter/ArduCopter.pde",
-		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/ArduCopter/APM_Config.h",
-		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/ArduCopter/AP_State.pde",
-		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/ArduCopter/config.h",
-		"/E/Users/JASON_G/Desktop/.c",
-		"/E/Users/JASON_G/Desktop/SI446x_模块资料/E10-系列产品资料包 - 140718/2、DEMO程序/1、基于STM8L101的SI446X范例/SI446x_demo/RX/main.c",
-		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/wirish/boards/maple_RET6/board.cpp",
-		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/libmaple/wirish/boards/VLDiscovery/board.cpp"
+		"/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/APM/GIT/ardupilot/ArduCopter/Attitude.pde"
 	],
 	"find":
 	{
@@ -281,6 +281,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Driver_UARTx.WriteData",
 			"MAIN_C",
 			"i",
 			"Throttle_OUT",
@@ -407,8 +408,7 @@
 			"OUT",
 			"Out",
 			"OUT",
-			"Out",
-			"OUT"
+			"Out"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -455,279 +455,66 @@
 	"groups":
 	[
 		{
+			"sheets":
+			[
+			]
+		},
+		{
 			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/E/WORK/Project_List/READC/Kalman_Fliter/卡尔曼滤波/systemInit.c",
+					"file": "/E/Users/JASON_G/Desktop/AES/AES.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1540,
+						"buffer_size": 5123,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								695,
-								695
+								2147,
+								2147
 							]
 						],
 						"settings":
 						{
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"in_converting": true,
 							"incomplete_sync": null,
 							"origin_encoding": "UTF-8",
-							"remote_loading": false,
-							"sublime_auto_complete": true,
-							"synced": false,
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/C++/C.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1144.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "/E/WORK/Project_List/READC/Kalman_Fliter/卡尔曼滤波_多传感器融合模拟/main.c",
+					"file": "/E/Users/JASON_G/Desktop/TTS语音合成莫哭了SYN6288/安然之家原创6288/Syn6288/Syn6288.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7386,
+						"buffer_size": 891,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1288,
-								292
+								312,
+								318
 							]
 						],
 						"settings":
 						{
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"in_converting": true,
 							"incomplete_sync": null,
-							"origin_encoding": "UTF-8",
-							"remote_loading": false,
-							"sublime_auto_complete": true,
-							"synced": false,
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/C++/C++.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -735,148 +522,69 @@
 					},
 					"stack_index": 0,
 					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
+				},
 				{
 					"buffer": 2,
-					"file": "/E/WORK/Project_List/MULTI_ROTOR_TYPE_AIRCRAFT/GFLY/FLY/USER/APP/Control.c",
+					"file": "/E/Users/JASON_G/Desktop/TTS语音合成莫哭了SYN6288/安然之家原创6288/Syn6288/Syn6288.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1537,
+						"buffer_size": 310,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1532,
-								1532
+								103,
+								103
 							]
 						],
 						"settings":
 						{
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
 							"incomplete_sync": null,
-							"origin_encoding": "UTF-8",
+							"origin_encoding": "ASCII",
 							"remote_loading": false,
-							"sublime_auto_complete": true,
 							"synced": false,
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/C++/C.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 165.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/E/Users/JASON_G/Desktop/TTS语音合成莫哭了SYN6288/安然之家原创6288/Sound2/Sound2.ino",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 300,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								296,
+								179
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"origin_encoding": "UTF-8",
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Arduino-like IDE/Arduino.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]

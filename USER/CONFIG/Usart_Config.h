@@ -18,7 +18,7 @@ USART3|  B10 B11 |   (C10 C11)  | (D8  D9)  |
 
 #define EN_USART_  (1)       //Enable(1)/Disable(0)
 #define EN_USART2_ (0)       //Enable(1)/Disable(0)
-#define EN_USART3_ (0)       //Enable(1)/Disable(0)
+#define EN_USART3_ (1)       //Enable(1)/Disable(0)
 
 #define AF_USART1_ (0) 
 #define AF_USART2_ (0)

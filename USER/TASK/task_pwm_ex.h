@@ -5,6 +5,7 @@
 int task_pwm_ex(void)
 {
     _SS
+    //Ex_Init();
     TIM2_PWM_Init(5000, 36);
     TIM2_PWM_Init(5000, 36);
     TIM8_PWM_Init(5000, 36);
@@ -38,12 +39,32 @@ int task_pwm_ex(void)
             Send.MotoPwm = 1;
             Data_Exchange();
         }
-        if (Ex_ON_OFF.DataF4)
+        if (Ex_ON_OFF.DataF1)
+        {
+            WaitX(EX_BaudRate);
+            Send.DataF1 = 1;
+            Data_Exchange();
+        }
+				if (Ex_ON_OFF.DataF2)
+        {
+            WaitX(EX_BaudRate);
+            Send.DataF2 = 1;
+            Data_Exchange();
+        }
+				if (Ex_ON_OFF.DataF3)
+        {
+            WaitX(EX_BaudRate);
+            Send.DataF3 = 1;
+            Data_Exchange();
+        }
+				if (Ex_ON_OFF.DataF4)
         {
             WaitX(EX_BaudRate);
             Send.DataF4 = 1;
             Data_Exchange();
         }
+				WaitX(EX_BaudRate);
+        Data_Exchange();
     }
     _EE
 }

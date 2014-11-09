@@ -23,7 +23,6 @@ void Rc_GetValue(T_RC_Data *temp);
 #define RC_FUN_CNT  20
 #define RC_FUN_ZERO 1000
 
-
 #endif
 
 

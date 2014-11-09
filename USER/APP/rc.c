@@ -17,16 +17,27 @@ void Rc_DataAnl(u16 Rc_Pwm_In[5])
 //    Rc_Data.AUX4            =   Rc_Pwm_In[7];
 //    Rc_Data.AUX5            =   Rc_Pwm_In[8];
 //    Rc_Data.AUX6            =   Rc_Pwm_In[9];
-		Rc_Data.THROTTLE        =   Rc_Pwm_In[0];
-    Rc_Data.YAW             =   Rc_Pwm_In[1];
-    Rc_Data.ROLL            =   Rc_Pwm_In[2];
-    Rc_Data.PITCH           =   Rc_Pwm_In[3];
-    Rc_Data.AUX1            =   Rc_Pwm_In[4];//��
+ //    Rc_Data.THROTTLE        =   Rc_Pwm_In[0];
+ //    Rc_Data.YAW             =   Rc_Pwm_In[1];
+ //    Rc_Data.ROLL            =   Rc_Pwm_In[2];
+ //    Rc_Data.PITCH           =   Rc_Pwm_In[3];
+ //    Rc_Data.AUX1            =   Rc_Pwm_In[4];//左
+ //    Rc_Data.AUX2            =   Rc_Pwm_In[0];
+ //    Rc_Data.AUX3            =   Rc_Pwm_In[1];
+ //    Rc_Data.AUX4            =   Rc_Pwm_In[2];
+ //    Rc_Data.AUX5            =   Rc_Pwm_In[3];//右
+ //    Rc_Data.AUX6            =   Rc_Pwm_In[4];
+ //    
+    Rc_Data.THROTTLE        =   3000-Rc_Pwm_In[4];
+    Rc_Data.YAW             =   Rc_Pwm_In[2];
+    Rc_Data.ROLL            =   Rc_Pwm_In[3];
+    Rc_Data.PITCH           =   Rc_Pwm_In[1];
+    Rc_Data.AUX1            =   Rc_Pwm_In[5];//左
     Rc_Data.AUX2            =   Rc_Pwm_In[0];
-    Rc_Data.AUX3            =   Rc_Pwm_In[1];
-    Rc_Data.AUX4            =   Rc_Pwm_In[2];
-    Rc_Data.AUX5            =   Rc_Pwm_In[3];//��
-    Rc_Data.AUX6            =   Rc_Pwm_In[4];
+    Rc_Data.AUX3            =   Rc_Pwm_In[0];
+    Rc_Data.AUX4            =   Rc_Pwm_In[0];
+    Rc_Data.AUX5            =   Rc_Pwm_In[0];//右
+    Rc_Data.AUX6            =   Rc_Pwm_In[0];
     //    rt_event_send(&Evt_Sys, EVT_RC_GET);
 }
 void Rc_GetValue(T_RC_Data *temp)
@@ -42,6 +53,7 @@ void Rc_GetValue(T_RC_Data *temp)
     temp->AUX5      = Rc_Data.AUX5;
     temp->AUX6      = Rc_Data.AUX6;
 }
+
 void RC_Analyse(T_RC_Data *rc_data, T_Control *ctl_data)
 {
     {
@@ -64,31 +76,45 @@ void RC_Analyse(T_RC_Data *rc_data, T_Control *ctl_data)
             }
         else
             fun_cnt = 0;
-    }
+    }//解锁
     {
+        //开定高
+        //在关闭情况下才能开
         static u16 fun_cnt2 = 0;
-        if (rc_data->AUX1 > 1500 && (0 == ctl_data->Constant_Level))
+        if (rc_data->AUX1 > 1500 && (0 == ctl_data->ALT_ON_OFF))
+        {
             if (fun_cnt2 < RC_FUN_CNT)
                 fun_cnt2++;
             else
             {
                 fun_cnt2 = 0;
-                ctl_data->Constant_Level = 1;
+                ctl_data->ALT_ON_OFF = 1;
+                //Alt_Set = (rc_data->AUX2 - 1000) * 2;
             }
-        else if (rc_data->AUX1 < 1500 && ctl_data->Constant_Level)
+        }
+        else if (rc_data->AUX1 < 1500 && ctl_data->ALT_ON_OFF)
+        {
             if (fun_cnt2 < RC_FUN_CNT)
                 fun_cnt2++;
             else
             {
                 fun_cnt2 = 0;
-                ctl_data->Constant_Level = 0;
+                ctl_data->ALT_ON_OFF = 0;
             }
+        }
         else
+        {
             fun_cnt2 = 0;
+        }
     }
     {
+        //保存flash
+        //           throrrle min
+        //           yaw      max
+        //           roll     min
+        //           pit      min
         static u16 fun_cnt3 = 0;
-        if (rc_data->THROTTLE < RC_FUN_MIN && rc_data->YAW > RC_FUN_MAX && \
+        if (rc_data->THROTTLE < RC_FUN_MIN && rc_data->YAW < RC_FUN_MIN && \
                 rc_data->ROLL < RC_FUN_MIN && rc_data->PITCH < RC_FUN_MIN&&\
 								fun_cnt3!=(RC_FUN_CNT+10))
             if (fun_cnt3 < RC_FUN_CNT)

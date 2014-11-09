@@ -143,7 +143,7 @@
             <RestoreTracepoints>1</RestoreTracepoints>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>11</TargetSelection>
+          <TargetSelection>6</TargetSelection>
           <SimDlls>
             <CpuDll></CpuDll>
             <CpuDllArguments></CpuDllArguments>
@@ -157,7 +157,7 @@
             <PeripheralDll></PeripheralDll>
             <PeripheralDllArguments></PeripheralDllArguments>
             <InitializationFile></InitializationFile>
-            <Driver>STLink\ST-LINKIII-KEIL_SWO.dll</Driver>
+            <Driver>Segger\JL2CM3.dll</Driver>
           </TargetDlls>
         </DebugOption>
         <Utilities>
@@ -346,7 +346,7 @@
             <Optim>1</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
-            <OneElfS>0</OneElfS>
+            <OneElfS>1</OneElfS>
             <Strict>0</Strict>
             <EnumInt>0</EnumInt>
             <PlainCh>0</PlainCh>
@@ -361,7 +361,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\GLIB\SYSTEM;..\GLIB\HARDWARE;..\GLIB\STM32F10x_StdPeriph_Driver\inc;.\USER;..\GLIB\CMSIS\CM3\CoreSupport;.\USER\APP;..\GLIB\PERIPHERAL\LCD\lcd12864;..\GLIB\PERIPHERAL\DHT11;..\GLIB\PERIPHERAL\SD;..\GLIB\FATFS\src;..\GLIB\FATFS\exfuns;..\GLIB\PERIPHERAL\LCD;..\GLIB\PERIPHERAL\DS18B20;.\USER\CONFIG;..\GLIB\PERIPHERAL\ULTRASONIC;..\GLIB\PERIPHERAL\HMC5883L;..\GLIB\PERIPHERAL\MPU6050</IncludePath>
+              <IncludePath>..\GLIB\SYSTEM;..\GLIB\HARDWARE;..\GLIB\STM32F10x_StdPeriph_Driver\inc;.\USER;..\GLIB\CMSIS\CM3\CoreSupport;.\USER\APP;..\GLIB\PERIPHERAL\LCD\lcd12864;..\GLIB\PERIPHERAL\DHT11;..\GLIB\PERIPHERAL\SD;..\GLIB\FATFS\src;..\GLIB\FATFS\exfuns;..\GLIB\PERIPHERAL\LCD;..\GLIB\PERIPHERAL\DS18B20;.\USER\CONFIG;..\GLIB\PERIPHERAL\ULTRASONIC;..\GLIB\PERIPHERAL\HMC5883L;..\GLIB\PERIPHERAL\MPU6050;.\USER\APP\Kalman_Fliter</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -413,6 +413,11 @@
               <FileName>startup_stm32f10x_hd.s</FileName>
               <FileType>2</FileType>
               <FilePath>..\GLIB\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\arm\startup_stm32f10x_hd.s</FilePath>
+            </File>
+            <File>
+              <FileName>README.md</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\README.md</FilePath>
             </File>
           </Files>
         </Group>
@@ -693,6 +698,18 @@
         </Group>
         <Group>
           <GroupName>APP</GroupName>
+          <Files>
+            <File>
+              <FileName>kalman.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\USER\APP\Kalman_Fliter\kalman.c</FilePath>
+            </File>
+            <File>
+              <FileName>matrix.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\USER\APP\Kalman_Fliter\matrix.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>PERIPHERAL</GroupName>
@@ -764,6 +781,11 @@
               <FileName>Balance.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\USER\APP\Balance.c</FilePath>
+            </File>
+            <File>
+              <FileName>motor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\USER\APP\motor.c</FilePath>
             </File>
           </Files>
         </Group>

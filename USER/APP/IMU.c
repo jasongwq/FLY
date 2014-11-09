@@ -41,8 +41,9 @@ float exInt = 0, eyInt = 0, ezInt = 0;// scaled integral error
 // Function
 //====================================================================================================
 T_float_angle   Att_Angle;  //ATT函数计算出的姿态角
-
+float position_x=0,position_y=0,position_z=0;
 float compass_yaw;
+float AngleOffset_Rol=0,AngleOffset_Pit=0;
 void IMUupdate(S_INT16_XYZ *gyr, S_INT16_XYZ *acc, T_float_angle *angle)
 {
     float ax = acc->x, ay = acc->y, az = acc->z;
@@ -97,6 +98,14 @@ void IMUupdate(S_INT16_XYZ *gyr, S_INT16_XYZ *acc, T_float_angle *angle)
     q2 = q2 / norm;
     q3 = q3 / norm;
     // 四元数规范化
+//		static float X_I=0,Y_I=0,Z_I=0;
+//    X_I = (acc->x *0.001);
+//		Y_I = (acc->y *0.001);
+//		Z_I = (acc->z *0.001);
+//		position_x=position_x+X_I;
+//		position_y=position_y+Y_I;
+//		position_z=position_z+Z_I;
+//		
     static float Yaw_I = 0;
     Yaw_I = (gyr->z * Gyro_G *0.01);
     angle->yaw =angle->yaw + Yaw_I;// (0.99) * (angle->yaw + Yaw_I) + (0.01) * (compass_yaw);

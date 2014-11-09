@@ -70,8 +70,6 @@ u16 Data_Read(void)
     return BKP_ReadBackupRegister(BKP_DR42);
 };
 
-
-////要写入到STM32 FLASH的字符串数组
 #define SIZE 21
 #define FLASH_SAVE_ADDR  0X08035000      //设置FLASH 保存地址(必须为偶数)
 
@@ -130,24 +128,4 @@ void StmFlash_Read(void)
     GYRO_OFFSET.y =  ((u8)(StmFlash_Buffer[i++])        );
     GYRO_OFFSET.z =  ((u8)(StmFlash_Buffer[i++])        );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
