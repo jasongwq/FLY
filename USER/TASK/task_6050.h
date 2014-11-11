@@ -35,7 +35,6 @@ int task_6050(void)
 //        Average_Acc.z=KalmanFilter((double)Acc.z, *KALMAN_Q, *KALMAN_R, *KALMAN_P0,2);;
 
         Prepare_Data(&Acc, &Average_Acc);//4us
-				Prepare_Data2(&Att_Angle);//24us
         flag_ACC = 1;
     }
     _EE
