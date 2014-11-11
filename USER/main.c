@@ -50,6 +50,18 @@ int flag_ACC = 0;
 
 int main(void)
 {
+
+
+
+
+
+
+
+
+
+
+
+
     SYS_INIT();
     /***总循环***/
     while (1)
