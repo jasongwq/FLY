@@ -47,6 +47,7 @@ int flag_ACC = 0;
 #include "./TASK/loop_fast.h"
 #include "./TASK/task_hmc5883l.h"
 
+
 int main(void)
 {
     SYS_INIT();
