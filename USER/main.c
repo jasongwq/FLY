@@ -50,24 +50,12 @@ int flag_ACC = 0;
 
 int main(void)
 {
-
-
-
-
-
-
-
-
-
-
-
-
     SYS_INIT();
     /***总循环***/
     while (1)
     {
         RunLoop(loop_fast, 0);
-        //        RunLoop(loop_led,1);
+               RunLoop(loop_led,1);
 
         RunTaskA(task_6050, 2);
 
