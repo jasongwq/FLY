@@ -83,7 +83,7 @@ void ALT_Control(float ALT_Set)
 static T_float_angle angle;
 void Yaw_Control(void)
 {
-    angle.yaw = att_in->yaw + (rc_in->YAW   - 1500) / 60 + (-(*yaw_just - 10));
+    angle.yaw = att_in->yaw + (rc_in->YAW   - 1500) / 10 + (-(*yaw_just - 10));
     if (angle.yaw < -180)
         angle.yaw += 360;
     else if (angle.yaw > 180)
