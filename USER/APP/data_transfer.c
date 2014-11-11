@@ -100,8 +100,6 @@ void Ex_Anl(void)
     Ex_ON_OFF.DataF4 = Read_Bit(temp, 5);
 		Ex_ON_OFF.RCData = Read_Bit(temp, 6);
 		Ex_ON_OFF.MotoPwm = Read_Bit(temp, 7);
-		
-		
 }
 struct DATA_TRANSFER_SWITCH Ex_ON_OFF, Send;
 
@@ -760,7 +758,7 @@ void Data_Send_F4(void)
     for (u8 i = 0; i < _cnt; i++)
         sum += data_to_send[i];
     data_to_send[_cnt++] = sum;
-    #ifdef DATA_TRANSFER_USE_USART
+#ifdef DATA_TRANSFER_USE_USART
     Sys_sPrintf(Printf_USART, data_to_send, _cnt);
 #else
     NRF_TxPacket(data_to_send, _cnt);
