@@ -200,7 +200,7 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
     }
     else
     {
-		    angle.yaw=0;
+		    att_in->yaw=0;
         pit_i = 0;
         rol_i = 0;
         yaw_i = 0;
