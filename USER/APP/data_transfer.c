@@ -82,9 +82,12 @@ void Ex_Init(void)
 PID_ROL.P=4;
 PID_PIT.P=4;
 PID_YAW.P=4;
-PID_ROL.D=0.2;
-PID_PIT.D=0.2;
-PID_YAW.D=0.3;
+PID_ROL.I=0.0002;
+PID_PIT.I=0.0002;
+PID_YAW.I=0.0005;
+PID_ROL.D=0.13;
+PID_PIT.D=0.13;
+PID_YAW.D=0.30;
 *yaw_just=10;
 *rol_just=10;
 *pit_just=10;
