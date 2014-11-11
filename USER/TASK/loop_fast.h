@@ -6,7 +6,6 @@ int loop_fast(void)//500hz
     _LOOP_SS
     if (flag_ACC)
     {
-        
         IMUupdate(&Gyr, &Average_Acc, &Att_Angle);//222us
 				Prepare_Data2(&Att_Angle);//24us
 //        //Control(&Att_Angle, &Gyr, &Rc_D, &RC_Control);//17us
