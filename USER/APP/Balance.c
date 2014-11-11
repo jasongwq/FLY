@@ -112,7 +112,7 @@ void Yaw_Control(void)
 }
 void Rol_Control(void)
 {
-    angle.rol = att_in->rol - (rc_in->ROLL  - 1500) / 10 + (-(*rol_just - 10));
+    angle.rol = att_in->rol - (rc_in->ROLL  - 1500) / 60 + (-(*rol_just - 10));
     /*****************************************************
     /P
     *****************************************************/
