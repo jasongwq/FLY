@@ -1,5 +1,6 @@
 #include "ultrasonic.h"
 u16 Alt_ultrasonic;
+u8 flag_ALT=0;
 int task_ultrasonic(void)
 {
     u32 temp = 0;
@@ -24,12 +25,13 @@ int task_ultrasonic(void)
                 temp *= 65536;
                 temp = TIM1_CAPTURE_VAL_CH1; 
                 Alt_ultrasonic = (temp * 340 / 1000 / 2);
+								flag_ACC=1;
                 break;
             }
             utime++;
             if (utime > 10)
             {
-Alt_ultrasonic=0;
+								Alt_ultrasonic=0;
                 break;
             }
         }

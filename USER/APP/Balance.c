@@ -45,15 +45,17 @@ static u32 Throttle_OUT;
 static u32 Throttle_IN;
 
 int ALT_Control_Out;
+extern u8 flag_ALT;
 s16 Alt_Error, Alt_Error_Last, Alt_Set;
 void ALT_Control(float ALT_Set)
 {
     extern u16 Alt_ultrasonic;
-    static int time = 0;
-    time++;
-    if (time > 15)
-    {
-        time = 0;
+    //static int time = 0;
+    //time++;
+    //if (time > 15)
+    if(1==flag_ALT){
+		flag_ALT=0;
+        //time = 0;
         Alt_Error = Alt_Set - Alt_ultrasonic;
         PID_ALT.pout = PID_ALT.P * Alt_Error;
         alt_i += Alt_Error;
