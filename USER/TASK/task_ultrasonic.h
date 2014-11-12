@@ -1,6 +1,5 @@
 #include "ultrasonic.h"
 u16 Alt_ultrasonic;u8 flag_ALT=0;
-
 int task_ultrasonic(void)
 {
     u32 temp = 0;
