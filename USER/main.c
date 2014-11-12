@@ -75,6 +75,6 @@ int main(void)
 
         //        RunTaskA(task_bmp085, 7);
         //
-        RunTaskA(task_led, 4);
+        RunTaskA(task_led, 5);
     }
 }
