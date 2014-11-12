@@ -19,14 +19,14 @@ PID PID_ROL, PID_PIT, PID_YAW, PID_ALT, PID_POS,
 
 static T_float_angle *att_in;
 static S_INT16_XYZ   *gyr_in;
-static S_INT16_XYZ   *acc_in;
+//static S_INT16_XYZ   *acc_in;
 static T_RC_Data     *rc_in ;
 static T_Control     *ctl;
 void Balance_Data(T_float_angle *Att_in, S_INT16_XYZ *Gyr_in, S_INT16_XYZ *Acc_in, T_RC_Data *Rc_in, T_Control *Ctl)
 {
     att_in = Att_in;
     gyr_in = Gyr_in;
-    acc_in = Acc_in;
+//    acc_in = Acc_in;
     rc_in  = Rc_in ;
     ctl    = Ctl   ;
 }
