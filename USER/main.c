@@ -67,7 +67,7 @@ int main(void)
 #if VERSIONS ==2
         RunTaskA(task_cap_rc, 2);
 #endif
-        //RunTaskA(task_ultrasonic, 3);
+        RunTaskA(task_ultrasonic, 3);
 
         RunTaskA(task_pwm_ex, 4);
 
@@ -75,6 +75,6 @@ int main(void)
 
         //        RunTaskA(task_bmp085, 7);
         //
-        //RunTaskA(task_led, 5);
+        RunTaskA(task_led, 5);
     }
 }
