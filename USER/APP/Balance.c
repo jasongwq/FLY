@@ -61,7 +61,7 @@ void ALT_Control(float ALT_Set)
     //time++;
     //if (time > 15)
     if(1==flag_ALT){
-		//flag_ALT=0;
+		flag_ALT=0;
         //time = 0;
         Alt_Error = Alt_Set - Alt_ultrasonic;
         PID_ALT.pout = PID_ALT.P * Alt_Error;
