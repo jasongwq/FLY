@@ -282,14 +282,21 @@ void Data_Send_Status(void)
     _temp = (int)(Att_Angle.yaw * 100);
     data_to_send[_cnt++] = BYTE1(_temp);
     data_to_send[_cnt++] = BYTE0(_temp);
-    vs32 _temp2 = Alt_ultrasonic;
-    data_to_send[_cnt++] = BYTE3(_temp2);
-    data_to_send[_cnt++] = BYTE2(_temp2);
-    data_to_send[_cnt++] = BYTE1(_temp2);
-    data_to_send[_cnt++] = BYTE0(_temp2);
-
-    if (1)           data_to_send[_cnt++] = 0xA0;
-    else if (1)      data_to_send[_cnt++] = 0xA1;
+//    vs32 _temp2 = Alt_ultrasonic;
+//    data_to_send[_cnt++] = BYTE3(_temp2);
+//    data_to_send[_cnt++] = BYTE2(_temp2);
+//    data_to_send[_cnt++] = BYTE1(_temp2);
+//    data_to_send[_cnt++] = BYTE0(_temp2);
+	_temp = 0;
+	data_to_send[_cnt++]=BYTE1(_temp);
+	data_to_send[_cnt++]=BYTE0(_temp);
+	vs32 _temp2 = Alt_ultrasonic;
+	data_to_send[_cnt++]=BYTE3(_temp2);
+	data_to_send[_cnt++]=BYTE2(_temp2);
+	data_to_send[_cnt++]=BYTE1(_temp2);
+	data_to_send[_cnt++]=BYTE0(_temp2);
+	if(RC_Control.ARMED==0)		data_to_send[_cnt++]=0xA0;	
+	else if(RC_Control.ARMED==1)		data_to_send[_cnt++]=0xA1;
     data_to_send[3] = _cnt - 4;
     u8 sum = 0;
     for (u8 i = 0; i < _cnt; i++)
@@ -301,6 +308,33 @@ void Data_Send_Status(void)
     NRF_TxPacket(data_to_send, _cnt);
 #endif
 }
+//	u8 _cnt=0;
+//	data_to_send[_cnt++]=0xAA;
+//	data_to_send[_cnt++]=0xAA;
+//	data_to_send[_cnt++]=0x01;
+//	data_to_send[_cnt++]=0;
+//	vs16 _temp;
+//	_temp = (int)(Att_Angle.rol*100);
+//	data_to_send[_cnt++]=BYTE1(_temp);
+//	data_to_send[_cnt++]=BYTE0(_temp);
+//	_temp = (int)(Att_Angle.pit*100);
+//	data_to_send[_cnt++]=BYTE1(_temp);
+//	data_to_send[_cnt++]=BYTE0(_temp);
+//	//_temp = (int)(Q_ANGLE.YAW*100);
+//	_temp = (int)(Mag_Heading*100);
+//	data_to_send[_cnt++]=BYTE1(_temp);
+//	data_to_send[_cnt++]=BYTE0(_temp);
+//	_temp = Alt_CSB;
+//	data_to_send[_cnt++]=BYTE1(_temp);
+//	data_to_send[_cnt++]=BYTE0(_temp);
+//	vs32 _temp2 = Alt;
+//	data_to_send[_cnt++]=BYTE3(_temp2);
+//	data_to_send[_cnt++]=BYTE2(_temp2);
+//	data_to_send[_cnt++]=BYTE1(_temp2);
+//	data_to_send[_cnt++]=BYTE0(_temp2);
+//		
+//	if(Rc_C.ARMED==0)		data_to_send[_cnt++]=0xA0;	
+//	else if(Rc_C.ARMED==1)		data_to_send[_cnt++]=0xA1;
 extern float rol_i;
 extern s32 Alt_Error;
 
