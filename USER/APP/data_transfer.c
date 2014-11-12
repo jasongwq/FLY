@@ -295,8 +295,10 @@ void Data_Send_Status(void)
 	data_to_send[_cnt++]=BYTE2(_temp2);
 	data_to_send[_cnt++]=BYTE1(_temp2);
 	data_to_send[_cnt++]=BYTE0(_temp2);
-	if(RC_Control.ARMED==0)		data_to_send[_cnt++]=0xA0;	
-	else if(RC_Control.ARMED==1)		data_to_send[_cnt++]=0xA1;
+	if(1)//RC_Control.ARMED==0)
+	data_to_send[_cnt++]=0xA0;	
+	else if(1)//RC_Control.ARMED==1)
+	data_to_send[_cnt++]=0xA1;
     data_to_send[3] = _cnt - 4;
     u8 sum = 0;
     for (u8 i = 0; i < _cnt; i++)
