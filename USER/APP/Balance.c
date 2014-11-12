@@ -67,7 +67,7 @@ void ALT_Control(float ALT_Set)
     }
     //PID_ALT.dout = PID_ALT.D * (acc_in->z-8192);
 		
-		if (ctl->ALT_ON_OFF)
+		if (ctl->ALT_ON_OFF&&Alt_ultrasonic!=0)
     {
         
     }
