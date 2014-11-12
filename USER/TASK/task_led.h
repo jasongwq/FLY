@@ -10,11 +10,26 @@ int task_led(void)
     LED1_H;
     while (1)
     {
-        WaitX(100);
         if (RC_Control.ARMED)
-            LED1_H;
+        {
+
+            if (RC_Control.ALT_ON_OFF)
+            {
+                WaitX(50);
+                LED1_Toggle;
+            }
+            else
+            {
+                WaitX(100);
+                LED1_H;
+            }
+        }
         else
+        {
+            WaitX(200);
             LED1_Toggle;
+        }
+
     }
     _EE
 }
