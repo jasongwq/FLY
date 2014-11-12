@@ -92,6 +92,7 @@ PID_ALT.P=0.4;
 PID_ALT.I=0;
 PID_ALT.D=11;
 
+*ex_on_off=3;
 *yaw_just=10;
 *rol_just=10;
 *pit_just=10;
