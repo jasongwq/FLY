@@ -65,7 +65,7 @@ void ALT_Control(float ALT_Set)
         PID_ALT.dout = -PID_ALT.D * (Alt_Error_Last - Alt_Error);
         Alt_Error_Last = Alt_Error;
     }
-    PID_ALT.dout = PID_ALT.D * acc_in->z;
+    PID_ALT.dout = PID_ALT.D * (acc_in->z-8192);
 		
 		if (ctl->ALT_ON_OFF)
     {
@@ -77,7 +77,7 @@ void ALT_Control(float ALT_Set)
         PID_ALT.pout = 0;
     }
     PID_ALT.OUT = PID_ALT.pout + PID_ALT.iout + PID_ALT.dout;
-
+		
     Throttle_OUT += PID_ALT.OUT;
 }
 static T_float_angle angle;
@@ -170,7 +170,7 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
     Rol_Control();
     Pit_Control();
 		
-    //ALT_Control(0);
+    ALT_Control(0);
 
 
     /*****************************************************

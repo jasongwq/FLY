@@ -19,9 +19,11 @@ void SYS_INIT(void)
     uart_init (115200);
     uart3_init(115200);
 
-    Sys_Printf(USART1, "\r\nUSART1 ok");
-    Sys_Printf(Printf_USART, "\r\nUSART1 ok");
-    //Sys_Printf(Printf_USART, "\r\nUSART1 ok");
+    // Sys_Printf(USART1, "\r\nUSART1 ok");
+    // Sys_Printf(USART2, "\r\nUSART2 ok");
+    // Sys_Printf(USART3, "\r\nUSART3 ok");
+
+    Sys_Printf(Printf_USART, "\r\nPrintf_USART ok");
 
     delay_ms(500);
 }
@@ -55,7 +57,7 @@ int main(void)
     while (1)
     {
         RunLoop(loop_fast, 0);
-       //       RunLoop(loop_led,1);
+        //       RunLoop(loop_led,1);
 
         RunTaskA(task_6050, 1);
 
@@ -65,9 +67,9 @@ int main(void)
 #if VERSIONS ==2
         RunTaskA(task_cap_rc, 2);
 #endif
-        //RunTaskA(task_ultrasonic, 3);
+        RunTaskA(task_ultrasonic, 3);
 
-        RunTaskA(task_pwm_ex, 3);
+        RunTaskA(task_pwm_ex, 4);
 
         //        RunTaskA(task_hmc5883l, 6);
 

@@ -74,9 +74,9 @@
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
           </BeforeMake>
           <AfterMake>
-            <RunUserProg1>0</RunUserProg1>
+            <RunUserProg1>1</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name></UserProg1Name>
+            <UserProg1Name>E:\WORK\Project_List\MULTI_ROTOR_TYPE_AIRCRAFT\GFLY\FLY\commit.bat</UserProg1Name>
             <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
@@ -703,11 +703,6 @@
               <FileName>kalman.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\USER\APP\Kalman_Fliter\kalman.c</FilePath>
-            </File>
-            <File>
-              <FileName>matrix.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\USER\APP\Kalman_Fliter\matrix.c</FilePath>
             </File>
           </Files>
         </Group>

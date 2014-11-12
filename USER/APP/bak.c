@@ -90,7 +90,7 @@ void StmFlash_Save(void)
     StmFlash_Buffer[i++] = (u16)(PID_ALT.I   * 100 );
     StmFlash_Buffer[i++] = (u16)(PID_ALT.D   * 100 );
     StmFlash_Buffer[i++] = (u16)(PID_PID_1.P * 100 );
-    StmFlash_Buffer[i++] = (u16)(PID_PID_1.I * 100);
+    StmFlash_Buffer[i++] = (u16)(PID_PID_1.I * 100 );
     StmFlash_Buffer[i++] = (u16)(PID_PID_1.D * 100 );
     StmFlash_Buffer[i++] = (u16)(ACC_OFFSET.x      );
     StmFlash_Buffer[i++] = (u16)(ACC_OFFSET.y      );
@@ -119,7 +119,7 @@ void StmFlash_Read(void)
     PID_ALT.I  =  ((float)(StmFlash_Buffer[i++]) / 100  );
     PID_ALT.D  =  ((float)(StmFlash_Buffer[i++]) / 100  );
     PID_PID_1.P = ((float)(StmFlash_Buffer[i++]) / 100  );
-    PID_PID_1.I = ((float)(StmFlash_Buffer[i++]) / 100 );
+    PID_PID_1.I = ((float)(StmFlash_Buffer[i++]) / 100  );
     PID_PID_1.D = ((float)(StmFlash_Buffer[i++]) / 100  );
     ACC_OFFSET.x  =  ((u8)(StmFlash_Buffer[i++])        );
     ACC_OFFSET.y  =  ((u8)(StmFlash_Buffer[i++])        );
