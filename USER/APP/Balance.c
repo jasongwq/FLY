@@ -5,6 +5,13 @@
 #include "math.h"
 #include "motor.h"
 
+#define RC_Yaw_P 20
+#define RC_ROL_P 20
+#define RC_PIT_P 20
+//#define RC_Yaw_P
+//#define RC_Yaw_P
+
+
 #define RC_FUN_MIN  1200
 #define RC_FUN_MAX  1800
 #define RC_FUN_CNT  20
@@ -85,7 +92,7 @@ void ALT_Control(float ALT_Set)
 static T_float_angle angle;
 void Yaw_Control(void)
 {
-    angle.yaw = att_in->yaw + (rc_in->YAW   - 1500) / 10 + (-(*yaw_just - 10));
+    angle.yaw = att_in->yaw + (rc_in->YAW   - 1500) / RC_Yaw_P + (-(*yaw_just - 10));
     if (angle.yaw < -180)
         angle.yaw += 360;
     else if (angle.yaw > 180)
@@ -114,7 +121,7 @@ void Yaw_Control(void)
 }
 void Rol_Control(void)
 {
-    angle.rol = att_in->rol - (rc_in->ROLL  - 1500) / 10 + (-(*rol_just - 10));
+    angle.rol = att_in->rol - (rc_in->ROLL  - 1500) / RC_ROL_P + (-(*rol_just - 10));
     /*****************************************************
     /P
     *****************************************************/
@@ -139,7 +146,7 @@ void Rol_Control(void)
 }
 void Pit_Control(void)
 {
-    angle.pit = att_in->pit + (rc_in->PITCH - 1500) / 10 + (+(*pit_just - 10));
+    angle.pit = att_in->pit + (rc_in->PITCH - 1500) / RC_PIT_P + (+(*pit_just - 10));
     /*****************************************************
     /P
     *****************************************************/
