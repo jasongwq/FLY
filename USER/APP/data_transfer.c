@@ -287,10 +287,10 @@ void Data_Send_Status(void)
 //    data_to_send[_cnt++] = BYTE2(_temp2);
 //    data_to_send[_cnt++] = BYTE1(_temp2);
 //    data_to_send[_cnt++] = BYTE0(_temp2);
-	_temp = 0;
+	_temp = Alt_ultrasonic;
 	data_to_send[_cnt++]=BYTE1(_temp);
 	data_to_send[_cnt++]=BYTE0(_temp);
-	vs32 _temp2 = Alt_ultrasonic;
+	vs32 _temp2 = 0;//Alt_ultrasonic;
 	data_to_send[_cnt++]=BYTE3(_temp2);
 	data_to_send[_cnt++]=BYTE2(_temp2);
 	data_to_send[_cnt++]=BYTE1(_temp2);
