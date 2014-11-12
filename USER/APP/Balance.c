@@ -172,7 +172,7 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
     Rol_Control();
     Pit_Control();
 		
-    ALT_Control(rc_in->AUX2);
+    ALT_Control(rc_in->AUX2-1000);
 
 
     /*****************************************************
