@@ -21,7 +21,7 @@ int task_ultrasonic(void)
             if (TIM1_CAPTURE_STA_CH1 & 0X80)
             {
                 temp  = TIM1_CAPTURE_STA_CH1 & 0X3F;
-                temp *= 65536;//??????
+                temp *= 65536;
                 temp = TIM1_CAPTURE_VAL_CH1; 
                 Alt_ultrasonic = (temp * 340 / 1000 / 2);
                 break;

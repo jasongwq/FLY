@@ -670,7 +670,7 @@ I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_spi.h)(0x545D8B9D)
 I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_tim.h)(0x545D8B9D)
 I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h)(0x545D8B9D)
 I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\misc.h)(0x545D8B9D)
-F (.\USER\main.c)(0x5461DFBD)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I..\GLIB\SYSTEM -I..\GLIB\HARDWARE -I..\GLIB\STM32F10x_StdPeriph_Driver\inc -I.\USER -I..\GLIB\CMSIS\CM3\CoreSupport -I.\USER\APP -I..\GLIB\PERIPHERAL\LCD\lcd12864 -I..\GLIB\PERIPHERAL\DHT11 -I..\GLIB\PERIPHERAL\SD -I..\GLIB\FATFS\src -I..\GLIB\FATFS\exfuns -I..\GLIB\PERIPHERAL\LCD -I..\GLIB\PERIPHERAL\DS18B20 -I.\USER\CONFIG -I..\GLIB\PERIPHERAL\ULTRASONIC -I..\GLIB\PERIPHERAL\HMC5883L -I..\GLIB\PERIPHERAL\MPU6050 -I.\USER\APP\Kalman_Fliter-I D:\Keil_v5\ARM\RV31\INC-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I D:\Keil_v5\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -o .\obj\main.o --omf_browse .\obj\main.crf --depend .\obj\main.d)
+F (.\USER\main.c)(0x5462056C)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I..\GLIB\SYSTEM -I..\GLIB\HARDWARE -I..\GLIB\STM32F10x_StdPeriph_Driver\inc -I.\USER -I..\GLIB\CMSIS\CM3\CoreSupport -I.\USER\APP -I..\GLIB\PERIPHERAL\LCD\lcd12864 -I..\GLIB\PERIPHERAL\DHT11 -I..\GLIB\PERIPHERAL\SD -I..\GLIB\FATFS\src -I..\GLIB\FATFS\exfuns -I..\GLIB\PERIPHERAL\LCD -I..\GLIB\PERIPHERAL\DS18B20 -I.\USER\CONFIG -I..\GLIB\PERIPHERAL\ULTRASONIC -I..\GLIB\PERIPHERAL\HMC5883L -I..\GLIB\PERIPHERAL\MPU6050 -I.\USER\APP\Kalman_Fliter-I D:\Keil_v5\ARM\RV31\INC-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I D:\Keil_v5\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -o .\obj\main.o --omf_browse .\obj\main.crf --depend .\obj\main.d)
 I (.\USER\APP\user.h)(0x545D8B9C)
 I (..\GLIB\SYSTEM\sys.h)(0x545D8B9D)
 I (.\USER\stm32f10x.h)(0x545D8B9C)
@@ -735,7 +735,7 @@ I (USER\./TASK/task_ultrasonic.h)(0x545D8B9C)
 I (..\GLIB\PERIPHERAL\ULTRASONIC\ultrasonic.h)(0x545D8B9D)
 I (..\GLIB\HARDWARE\G32_timer_cap.h)(0x545D8B9D)
 I (.\USER\CONFIG\G32_Timer_Cap_Config.h)(0x545DC96C)
-I (USER\./TASK/task_pwm_ex.h)(0x5461D95C)
+I (USER\./TASK/task_pwm_ex.h)(0x54620588)
 I (..\GLIB\HARDWARE\pwm.h)(0x545D8B9D)
 I (USER\./TASK/task_cap_rc.h)(0x545DC86B)
 I (USER\./TASK/task_bmp085.h)(0x545D8B9C)
@@ -830,7 +830,7 @@ F (.\USER\TASK\task_6050.h)(0x5461EE91)()
 F (.\USER\TASK\task_bmp085.h)(0x545D8B9C)()
 F (.\USER\TASK\task_cap_rc.h)(0x545DC86B)()
 F (.\USER\TASK\task_hmc5883l.h)(0x545D8B9C)()
-F (.\USER\TASK\task_pwm_ex.h)(0x5461D95C)()
+F (.\USER\TASK\task_pwm_ex.h)(0x54620588)()
 F (.\USER\TASK\task_ultrasonic.h)(0x545D8B9C)()
 F (.\USER\TASK\task_led.h)(0x5461E0DF)()
 F (..\GLIB\SYSTEM\sys.c)(0x545D8B98)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I..\GLIB\SYSTEM -I..\GLIB\HARDWARE -I..\GLIB\STM32F10x_StdPeriph_Driver\inc -I.\USER -I..\GLIB\CMSIS\CM3\CoreSupport -I.\USER\APP -I..\GLIB\PERIPHERAL\LCD\lcd12864 -I..\GLIB\PERIPHERAL\DHT11 -I..\GLIB\PERIPHERAL\SD -I..\GLIB\FATFS\src -I..\GLIB\FATFS\exfuns -I..\GLIB\PERIPHERAL\LCD -I..\GLIB\PERIPHERAL\DS18B20 -I.\USER\CONFIG -I..\GLIB\PERIPHERAL\ULTRASONIC -I..\GLIB\PERIPHERAL\HMC5883L -I..\GLIB\PERIPHERAL\MPU6050 -I.\USER\APP\Kalman_Fliter-I D:\Keil_v5\ARM\RV31\INC-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I D:\Keil_v5\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -o .\obj\sys.o --omf_browse .\obj\sys.crf --depend .\obj\sys.d)
@@ -1726,7 +1726,7 @@ I (D:\Keil_v5\ARM\ARMCC\include\math.h)(0x52FDD27E)
 I (USER\APP\control.h)(0x545D8B9C)
 F (.\USER\APP\Control.c)(0x545E153B)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I..\GLIB\SYSTEM -I..\GLIB\HARDWARE -I..\GLIB\STM32F10x_StdPeriph_Driver\inc -I.\USER -I..\GLIB\CMSIS\CM3\CoreSupport -I.\USER\APP -I..\GLIB\PERIPHERAL\LCD\lcd12864 -I..\GLIB\PERIPHERAL\DHT11 -I..\GLIB\PERIPHERAL\SD -I..\GLIB\FATFS\src -I..\GLIB\FATFS\exfuns -I..\GLIB\PERIPHERAL\LCD -I..\GLIB\PERIPHERAL\DS18B20 -I.\USER\CONFIG -I..\GLIB\PERIPHERAL\ULTRASONIC -I..\GLIB\PERIPHERAL\HMC5883L -I..\GLIB\PERIPHERAL\MPU6050 -I.\USER\APP\Kalman_Fliter-I D:\Keil_v5\ARM\RV31\INC-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I D:\Keil_v5\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -o .\obj\control.o --omf_browse .\obj\control.crf --depend .\obj\control.d)
 I (USER\APP\Control.h)(0x545D8B9C)
-F (.\USER\APP\Balance.c)(0x5461EF76)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I..\GLIB\SYSTEM -I..\GLIB\HARDWARE -I..\GLIB\STM32F10x_StdPeriph_Driver\inc -I.\USER -I..\GLIB\CMSIS\CM3\CoreSupport -I.\USER\APP -I..\GLIB\PERIPHERAL\LCD\lcd12864 -I..\GLIB\PERIPHERAL\DHT11 -I..\GLIB\PERIPHERAL\SD -I..\GLIB\FATFS\src -I..\GLIB\FATFS\exfuns -I..\GLIB\PERIPHERAL\LCD -I..\GLIB\PERIPHERAL\DS18B20 -I.\USER\CONFIG -I..\GLIB\PERIPHERAL\ULTRASONIC -I..\GLIB\PERIPHERAL\HMC5883L -I..\GLIB\PERIPHERAL\MPU6050 -I.\USER\APP\Kalman_Fliter-I D:\Keil_v5\ARM\RV31\INC-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I D:\Keil_v5\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -o .\obj\balance.o --omf_browse .\obj\balance.crf --depend .\obj\balance.d)
+F (.\USER\APP\Balance.c)(0x5462D1C5)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I..\GLIB\SYSTEM -I..\GLIB\HARDWARE -I..\GLIB\STM32F10x_StdPeriph_Driver\inc -I.\USER -I..\GLIB\CMSIS\CM3\CoreSupport -I.\USER\APP -I..\GLIB\PERIPHERAL\LCD\lcd12864 -I..\GLIB\PERIPHERAL\DHT11 -I..\GLIB\PERIPHERAL\SD -I..\GLIB\FATFS\src -I..\GLIB\FATFS\exfuns -I..\GLIB\PERIPHERAL\LCD -I..\GLIB\PERIPHERAL\DS18B20 -I.\USER\CONFIG -I..\GLIB\PERIPHERAL\ULTRASONIC -I..\GLIB\PERIPHERAL\HMC5883L -I..\GLIB\PERIPHERAL\MPU6050 -I.\USER\APP\Kalman_Fliter-I D:\Keil_v5\ARM\RV31\INC-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I D:\Keil_v5\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -o .\obj\balance.o --omf_browse .\obj\balance.crf --depend .\obj\balance.d)
 I (USER\APP\Control.h)(0x545D8B9C)
 I (USER\APP\Balance.h)(0x545DCD9B)
 I (..\GLIB\SYSTEM\sys.h)(0x545D8B9D)
@@ -1808,7 +1808,7 @@ I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_tim.h)(0x545D8B9D)
 I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h)(0x545D8B9D)
 I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_wwdg.h)(0x545D8B9D)
 I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\misc.h)(0x545D8B9D)
-F (.\USER\APP\bak.c)(0x545DD905)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I..\GLIB\SYSTEM -I..\GLIB\HARDWARE -I..\GLIB\STM32F10x_StdPeriph_Driver\inc -I.\USER -I..\GLIB\CMSIS\CM3\CoreSupport -I.\USER\APP -I..\GLIB\PERIPHERAL\LCD\lcd12864 -I..\GLIB\PERIPHERAL\DHT11 -I..\GLIB\PERIPHERAL\SD -I..\GLIB\FATFS\src -I..\GLIB\FATFS\exfuns -I..\GLIB\PERIPHERAL\LCD -I..\GLIB\PERIPHERAL\DS18B20 -I.\USER\CONFIG -I..\GLIB\PERIPHERAL\ULTRASONIC -I..\GLIB\PERIPHERAL\HMC5883L -I..\GLIB\PERIPHERAL\MPU6050 -I.\USER\APP\Kalman_Fliter-I D:\Keil_v5\ARM\RV31\INC-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I D:\Keil_v5\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -o .\obj\bak.o --omf_browse .\obj\bak.crf --depend .\obj\bak.d)
+F (.\USER\APP\bak.c)(0x546205D6)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I..\GLIB\SYSTEM -I..\GLIB\HARDWARE -I..\GLIB\STM32F10x_StdPeriph_Driver\inc -I.\USER -I..\GLIB\CMSIS\CM3\CoreSupport -I.\USER\APP -I..\GLIB\PERIPHERAL\LCD\lcd12864 -I..\GLIB\PERIPHERAL\DHT11 -I..\GLIB\PERIPHERAL\SD -I..\GLIB\FATFS\src -I..\GLIB\FATFS\exfuns -I..\GLIB\PERIPHERAL\LCD -I..\GLIB\PERIPHERAL\DS18B20 -I.\USER\CONFIG -I..\GLIB\PERIPHERAL\ULTRASONIC -I..\GLIB\PERIPHERAL\HMC5883L -I..\GLIB\PERIPHERAL\MPU6050 -I.\USER\APP\Kalman_Fliter-I D:\Keil_v5\ARM\RV31\INC-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I D:\Keil_v5\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -o .\obj\bak.o --omf_browse .\obj\bak.crf --depend .\obj\bak.d)
 I (USER\APP\bak.h)(0x545D8B9C)
 I (..\GLIB\SYSTEM\sys.h)(0x545D8B9D)
 I (.\USER\stm32f10x.h)(0x545D8B9C)
