@@ -12,7 +12,6 @@ int task_led(void)
     {
         if (RC_Control.ARMED)
         {
-
             if (RC_Control.ALT_ON_OFF)
             {
                 WaitX(50);

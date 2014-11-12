@@ -32,8 +32,8 @@ void Rc_DataAnl(u16 Rc_Pwm_In[5])
     Rc_Data.YAW             =   Rc_Pwm_In[2];
     Rc_Data.ROLL            =   Rc_Pwm_In[3];
     Rc_Data.PITCH           =   Rc_Pwm_In[1];
-    Rc_Data.AUX1            =   Rc_Pwm_In[5];//左
-    Rc_Data.AUX2            =   Rc_Pwm_In[0];
+    Rc_Data.AUX1            =   Rc_Pwm_In[0];//左
+    Rc_Data.AUX2            =   Rc_Pwm_In[5];
     Rc_Data.AUX3            =   Rc_Pwm_In[0];
     Rc_Data.AUX4            =   Rc_Pwm_In[0];
     Rc_Data.AUX5            =   Rc_Pwm_In[0];//右
