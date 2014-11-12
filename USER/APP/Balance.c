@@ -163,16 +163,16 @@ void Pit_Control(void)
     PID_PIT.OUT = PID_PIT.pout + PID_PIT.iout + PID_PIT.dout;
 
 }
-void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_RC_Data *rc_in, T_Control *Ctl)
+void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_RC_Data *Rc_in, T_Control *Ctl)
 {
-    Balance_Data(att_in, gyr_in, acc_in, rc_in,Ctl);
+    Balance_Data(att_in, gyr_in, acc_in, Rc_in,Ctl);
     Throttle_IN = rc_in->THROTTLE - RC_FUN_ZERO;
     Throttle_OUT = Throttle_IN;
     Yaw_Control();
     Rol_Control();
     Pit_Control();
 		
-    ALT_Control(0);
+    ALT_Control(rc_in->AUX2);
 
 
     /*****************************************************
