@@ -50,22 +50,22 @@ void ALT_Control(float ALT_Set)
 {
     extern u16 Alt_ultrasonic;
     static int time = 0;
-//    time++;
-//    if (time > 15)
-//    {
-//        time = 0;
-//        Alt_Error = Alt_Set - Alt_ultrasonic;
-//        PID_ALT.pout = PID_ALT.P * Alt_Error;
-//        alt_i += Alt_Error;
-//        PID_ALT.iout = (PID_ALT.I / 100) * alt_i;
-//        if (PID_ALT.iout > INTEGRAL_WINDUP_A)
-//            PID_ALT.iout = INTEGRAL_WINDUP_A;
-//        else if (alt_i < -INTEGRAL_WINDUP_A)
-//            PID_ALT.iout = -INTEGRAL_WINDUP_A;
-//        PID_ALT.dout = -PID_ALT.D * (Alt_Error_Last - Alt_Error);
-//        Alt_Error_Last = Alt_Error;
-//    }
-    PID_ALT.dout = PID_ALT.D * (acc_in->z-8192);
+    time++;
+    if (time > 15)
+    {
+        time = 0;
+        Alt_Error = Alt_Set - Alt_ultrasonic;
+        PID_ALT.pout = PID_ALT.P * Alt_Error;
+        alt_i += Alt_Error;
+        PID_ALT.iout = (PID_ALT.I / 100) * alt_i;
+        if (PID_ALT.iout > INTEGRAL_WINDUP_A)
+            PID_ALT.iout = INTEGRAL_WINDUP_A;
+        else if (alt_i < -INTEGRAL_WINDUP_A)
+            PID_ALT.iout = -INTEGRAL_WINDUP_A;
+        PID_ALT.dout = -PID_ALT.D * (Alt_Error_Last - Alt_Error);
+        Alt_Error_Last = Alt_Error;
+    }
+    //PID_ALT.dout = PID_ALT.D * (acc_in->z-8192);
 		
 		if (ctl->ALT_ON_OFF)
     {
@@ -189,7 +189,7 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
 //		s16 pitsinjust=sin(att_in->pit)*5;
 //		if(rolsinjust<0)rolsinjust=-rolsinjust;
 //		if(pitsinjust<0)pitsinjust=-rolsinjust;
-		
+
     //Throttle_OUT = Throttle_OUT * (rolsinjust+pitsinjust + 1);
     if (rc_in->THROTTLE > RC_FUN_MIN && ctl->ARMED)
     {
