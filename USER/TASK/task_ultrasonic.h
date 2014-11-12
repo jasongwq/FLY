@@ -29,6 +29,7 @@ int task_ultrasonic(void)
             utime++;
             if (utime > 10)
             {
+Alt_ultrasonic=0;
                 break;
             }
         }
