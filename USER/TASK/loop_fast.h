@@ -1,4 +1,6 @@
 T_float_angle   Att_Angle_Avg;
+
+
 int loop_fast(void)//500hz
 {
     extern S_INT16_XYZ Acc, Average_Acc, Gyr, Mag;
