@@ -60,7 +60,7 @@ void ALT_Control(float ALT_Set)
     //static int time = 0;
     //time++;
     //if (time > 15)
-    //if(1==flag_ALT){
+    if(1==flag_ALT){
 		//flag_ALT=0;
         //time = 0;
         Alt_Error = Alt_Set - Alt_ultrasonic;
@@ -73,7 +73,7 @@ void ALT_Control(float ALT_Set)
             PID_ALT.iout = -INTEGRAL_WINDUP_A;
         PID_ALT.dout = -PID_ALT.D * (Alt_Error_Last - Alt_Error);
         Alt_Error_Last = Alt_Error;
-    //}
+    }
     //PID_ALT.dout = PID_ALT.D * (acc_in->z-8192);
 		
 		if (ctl->ALT_ON_OFF&&Alt_ultrasonic!=0)
