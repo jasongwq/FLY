@@ -65,7 +65,7 @@ int main(void)
         // RunTaskA(task_cap_rc, 3);
 #endif
 #if VERSIONS ==2
-       // RunTaskA(task_cap_rc, 2);
+        RunTaskA(task_cap_rc, 2);
 #endif
 //        RunTaskA(task_ultrasonic, 3);
 
