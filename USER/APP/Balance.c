@@ -54,7 +54,7 @@ static u32 Throttle_IN;
 int ALT_Control_Out;
 extern u8 flag_ALT;
 s16 Alt_Error, Alt_Error_Last;
-void ALT_Control(float ALT_Set)
+void ALT_Control(u16 ALT_Set)
 {
     extern u16 Alt_ultrasonic;
     //static int time = 0;
