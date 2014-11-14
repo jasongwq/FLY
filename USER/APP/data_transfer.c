@@ -343,7 +343,7 @@ void Data_Send_Status(void)
 //  if(Rc_C.ARMED==0)       data_to_send[_cnt++]=0xA0;
 //  else if(Rc_C.ARMED==1)      data_to_send[_cnt++]=0xA1;
 extern float rol_i;
-extern s32 Alt_Error;
+//extern s32 Alt_Error;
 
 void Data_Send_Senser(void)
 {
@@ -741,32 +741,34 @@ void Data_Send_F2(void)
 }
 void Data_Send_F3(void)
 {
-    //extern u32 Throttle_OUT;
-    //extern T_float_angle angle;
+    extern u32 Throttle_OUT;
+    // T_float_angle angle;
+    extern s16 Alt_Error;
 
-    //    u8 _cnt = 0;
-    //    data_to_send[_cnt++] = 0xAA;
-    //    data_to_send[_cnt++] = 0xAA;
-    //    data_to_send[_cnt++] = 0xF3;
-    //    data_to_send[_cnt++] = 0;
-    //vs16 _temp16;
-    //    _temp16 = (vs16)(PID_PIT.OUT  * PID_PID_8_P_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
-    //    _temp16 = (vs16)(PID_ROL.OUT  * PID_PID_8_I_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
-    //      _temp16 = (vs16)(PID_YAW.OUT  * PID_PID_8_P_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
-    //    _temp16 = (vs16)(angle.pit  * PID_PID_8_P_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
-    //    _temp16 = (vs16)(angle.rol  * PID_PID_8_I_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
-    //      _temp16 = (vs16)(angle.yaw  * PID_PID_8_P_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
-    //
-    //    data_to_send[3] = _cnt - 4;
-    //    u8 sum = 0;
-    //    for (u8 i = 0; i < _cnt; i++)
-    //        sum += data_to_send[i];
-    //    data_to_send[_cnt++] = sum;
-    //    #ifdef DATA_TRANSFER_USE_USART
-    //    Sys_sPrintf(Printf_USART, data_to_send, _cnt);
-    //#else
-    //    NRF_TxPacket(data_to_send, _cnt);
-    //#endif
+
+    u8 _cnt = 0;
+    data_to_send[_cnt++] = 0xAA;
+    data_to_send[_cnt++] = 0xAA;
+    data_to_send[_cnt++] = 0xF3;
+    data_to_send[_cnt++] = 0;
+    vs16 _temp16;
+    _temp16 = (vs16)(PID_PIT.OUT ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+    _temp16 = (vs16)(PID_ROL.OUT ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+    _temp16 = (vs16)(PID_YAW.OUT ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+    _temp16 = (vs16)(PID_ALT.OUT ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+    _temp16 = (vs16)(Alt_Error   ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+    //_temp16 = (vs16)(angle.yaw  * PID_PID_8_P_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+
+    data_to_send[3] = _cnt - 4;
+    u8 sum = 0;
+    for (u8 i = 0; i < _cnt; i++)
+        sum += data_to_send[i];
+    data_to_send[_cnt++] = sum;
+#ifdef DATA_TRANSFER_USE_USART
+    Sys_sPrintf(Printf_USART, data_to_send, _cnt);
+#else
+    NRF_TxPacket(data_to_send, _cnt);
+#endif
 }
 void Data_Send_F4(void)
 {
