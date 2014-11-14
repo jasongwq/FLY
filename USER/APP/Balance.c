@@ -62,32 +62,28 @@ void ALT_Control(u16 ALT_Set)
     //if (time > 15)
     if (1 == flag_ALT)
     {
-        flag_ALT = 0;
-        //time = 0;
-        Alt_Error = ALT_Set - Alt_ultrasonic;
-        PID_ALT.pout = PID_ALT.P * Alt_Error;
-        alt_i += Alt_Error;
-        PID_ALT.iout = (PID_ALT.I / 100) * alt_i;
-        if (PID_ALT.iout > INTEGRAL_WINDUP_A)
-            PID_ALT.iout = INTEGRAL_WINDUP_A;
-        else if (alt_i < -INTEGRAL_WINDUP_A)
-            PID_ALT.iout = -INTEGRAL_WINDUP_A;
-        PID_ALT.dout = -PID_ALT.D * (Alt_Error_Last - Alt_Error)*100;
-        Alt_Error_Last = Alt_Error;
-
-        //PID_ALT.dout = PID_ALT.D * (acc_in->z-8192);
-
         if (ctl->ALT_ON_OFF && Alt_ultrasonic != 0)
         {
-					PID_ALT.OUT = PID_ALT.pout + PID_ALT.iout + PID_ALT.dout;
+            flag_ALT = 0;
+            //time = 0;
+            Alt_Error = ALT_Set - Alt_ultrasonic;
+            PID_ALT.pout = PID_ALT.P * Alt_Error;
+            alt_i += Alt_Error;
+            PID_ALT.iout = (PID_ALT.I / 100) * alt_i;
+            if (PID_ALT.iout > INTEGRAL_WINDUP_A)
+                PID_ALT.iout = INTEGRAL_WINDUP_A;
+            else if (alt_i < -INTEGRAL_WINDUP_A)
+                PID_ALT.iout = -INTEGRAL_WINDUP_A;
+            PID_ALT.dout = -PID_ALT.D * (Alt_Error_Last - Alt_Error) * 100;
+            Alt_Error_Last = Alt_Error;
+
+            //PID_ALT.dout = PID_ALT.D * (acc_in->z-8192);
+            PID_ALT.OUT = PID_ALT.pout + PID_ALT.iout + PID_ALT.dout;
         }
         else
         {
-            PID_ALT.iout = 0;
-            PID_ALT.pout = 0;
-						PID_ALT.OUT=0;
+            PID_ALT.OUT = 0;
         }
-        
     }
     Throttle_OUT += PID_ALT.OUT;
 }
