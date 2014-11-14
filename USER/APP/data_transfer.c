@@ -90,7 +90,7 @@ void Ex_Init(void)
     PID_YAW.D = 0.30;
     PID_ALT.P = 0.4;
     PID_ALT.I = 0;
-    PID_ALT.D = 11;
+    PID_ALT.D = 0.11;
 
     *ex_on_off = 3;
     *yaw_just = 10;

@@ -33,7 +33,7 @@ void Balance_Data(T_float_angle *Att_in, S_INT16_XYZ *Gyr_in, S_INT16_XYZ *Acc_i
 {
     att_in = Att_in;
     gyr_in = Gyr_in;
-//    acc_in = Acc_in;
+    //    acc_in = Acc_in;
     rc_in  = Rc_in ;
     ctl    = Ctl   ;
 }
@@ -53,17 +53,18 @@ static u32 Throttle_IN;
 
 int ALT_Control_Out;
 extern u8 flag_ALT;
-s16 Alt_Error, Alt_Error_Last, Alt_Set;
+s16 Alt_Error, Alt_Error_Last;
 void ALT_Control(float ALT_Set)
 {
     extern u16 Alt_ultrasonic;
     //static int time = 0;
     //time++;
     //if (time > 15)
-    if(1==flag_ALT){
-		flag_ALT=0;
+    if (1 == flag_ALT)
+    {
+        flag_ALT = 0;
         //time = 0;
-        Alt_Error = Alt_Set - Alt_ultrasonic;
+        Alt_Error = ALT_Set - Alt_ultrasonic;
         PID_ALT.pout = PID_ALT.P * Alt_Error;
         alt_i += Alt_Error;
         PID_ALT.iout = (PID_ALT.I / 100) * alt_i;
@@ -71,22 +72,22 @@ void ALT_Control(float ALT_Set)
             PID_ALT.iout = INTEGRAL_WINDUP_A;
         else if (alt_i < -INTEGRAL_WINDUP_A)
             PID_ALT.iout = -INTEGRAL_WINDUP_A;
-        PID_ALT.dout = -PID_ALT.D * (Alt_Error_Last - Alt_Error);
+        PID_ALT.dout = -PID_ALT.D * (Alt_Error_Last - Alt_Error)*100;
         Alt_Error_Last = Alt_Error;
+
+        //PID_ALT.dout = PID_ALT.D * (acc_in->z-8192);
+
+        if (ctl->ALT_ON_OFF && Alt_ultrasonic != 0)
+        {
+
+        }
+        else
+        {
+            PID_ALT.iout = 0;
+            PID_ALT.pout = 0;
+        }
+        PID_ALT.OUT = PID_ALT.pout + PID_ALT.iout + PID_ALT.dout;
     }
-    //PID_ALT.dout = PID_ALT.D * (acc_in->z-8192);
-		
-		if (ctl->ALT_ON_OFF&&Alt_ultrasonic!=0)
-    {
-        
-    }
-    else
-    {
-        PID_ALT.iout = 0;
-        PID_ALT.pout = 0;
-    }
-    PID_ALT.OUT = PID_ALT.pout + PID_ALT.iout + PID_ALT.dout;
-		
     Throttle_OUT += PID_ALT.OUT;
 }
 static T_float_angle angle;
@@ -172,14 +173,14 @@ void Pit_Control(void)
 }
 void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_RC_Data *Rc_in, T_Control *Ctl)
 {
-    Balance_Data(att_in, gyr_in, acc_in, Rc_in,Ctl);
+    Balance_Data(att_in, gyr_in, acc_in, Rc_in, Ctl);
     Throttle_IN = rc_in->THROTTLE - RC_FUN_ZERO;
     Throttle_OUT = Throttle_IN;
     Yaw_Control();
     Rol_Control();
     Pit_Control();
-		
-    ALT_Control(rc_in->AUX2-1000);
+
+    ALT_Control(rc_in->AUX2 - 1000);
 
     /*****************************************************
     /CONTROL
@@ -193,10 +194,10 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
     // MOTO1_PWM     |     MOTO1_PWM
     //               -
     //
-//		s16 rolsinjust=sin(att_in->rol)*5;
-//		s16 pitsinjust=sin(att_in->pit)*5;
-//		if(rolsinjust<0)rolsinjust=-rolsinjust;
-//		if(pitsinjust<0)pitsinjust=-rolsinjust;
+    //      s16 rolsinjust=sin(att_in->rol)*5;
+    //      s16 pitsinjust=sin(att_in->pit)*5;
+    //      if(rolsinjust<0)rolsinjust=-rolsinjust;
+    //      if(pitsinjust<0)pitsinjust=-rolsinjust;
 
     //Throttle_OUT = Throttle_OUT * (rolsinjust+pitsinjust + 1);
     if (rc_in->THROTTLE > RC_FUN_MIN && ctl->ARMED)
@@ -208,7 +209,7 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
     }
     else
     {
-		    att_in->yaw=0;
+        att_in->yaw = 0;
         pit_i = 0;
         rol_i = 0;
         yaw_i = 0;
