@@ -12,7 +12,7 @@ int task_ultrasonic(void)
         WaitX(30 - utime);
         TRIG_H;
         TIM1_CAPTURE_STA_CH1 = 0;
-        TIM_OC1PolarityConfig(TIM1, TIM_ICPolarity_Rising); //CC1P=0 
+        TIM_OC1PolarityConfig(TIM1, TIM_ICPolarity_Rising); //CC1P=0
         WaitX(1);
         TRIG_L;
         utime = 0;
@@ -23,15 +23,15 @@ int task_ultrasonic(void)
             {
                 temp  = TIM1_CAPTURE_STA_CH1 & 0X3F;
                 temp *= 65536;
-                temp = TIM1_CAPTURE_VAL_CH1; 
+                temp = TIM1_CAPTURE_VAL_CH1;
                 Alt_ultrasonic = (temp * 340 / 1000 / 2);//mm
-								//flag_ACC=1;
+                flag_ACC=1;
                 break;
             }
             utime++;
             if (utime > 10)
             {
-								Alt_ultrasonic=0;
+                Alt_ultrasonic = 0;
                 break;
             }
         }
