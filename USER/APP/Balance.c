@@ -79,14 +79,15 @@ void ALT_Control(u16 ALT_Set)
 
         if (ctl->ALT_ON_OFF && Alt_ultrasonic != 0)
         {
-
+					PID_ALT.OUT = PID_ALT.pout + PID_ALT.iout + PID_ALT.dout;
         }
         else
         {
             PID_ALT.iout = 0;
             PID_ALT.pout = 0;
+						PID_ALT.OUT=0;
         }
-        PID_ALT.OUT = PID_ALT.pout + PID_ALT.iout + PID_ALT.dout;
+        
     }
     Throttle_OUT += PID_ALT.OUT;
 }
