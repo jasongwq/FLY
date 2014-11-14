@@ -25,7 +25,7 @@ int task_ultrasonic(void)
                 temp *= 65536;
                 temp = TIM1_CAPTURE_VAL_CH1;
                 Alt_ultrasonic = (temp * 340 / 1000 / 2);//mm
-                flag_ACC=1;
+                flag_ALT=1;
                 break;
             }
             utime++;
