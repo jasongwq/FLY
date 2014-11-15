@@ -206,6 +206,7 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
             }
             else if (i > 100)
             {
+					extern u16 Alt_ultrasonic;
                 if ((Alt_ultrasonic - (Balance_ALT - (i - 100) * 40)) > 0)
                 {
                     Balance_Throttle -= 10;
