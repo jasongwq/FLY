@@ -135,48 +135,26 @@ void Prepare_Data2(T_float_angle *angle_in)
 ////    P_10 -= K_1 * P_00;
 ////    P_11 -= K_1 * P_01;                        // 后验估计误差协方差
 //}
-struct SLIDE_FILTERING8
+
+
+u8 slide_filtering8(SLIDE_FILTERING8 dat)
 {
-    u8 *buf;
-    u8  data;
-    u16 num;
-    u16 cnt;
-    u32 sum;
-};
-struct SLIDE_FILTERING16
-{
-    u16 *buf;
-    u16 data;
-    u16 num;
-    u16 cnt;
-    u32 sum;
-};
-struct SLIDE_FILTERINGF
-{
-    float *buf;
-    float data;
-    u16 num;
-    u16 cnt;
-    double sum;
-};
-u8 slide_filtering8(struct SLIDE_FILTERING8 dat)
-{
-    dat.sum = dat.sum - dat.buf[dat.cnt] + dat.data;
-    dat.buf[dat.cnt] = dat.data;
+    dat.sum = dat.sum - dat.pbuf[dat.cnt] + dat.data;
+    dat.pbuf[dat.cnt] = dat.data;
     dat.cnt++; if (dat.cnt == dat.num) dat.cnt = 0;
     return dat.sum / dat.num;
 }
-u16 slide_filtering16(struct SLIDE_FILTERING16 dat)
+u16 slide_filtering16(SLIDE_FILTERING16 dat)
 {
-    dat.sum = dat.sum - dat.buf[dat.cnt] + dat.data;
-    dat.buf[dat.cnt] = dat.data;
+    dat.sum = dat.sum - dat.pbuf[dat.cnt] + dat.data;
+    dat.pbuf[dat.cnt] = dat.data;
     dat.cnt++; if (dat.cnt == dat.num) dat.cnt = 0;
     return dat.sum / dat.num;
 }
-float slide_filteringf(struct SLIDE_FILTERINGF dat)
+float slide_filteringf(SLIDE_FILTERINGF dat)
 {
-    dat.sum = dat.sum - dat.buf[dat.cnt] + dat.data;
-    dat.buf[dat.cnt] = dat.data;
+    dat.sum = dat.sum - dat.pbuf[dat.cnt] + dat.data;
+    dat.pbuf[dat.cnt] = dat.data;
     dat.cnt++; if (dat.cnt == dat.num) dat.cnt = 0;
     return dat.sum / dat.num;
 }

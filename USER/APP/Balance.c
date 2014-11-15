@@ -4,6 +4,7 @@
 #include "usr_usart.h"
 #include "math.h"
 #include "motor.h"
+#include "filter.h"
 
 #define RC_Yaw_P 20
 #define RC_ROL_P 20
@@ -221,5 +222,22 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
 }
 void Autoland(void)
 {
+static u16 alt_tmp[13];
+static SLIDE_FILTERING16 alt_control={alt_tmp,0,sizeof(alt_tmp)/sizeof(alt_tmp[0]),0,0};
 
+alt_control.data=0;
+slide_filtering16(alt_control);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
