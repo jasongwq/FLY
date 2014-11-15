@@ -63,8 +63,8 @@ int main(void)
 
         //       RunLoop(loop_led,1);
 
-RunTaskA(task_6050, 0);
 RunTaskA(task_fast, 1);
+RunTaskA(task_6050, 0);
 //RunLoop(loop_fast, 1);
 #if VERSIONS ==1
         // RunTaskA(task_cap_rc, 3);
