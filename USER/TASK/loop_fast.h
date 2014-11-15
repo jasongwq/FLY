@@ -26,7 +26,8 @@ int task_fast(void)//500hz
     extern S_INT16_XYZ Acc, Average_Acc, Gyr, Mag;
     _SS
     while (1)
-    {
+    {static u32 currenttime = 0;
+                u32 lasttime = 0;
         WaitX(2);
         if (flag_ACC)
         {
@@ -36,8 +37,7 @@ int task_fast(void)//500hz
             //        //Control(&Att_Angle, &Gyr, &Rc_D, &RC_Control);//17us
             Balance(&Att_Angle, &Gyr, &Acc, &Rc_D, &RC_Control); //17us
             {
-                static u32 currenttime = 0;
-                u32 lasttime = 0;
+                
                 lasttime = currenttime;
                 currenttime = SysTick_Clock();
                 Sys_Printf(Printf_USART, "\r\n %d", currenttime - lasttime);
@@ -51,8 +51,8 @@ int task_fast(void)//500hz
             //        //Control(&Att_Angle, &Gyr, &Rc_D, &RC_Control);//17us
             Balance(&Att_Angle, &Gyr, &Acc, &Rc_D, &RC_Control); //17us
             {
-                static u32 currenttime = 0;
-                u32 lasttime = 0;
+//                static u32 currenttime = 0;
+//                u32 lasttime = 0;
                 lasttime = currenttime;
                 currenttime = SysTick_Clock();
                 Sys_Printf(Printf_USART, "\r\n %d", currenttime - lasttime);
