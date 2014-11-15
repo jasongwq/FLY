@@ -73,11 +73,11 @@ void ALT_Control(u16 ALT_Set)
             PID_ALT.iout = INTEGRAL_WINDUP_A;
         else if (alt_i < -INTEGRAL_WINDUP_A)
             PID_ALT.iout = -INTEGRAL_WINDUP_A;
-        static u32 currenttime = 0;
-        u32 lasttime = 0;
-        lasttime = currenttime;
-        currenttime = SysTick_Clock();
-        PID_ALT.dout = -PID_ALT.D * (Alt_Error_Last - Alt_Error) * (1000000 / (currenttime - lasttime));
+//        static u32 currenttime = 0;
+//        u32 lasttime = 0;
+//        lasttime = currenttime;
+//        currenttime = SysTick_Clock();
+        PID_ALT.dout = -PID_ALT.D * (Alt_Error_Last - Alt_Error) * (1000000 /10000);// (currenttime - lasttime));
 
         Alt_Error_Last = Alt_Error;
         //PID_ALT.dout = PID_ALT.D * (acc_in->z-8192);
@@ -90,7 +90,6 @@ void ALT_Control(u16 ALT_Set)
             PID_ALT.OUT = 0;
         }
     }
-    Throttle_OUT += PID_ALT.OUT;
 }
 static T_float_angle angle;
 void Yaw_Control(void)
@@ -189,28 +188,53 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
     Pit_Control();
 
     u16 ALT_Set = rc_in->AUX2 - 1000;
-    ALT_Control(ALT_Set);
-    if (1)
+
+    if (0 == ctl->ALT_ON_OFF)
     {
         {
+#define Balance_ALT 200
+            static int Balance_Throttle = 0;
             static int i = 0;
             static u16 alt_tmp[100];
             static SLIDE_FILTERING16 alt_control = {alt_tmp, 0, sizeof(alt_tmp) / sizeof(alt_tmp[0]), 0, 0};
             alt_control.data = Throttle_OUT;//PID_ALT.OUT;
             slide_filtering16(alt_control);
             i++;
-            if (i > 100)
+            if (100 == i)
             {
-                Throttle_OUT = slide_filtering16(alt_control) - 10;
+                Balance_Throttle = slide_filtering16(alt_control) - 10;
+            }
+            else if (i > 100)
+            {
+                if ((Alt_ultrasonic - (Balance_ALT - (i - 100) * 40)) > 0)
+                {
+                    Balance_Throttle -= 10;
+                }
+                else if ((Alt_ultrasonic - (Balance_ALT - (i - 100) * 40)) < 0)
+                {
+                    Balance_Throttle += 10;
+                }
+                else
+                    Throttle_OUT = Balance_Throttle;
             }
             else if (i <= 0)
             {
                 i = -2;
             }
             else
-                ALT_Set = 200;
+            {
+                ALT_Set = Balance_ALT;
+                ALT_Control(ALT_Set);
+                Throttle_OUT += PID_ALT.OUT;
+            }
         }
     }
+    else
+    {
+        ALT_Control(ALT_Set);
+        Throttle_OUT += PID_ALT.OUT;
+    }
+
 
     /*****************************************************
     /CONTROL
