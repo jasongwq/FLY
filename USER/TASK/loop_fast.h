@@ -18,7 +18,7 @@ int loop_fast(void)//500hz
             Sys_Printf(Printf_USART, "\r\n %d", currenttime - lasttime);
         }
     }
-    LoopX(5);
+    LoopX(2);
     _EE
 }
 int task_fast(void)//500hz
