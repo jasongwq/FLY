@@ -28,6 +28,13 @@ int task_led(void)
             WaitX(200);
             LED1_Toggle;
         }
+				        {
+            static u32 currenttime = 0;
+            u32 lasttime = 0;
+            lasttime = currenttime;
+            currenttime = SysTick_Clock();
+            Sys_Printf(Printf_USART, "\r\n %d", currenttime - lasttime);
+        }
 
     }
     _EE
