@@ -21,40 +21,16 @@ int loop_fast(void)//500hz
     LoopX(2);
     _EE
 }
-//int task_fast(void)//500hz
-//{
-//extern S_INT16_XYZ Acc, Average_Acc, Gyr, Mag;
-
-//    _SS
-//		while (1)
-//    {
-//    if (flag_ACC)
-//    {
-//		    WaitX(2);
-//        IMUupdate(&Gyr, &Average_Acc, &Att_Angle);//222us
-//        Prepare_Data2(&Att_Angle);//24us
-//        //        //Control(&Att_Angle, &Gyr, &Rc_D, &RC_Control);//17us
-//        Balance(&Att_Angle, &Gyr, &Acc, &Rc_D, &RC_Control); //17us
-//        {
-//            static u32 currenttime = 0;
-//            u32 lasttime = 0;
-//            lasttime = currenttime;
-//            currenttime = SysTick_Clock();
-//            Sys_Printf(Printf_USART, "\r\n %d", currenttime - lasttime);
-//        }
-//    }
-//    }
-//    _EE
-//}
-int task_fast(void)
+int task_fast(void)//500hz
 {
 extern S_INT16_XYZ Acc, Average_Acc, Gyr, Mag;
+
     _SS
-    while (1)
+		while (1)
+    {WaitX(2);
+    if (flag_ACC)
     {
-		if (flag_ACC)
-    {
-        WaitX(2);
+		    
         IMUupdate(&Gyr, &Average_Acc, &Att_Angle);//222us
         Prepare_Data2(&Att_Angle);//24us
         //        //Control(&Att_Angle, &Gyr, &Rc_D, &RC_Control);//17us
@@ -66,7 +42,31 @@ extern S_INT16_XYZ Acc, Average_Acc, Gyr, Mag;
             currenttime = SysTick_Clock();
             Sys_Printf(Printf_USART, "\r\n %d", currenttime - lasttime);
         }
-				}
+    }
     }
     _EE
 }
+//int task_fast(void)
+//{
+//extern S_INT16_XYZ Acc, Average_Acc, Gyr, Mag;
+//    _SS
+//    while (1)
+//    {
+//		if (flag_ACC)
+//    {
+//        WaitX(2);
+//        IMUupdate(&Gyr, &Average_Acc, &Att_Angle);//222us
+//        Prepare_Data2(&Att_Angle);//24us
+//        //        //Control(&Att_Angle, &Gyr, &Rc_D, &RC_Control);//17us
+//        Balance(&Att_Angle, &Gyr, &Acc, &Rc_D, &RC_Control); //17us
+//        {
+//            static u32 currenttime = 0;
+//            u32 lasttime = 0;
+//            lasttime = currenttime;
+//            currenttime = SysTick_Clock();
+//            Sys_Printf(Printf_USART, "\r\n %d", currenttime - lasttime);
+//        }
+//				}
+//    }
+//    _EE
+//}
