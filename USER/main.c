@@ -62,7 +62,7 @@ int main(void)
 				//
 
         //       RunLoop(loop_led,1);
-RunTask(task_fast, 1);
+RunTaskA(task_fast, 1);
         RunTaskA(task_6050, 0);
 				
 //RunLoop(loop_fast, 1);
