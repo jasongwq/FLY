@@ -59,31 +59,30 @@ extern u8 flag_ALT;
 vs16 Alt_Error, Alt_Error_Last;
 void ALT_Control(u16 ALT_Set)
 {
-    extern u16 Alt_ultrasonic;
-    u32 lasttime = 0;
-		static u32 currenttime = 0;
-		
     if (1 == flag_ALT)
     {
+        extern u16 Alt_ultrasonic;
+
+        flag_ALT = 0;
+        //time = 0;
+        Alt_Error = ALT_Set - Alt_ultrasonic;
+        PID_ALT.pout = PID_ALT.P * Alt_Error;
+        alt_i += Alt_Error;
+        PID_ALT.iout = (PID_ALT.I / 100) * alt_i;
+        if (PID_ALT.iout > INTEGRAL_WINDUP_A)
+            PID_ALT.iout = INTEGRAL_WINDUP_A;
+        else if (alt_i < -INTEGRAL_WINDUP_A)
+            PID_ALT.iout = -INTEGRAL_WINDUP_A;
+        static u32 currenttime = 0;
+        u32 lasttime = 0;
+        lasttime = currenttime;
+        currenttime = SysTick_Clock();
+        PID_ALT.dout = -PID_ALT.D * (Alt_Error_Last - Alt_Error) * (1000000 / (currenttime - lasttime));
+
+        Alt_Error_Last = Alt_Error;
+        //PID_ALT.dout = PID_ALT.D * (acc_in->z-8192);
         if (ctl->ALT_ON_OFF && Alt_ultrasonic != 0)
         {
-            flag_ALT = 0;
-            //time = 0;
-            Alt_Error = ALT_Set - Alt_ultrasonic;
-            PID_ALT.pout = PID_ALT.P * Alt_Error;
-            alt_i += Alt_Error;
-            PID_ALT.iout = (PID_ALT.I / 100) * alt_i;
-            if (PID_ALT.iout > INTEGRAL_WINDUP_A)
-                PID_ALT.iout = INTEGRAL_WINDUP_A;
-            else if (alt_i < -INTEGRAL_WINDUP_A)
-                PID_ALT.iout = -INTEGRAL_WINDUP_A;
-						lasttime=currenttime;
-            currenttime=SysTick_Clock();
-						PID_ALT.dout = -PID_ALT.D * (Alt_Error_Last - Alt_Error)*(1000000/(currenttime-lasttime));
-						
-            Alt_Error_Last = Alt_Error;
-
-            //PID_ALT.dout = PID_ALT.D * (acc_in->z-8192);
             PID_ALT.OUT = PID_ALT.pout + PID_ALT.iout + PID_ALT.dout;
         }
         else
@@ -172,7 +171,13 @@ void Pit_Control(void)
     /PID
     *****************************************************/
     PID_PIT.OUT = PID_PIT.pout + PID_PIT.iout + PID_PIT.dout;
-
+}
+void Autoland(void)
+{
+    static u16 alt_tmp[13];
+    static SLIDE_FILTERING16 alt_control = {alt_tmp, 0, sizeof(alt_tmp) / sizeof(alt_tmp[0]), 0, 0};
+    alt_control.data = PID_ALT.OUT;
+    slide_filtering16(alt_control);
 }
 void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_RC_Data *Rc_in, T_Control *Ctl)
 {
@@ -183,7 +188,29 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
     Rol_Control();
     Pit_Control();
 
-    ALT_Control(rc_in->AUX2 - 1000);
+    u16 ALT_Set = rc_in->AUX2 - 1000;
+    ALT_Control(ALT_Set);
+    if (1)
+    {
+        {
+            static int i = 0;
+            static u16 alt_tmp[100];
+            static SLIDE_FILTERING16 alt_control = {alt_tmp, 0, sizeof(alt_tmp) / sizeof(alt_tmp[0]), 0, 0};
+            alt_control.data = Throttle_OUT;//PID_ALT.OUT;
+            slide_filtering16(alt_control);
+            i++;
+            if (i > 100)
+            {
+                Throttle_OUT = slide_filtering16(alt_control) - 10;
+            }
+            else if (i <= 0)
+            {
+                i = -2;
+            }
+            else
+                ALT_Set = 200;
+        }
+    }
 
     /*****************************************************
     /CONTROL
@@ -224,13 +251,7 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
     }
     Moto_PwmRflash(MOTO1_PWM, MOTO2_PWM, MOTO3_PWM, MOTO4_PWM);
 }
-void Autoland(void)
-{
-static u16 alt_tmp[13];
-static SLIDE_FILTERING16 alt_control={alt_tmp,0,sizeof(alt_tmp)/sizeof(alt_tmp[0]),0,0};
-alt_control.data=PID_ALT.OUT;
-slide_filtering16(alt_control);
-}
+
 
 
 
