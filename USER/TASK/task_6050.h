@@ -38,10 +38,11 @@ int task_6050(void)
         flag_ACC = 1;
 				{
                 static u32 currenttime = 0;
-                u32 lasttime = 0;
+                static int i;
+								u32 lasttime = 0;
                 lasttime = currenttime;
                 currenttime = SysTick_Clock();
-                Sys_Printf(Printf_USART, "\r\n %d", currenttime - lasttime);
+                if(i++>10){i=0;Sys_Printf(Printf_USART, "\r\n %d", currenttime - lasttime);}
             }
     }
     _EE
