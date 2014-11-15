@@ -24,6 +24,7 @@ int loop_fast(void)//500hz
 int task_fast(void)//500hz
 {
     extern S_INT16_XYZ Acc, Average_Acc, Gyr, Mag;
+
     _SS
     while (1)
     {static u32 currenttime = 0;
