@@ -30,7 +30,6 @@ int task_fast(void)//500hz
         Balance(&Att_Angle, &Gyr, &Acc, &Rc_D, &RC_Control); //17us
 
     }
-		}
+    }
     _EE
 }
-
