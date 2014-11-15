@@ -1,7 +1,7 @@
 #ifndef __STM32_CONFIG_
 #define __STM32_CONFIG_
 
-#define VERSIONS 1
+#define VERSIONS 2
 /*
 #include "stm32_config.h"
 */
