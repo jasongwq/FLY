@@ -27,7 +27,7 @@ extern S_INT16_XYZ Acc, Average_Acc, Gyr, Mag;
 
     _SS
 		while (1)
-    {WaitX(2);
+    {WaitX(5);
     if (flag_ACC)
     {
 		    
