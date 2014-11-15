@@ -27,7 +27,7 @@ int task_fast(void)//500hz
     _SS
     while (1)
     {
-        WaitX(2);
+        WaitX(1);
         if (flag_ACC)
         {
 
@@ -43,6 +43,8 @@ int task_fast(void)//500hz
                 Sys_Printf(Printf_USART, "\r\n %d", currenttime - lasttime);
             }
         }
+				WaitX(1);
+
     }
     _EE
 }
