@@ -200,19 +200,19 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
             alt_control.data = PID_ALT.OUT;//PID_ALT.OUT;
             slide_filtering16(alt_control);
             i++;
-            if (100 == i)
+            if (1000 == i)
             {
                 Balance_Throttle = slide_filtering16(alt_control) - 10;
             }
-            else if (i > 100)
+            else if (i > 1000)
             {
                 extern u16 Alt_ultrasonic;
-                if ((Alt_ultrasonic - (Balance_ALT - (i - 100) * 40)) > 0)
+                if ((Alt_ultrasonic - (Balance_ALT - (i - 1000)/6 )) > 0)
                 {
                     Balance_Throttle -= 10;
                     Throttle_OUT += Balance_Throttle;
                 }
-                else if ((Alt_ultrasonic - (Balance_ALT - (i - 100) * 40)) < 0)
+                else if ((Alt_ultrasonic - (Balance_ALT - (i - 1000)/6)) < 0)
                 {
                     Balance_Throttle += 10;
                     Throttle_OUT += Balance_Throttle;
@@ -224,7 +224,7 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
             {
                 i = -2;
             }
-            else
+            else if(i<1000)
             {
                 ALT_Set = Balance_ALT;
                 ALT_Control(ALT_Set);
