@@ -62,9 +62,9 @@ int main(void)
 				//
 
         //       RunLoop(loop_led,1);
-
+RunTask(task_fast, 1);
         RunTaskA(task_6050, 0);
-				RunTask(task_fast, 1);
+				
 //RunLoop(loop_fast, 1);
 #if VERSIONS ==1
         // RunTaskA(task_cap_rc, 3);
