@@ -16,9 +16,9 @@ void SYS_INIT(void)
     delay_init();
     /***中断初始化***/
     NVIC_Configuration();
-    uart_init (115200);
-		uart_init (500000);
-		
+    //uart_init (115200);
+    uart_init (500000);
+
     uart3_init(115200);
 
     // Sys_Printf(USART1, "\r\nUSART1 ok");
@@ -58,14 +58,11 @@ int main(void)
     /***总循环***/
     while (1)
     {
-        
-				//
-
         //       RunLoop(loop_led,1);
+        RunTaskA(task_6050, 0);
+        RunTaskA(task_fast, 1);
 
-RunTaskA(task_fast, 1);
-RunTaskA(task_6050, 0);
-//RunLoop(loop_fast, 1);
+        //RunLoop(loop_fast, 1);
 #if VERSIONS ==1
         // RunTaskA(task_cap_rc, 3);
 #endif
