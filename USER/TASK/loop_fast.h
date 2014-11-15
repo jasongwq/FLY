@@ -27,8 +27,9 @@ int task_fast(void)//500hz
 
     _SS
     while (1)
-    {static u32 currenttime = 0;
-                u32 lasttime = 0;
+    {
+		static u32 currenttime = 0;
+     u32 lasttime = 0;
         WaitX(2);
         if (flag_ACC)
         {
