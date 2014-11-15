@@ -52,6 +52,8 @@ extern S_INT16_XYZ Acc, Average_Acc, Gyr, Mag;
     _SS
     while (1)
     {
+		if (flag_ACC)
+    {
         WaitX(2);
         IMUupdate(&Gyr, &Average_Acc, &Att_Angle);//222us
         Prepare_Data2(&Att_Angle);//24us
@@ -64,6 +66,7 @@ extern S_INT16_XYZ Acc, Average_Acc, Gyr, Mag;
             currenttime = SysTick_Clock();
             Sys_Printf(Printf_USART, "\r\n %d", currenttime - lasttime);
         }
+				}
     }
     _EE
 }
