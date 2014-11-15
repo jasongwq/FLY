@@ -73,11 +73,11 @@ void ALT_Control(u16 ALT_Set)
             PID_ALT.iout = INTEGRAL_WINDUP_A;
         else if (alt_i < -INTEGRAL_WINDUP_A)
             PID_ALT.iout = -INTEGRAL_WINDUP_A;
-//        static u32 currenttime = 0;
-//        u32 lasttime = 0;
-//        lasttime = currenttime;
-//        currenttime = SysTick_Clock();
-        PID_ALT.dout = -PID_ALT.D * (Alt_Error_Last - Alt_Error) * (1000000 /10000);// (currenttime - lasttime));
+        //        static u32 currenttime = 0;
+        //        u32 lasttime = 0;
+        //        lasttime = currenttime;
+        //        currenttime = SysTick_Clock();
+        PID_ALT.dout = -PID_ALT.D * (Alt_Error_Last - Alt_Error) * (1000000 / 10000); // (currenttime - lasttime));
 
         Alt_Error_Last = Alt_Error;
         //PID_ALT.dout = PID_ALT.D * (acc_in->z-8192);
@@ -192,12 +192,12 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
     if (0 == ctl->ALT_ON_OFF)
     {
         {
-#define Balance_ALT 200
+#define Balance_ALT 500
             static int Balance_Throttle = 0;
             static int i = 0;
             static u16 alt_tmp[80];
             static SLIDE_FILTERING16 alt_control = {alt_tmp, 0, sizeof(alt_tmp) / sizeof(alt_tmp[0]), 0, 0};
-            alt_control.data = Throttle_OUT;//PID_ALT.OUT;
+            alt_control.data = PID_ALT.OUT;//PID_ALT.OUT;
             slide_filtering16(alt_control);
             i++;
             if (100 == i)
@@ -206,17 +206,19 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
             }
             else if (i > 100)
             {
-					extern u16 Alt_ultrasonic;
+                extern u16 Alt_ultrasonic;
                 if ((Alt_ultrasonic - (Balance_ALT - (i - 100) * 40)) > 0)
                 {
                     Balance_Throttle -= 10;
+                    Throttle_OUT += Balance_Throttle;
                 }
                 else if ((Alt_ultrasonic - (Balance_ALT - (i - 100) * 40)) < 0)
                 {
                     Balance_Throttle += 10;
+                    Throttle_OUT += Balance_Throttle;
                 }
                 else
-                    Throttle_OUT = Balance_Throttle;
+                    Throttle_OUT += Balance_Throttle; //Throttle_OUT = Balance_Throttle;
             }
             else if (i <= 0)
             {
@@ -228,6 +230,7 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
                 ALT_Control(ALT_Set);
                 Throttle_OUT += PID_ALT.OUT;
             }
+
         }
     }
     else
