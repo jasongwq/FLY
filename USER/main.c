@@ -56,7 +56,9 @@ int main(void)
     /***总循环***/
     while (1)
     {
-        RunLoop(loop_fast, 0);
+        //RunLoop(loop_fast, 0);
+				RunTaskA(task_fast, 0);
+
         //       RunLoop(loop_led,1);
 
         RunTaskA(task_6050, 1);
