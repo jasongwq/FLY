@@ -85,6 +85,7 @@ void ALT_Control(u16 ALT_Set)
             PID_ALT.OUT = 0;
         }
     }
+		
     Throttle_OUT += PID_ALT.OUT;
 }
 static T_float_angle angle;
@@ -217,4 +218,8 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
         MOTO4_PWM = 0;
     }
     Moto_PwmRflash(MOTO1_PWM, MOTO2_PWM, MOTO3_PWM, MOTO4_PWM);
+}
+void Autoland(void)
+{
+
 }
