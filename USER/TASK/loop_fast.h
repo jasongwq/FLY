@@ -19,6 +19,8 @@ int task_fast(void)//500hz
 {
     extern S_INT16_XYZ Acc, Average_Acc, Gyr, Mag;
     _SS
+		while (1)
+    {
     if (flag_ACC)
     {
 		    WaitX(2);
@@ -28,6 +30,7 @@ int task_fast(void)//500hz
         Balance(&Att_Angle, &Gyr, &Acc, &Rc_D, &RC_Control); //17us
 
     }
+		}
     _EE
 }
 
