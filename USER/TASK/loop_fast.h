@@ -10,7 +10,13 @@ int loop_fast(void)//500hz
         Prepare_Data2(&Att_Angle);//24us
         //        //Control(&Att_Angle, &Gyr, &Rc_D, &RC_Control);//17us
         Balance(&Att_Angle, &Gyr, &Acc, &Rc_D, &RC_Control); //17us
-
+        {
+            static u32 currenttime = 0;
+            u32 lasttime = 0;
+            lasttime = currenttime;
+            currenttime = SysTick_Clock();
+            Sys_Printf(Printf_USART, "\r\n %d", currenttime - lasttime);
+        }
     }
     LoopX(2);
     _EE
