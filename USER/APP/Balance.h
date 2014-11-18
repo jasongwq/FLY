@@ -1,8 +1,10 @@
 #ifndef __BALANCE_H_
 #define __BALANCE_H_
+
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 #include "sys.h"
 #include "data_transfer.h"
 #include "IMU.h"
