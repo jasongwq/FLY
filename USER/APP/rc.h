@@ -1,5 +1,9 @@
 #ifndef _RC_H_
 #define _RC_H_
+#ifdef __cplusplus
+       extern "C" {
+#endif
+
 #include "sys.h"
 #include "data_transfer.h"
 
@@ -22,7 +26,9 @@ void Rc_GetValue(T_RC_Data *temp);
 #define RC_FUN_MAX  1800
 #define RC_FUN_CNT  20
 #define RC_FUN_ZERO 1000
-
+#ifdef __cplusplus
+        }
+#endif
 #endif
 
 

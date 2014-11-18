@@ -1,5 +1,12 @@
 #ifndef __USER_H
 #define __USER_H
+
+#ifdef __cplusplus
+       extern "C" {
+#endif
+
+
+
 #include "sys.h"
 #include "gpio.h"
 #include "pid.h"
@@ -38,5 +45,7 @@ extern struct PID spid; // PID Control Structure
 extern s8 FixedCurve[][210];
 extern int mode2unm;
 extern int Curve;
-
+#ifdef __cplusplus
+        }
+#endif
 #endif

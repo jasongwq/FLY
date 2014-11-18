@@ -1,3 +1,6 @@
+#ifdef __cplusplus
+       extern "C" {
+#endif
 #define LED1_Init     PA2_OUT
 #define LED1_Toggle {static char i = 0;PAout(2) = i++&0X01;}
 #define LED1_H PAout(2) = 1
@@ -47,3 +50,6 @@ int loop_led(void)
     LoopX(500);
     _EE
 }
+#ifdef __cplusplus
+        }
+#endif

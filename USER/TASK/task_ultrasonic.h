@@ -1,3 +1,7 @@
+#ifdef __cplusplus
+       extern "C" {
+#endif
+
 #include "ultrasonic.h"
 u16 Alt_ultrasonic;
 u8 flag_ALT;
@@ -38,3 +42,6 @@ int task_ultrasonic(void)
     }
     _EE
 }
+#ifdef __cplusplus
+        }
+#endif

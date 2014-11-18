@@ -1,4 +1,6 @@
-
+#ifdef __cplusplus
+       extern "C" {
+#endif
 
 #include "G32_Timer_Cap.h"
 extern int RC_flag_ok;
@@ -294,3 +296,6 @@ int task_cap_rc(void)
     }
     _EE
 }
+#ifdef __cplusplus
+        }
+#endif

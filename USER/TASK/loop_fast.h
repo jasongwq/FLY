@@ -1,3 +1,6 @@
+#ifdef __cplusplus
+       extern "C" {
+#endif
 T_float_angle   Att_Angle_Avg;
 int loop_fast(void)//500hz
 {
@@ -70,3 +73,6 @@ int task_fast(void)//500hz
 //    }
 //    _EE
 //}
+#ifdef __cplusplus
+        }
+#endif

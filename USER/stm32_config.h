@@ -1,6 +1,8 @@
 #ifndef __STM32_CONFIG_
 #define __STM32_CONFIG_
-
+#ifdef __cplusplus
+       extern "C" {
+#endif
 #define VERSIONS 2
 /*
 #include "stm32_config.h"
@@ -54,5 +56,8 @@
 #include "DS18B20_Config.h"
 /***DS18B20***/
 /****************************************/
+#ifdef __cplusplus
+        }
+#endif
 #endif
 

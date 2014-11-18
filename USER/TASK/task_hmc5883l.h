@@ -1,3 +1,6 @@
+#ifdef __cplusplus
+       extern "C" {
+#endif
 #include "HMC5883L.h"
 #define PI 3.14159265
 
@@ -42,3 +45,6 @@ int task_hmc5883l(void)
     }
     _EE
 }
+#ifdef __cplusplus
+        }
+#endif

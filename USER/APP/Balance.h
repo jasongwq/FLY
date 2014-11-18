@@ -1,5 +1,8 @@
 #ifndef __BALANCE_H_
 #define __BALANCE_H_
+#ifdef __cplusplus
+       extern "C" {
+#endif
 #include "sys.h"
 #include "data_transfer.h"
 #include "IMU.h"
@@ -18,7 +21,9 @@ extern void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc
 
 //extern void Balance(void);
 
-
+#ifdef __cplusplus
+        }
+#endif
 
 #endif
 

@@ -1,3 +1,6 @@
+#ifdef __cplusplus
+       extern "C" {
+#endif
 #include "data_transfer.h"
 #include "control.h"
 #include "pwm.h"
@@ -105,3 +108,6 @@ int task_pwm_ex(void)
     _EE
 }
 //#undef EX_BaudRate
+#ifdef __cplusplus
+        }
+#endif

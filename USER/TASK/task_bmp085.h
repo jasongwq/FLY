@@ -1,3 +1,6 @@
+#ifdef __cplusplus
+       extern "C" {
+#endif
 #include "../../GLIB/PERIPHERAL/BMP085/bmp085.h"
 
 int task_bmp085(void)
@@ -25,3 +28,6 @@ int task_bmp085(void)
     }
     _EE
 }
+#ifdef __cplusplus
+        }
+#endif

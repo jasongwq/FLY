@@ -1,3 +1,6 @@
+#ifdef __cplusplus
+       extern "C" {
+#endif
 /*
     Q:过程噪声，Q增大，动态响应变快，收敛稳定性变坏
     R:测量噪声，R增大，动态响应变慢，收敛稳定性变好
@@ -47,3 +50,6 @@ int task_6050(void)
     }
     _EE
 }
+#ifdef __cplusplus
+        }
+#endif
