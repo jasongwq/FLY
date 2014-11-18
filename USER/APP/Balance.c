@@ -173,9 +173,9 @@ void Pit_Control(void)
 }
 void Autoland(void)
 {
-    static u16 alt_tmp[13];
-    static SLIDE_FILTERING16 alt_control = {alt_tmp, 0, sizeof(alt_tmp) / sizeof(alt_tmp[0]), 0, 0};
-    alt_control.data = PID_ALT.OUT;
+//    static u16 alt_tmp[13];
+//    static SLIDE_FILTERING16 alt_control = {alt_tmp, 0, sizeof(alt_tmp) / sizeof(alt_tmp[0]), 0, 0};
+//    alt_control.data = PID_ALT.OUT;
     //slide_filtering16(alt_control);
 }
 void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_RC_Data *Rc_in, T_Control *Ctl)
