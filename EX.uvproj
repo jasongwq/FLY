@@ -782,6 +782,11 @@
               <FileType>1</FileType>
               <FilePath>.\USER\APP\motor.c</FilePath>
             </File>
+            <File>
+              <FileName>filter.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\USER\APP\filter.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

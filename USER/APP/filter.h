@@ -1,7 +1,7 @@
 #ifndef _FILTER_H_
 #define _FILTER_H_
 #ifdef __cplusplus
-       extern "C" {
+extern "C" {
 #endif
 #include "IMU.h"
 typedef struct
