@@ -4,14 +4,10 @@
 #ifdef __cplusplus
        extern "C" {
 #endif
-
-
-
 #include "sys.h"
 #include "gpio.h"
 #include "pid.h"
 #include "usr_usart.h"
-
 struct Parameter
 {
     u16 up;//设定上限

@@ -28,9 +28,9 @@ typedef struct
     u16 cnt;
     double sum;
 } SLIDE_FILTERINGF;
-extern u8 slide_filtering8(SLIDE_FILTERING8 dat);
-extern u16 slide_filtering16(SLIDE_FILTERING16 dat);
-extern float slide_filteringf(SLIDE_FILTERINGF dat);
+//extern u8 slide_filtering8(SLIDE_FILTERING8 dat);
+//extern u16 slide_filtering16(SLIDE_FILTERING16 dat);
+//extern float slide_filteringf(SLIDE_FILTERINGF dat);
 
 
 extern void Prepare_Data(S_INT16_XYZ *acc_in, S_INT16_XYZ *acc_out);

@@ -1,7 +1,7 @@
 #ifndef __BALANCE_H_
 #define __BALANCE_H_
 #ifdef __cplusplus
-       extern "C" {
+extern "C" {
 #endif
 #include "sys.h"
 #include "data_transfer.h"
