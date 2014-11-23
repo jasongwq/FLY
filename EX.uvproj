@@ -545,11 +545,6 @@
           <GroupName>USER</GroupName>
           <Files>
             <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\USER\main.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f10x_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\USER\stm32f10x_it.c</FilePath>
@@ -563,6 +558,11 @@
               <FileName>stm32_config.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\USER\stm32_config.h</FilePath>
+            </File>
+            <File>
+              <FileName>main.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\USER\main.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -773,19 +773,19 @@
               <FilePath>.\USER\APP\Control.c</FilePath>
             </File>
             <File>
-              <FileName>Balance.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\USER\APP\Balance.c</FilePath>
-            </File>
-            <File>
               <FileName>motor.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\USER\APP\motor.c</FilePath>
             </File>
             <File>
-              <FileName>filter.cpp</FileName>
+              <FileName>pfilter.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\USER\APP\filter.cpp</FilePath>
+              <FilePath>.\USER\APP\pfilter.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Balance.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\USER\APP\Balance.cpp</FilePath>
             </File>
           </Files>
         </Group>
