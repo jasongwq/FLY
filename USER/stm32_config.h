@@ -4,6 +4,18 @@
        extern "C" {
 #endif
 #define VERSIONS 2
+/* 
+1 黑板
+2 yyb绿板
+*/
+#define ROTATE90 1
+/*
+1 
+Rothmarketing 90 CCW
+方向四轴旋转90度
+0
+不旋转
+*/
 /*
 #include "stm32_config.h"
 */
