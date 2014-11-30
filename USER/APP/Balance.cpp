@@ -185,7 +185,7 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
 {
     Balance_Data(att_in, gyr_in, acc_in, Rc_in, Ctl);
     Throttle_IN = rc_in->THROTTLE - RC_FUN_ZERO;
-    Throttle_OUT = Throttle_IN;
+    Balance_Throttle=Throttle_OUT = Throttle_IN;
     Yaw_Control();
     Rol_Control();
     Pit_Control();
