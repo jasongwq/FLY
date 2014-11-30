@@ -267,17 +267,17 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
     //Throttle_OUT = Throttle_OUT * (rolsinjust+pitsinjust + 1);
     if (rc_in->THROTTLE > RC_FUN_MIN && ctl->ARMED)
     {
-//#if ROTATE90==0
-//        MOTO1_PWM = (int32_t)((int)Throttle_OUT - PID_ROL.OUT + PID_PIT.OUT - PID_YAW.OUT);
-//        MOTO2_PWM = (int32_t)((int)Throttle_OUT + PID_ROL.OUT + PID_PIT.OUT + PID_YAW.OUT);
-//        MOTO3_PWM = (int32_t)((int)Throttle_OUT + PID_ROL.OUT - PID_PIT.OUT - PID_YAW.OUT);
-//        MOTO4_PWM = (int32_t)((int)Throttle_OUT - PID_ROL.OUT - PID_PIT.OUT + PID_YAW.OUT);
-//#elif ROTATE90==1
+#if ROTATE90==0
+        MOTO1_PWM = (int32_t)((int)Throttle_OUT - PID_ROL.OUT + PID_PIT.OUT - PID_YAW.OUT);
+        MOTO2_PWM = (int32_t)((int)Throttle_OUT + PID_ROL.OUT + PID_PIT.OUT + PID_YAW.OUT);
+        MOTO3_PWM = (int32_t)((int)Throttle_OUT + PID_ROL.OUT - PID_PIT.OUT - PID_YAW.OUT);
+        MOTO4_PWM = (int32_t)((int)Throttle_OUT - PID_ROL.OUT - PID_PIT.OUT + PID_YAW.OUT);
+#elif ROTATE90==1
         MOTO1_PWM = (int32_t)((int)Throttle_OUT - PID_ROL.OUT + PID_PIT.OUT + PID_YAW.OUT);
         MOTO2_PWM = (int32_t)((int)Throttle_OUT + PID_ROL.OUT + PID_PIT.OUT - PID_YAW.OUT);
         MOTO3_PWM = (int32_t)((int)Throttle_OUT + PID_ROL.OUT - PID_PIT.OUT + PID_YAW.OUT);
         MOTO4_PWM = (int32_t)((int)Throttle_OUT - PID_ROL.OUT - PID_PIT.OUT - PID_YAW.OUT);
-//#endif
+#endif
     }
     else
     {
