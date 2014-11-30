@@ -1,3 +1,17 @@
+/*
+void Ex_Anl(void)
+{
+    u16 temp = (u16) * ex_on_off;
+    Ex_ON_OFF.Status = Read_Bit(temp, 0);//1
+    Ex_ON_OFF.Senser = Read_Bit(temp, 1);//2
+    Ex_ON_OFF.DataF1 = Read_Bit(temp, 2);//4
+    Ex_ON_OFF.DataF2 = Read_Bit(temp, 3);//8
+    Ex_ON_OFF.DataF3 = Read_Bit(temp, 4);//16
+    Ex_ON_OFF.DataF4 = Read_Bit(temp, 5);//32
+    Ex_ON_OFF.RCData = Read_Bit(temp, 6);//64
+    Ex_ON_OFF.MotoPwm = Read_Bit(temp, 7);//128
+}
+*/
 #include "data_transfer.h"
 #include "sys.h"
 #include "mpu6050.h"
