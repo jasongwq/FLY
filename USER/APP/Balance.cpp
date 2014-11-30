@@ -236,11 +236,11 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
     }
     else
     {
-		#define Balance_ALT 500
-            static u16 alt_tmp[80];
-            static SLIDE_FILTERING16 alt_control = {alt_tmp, 0, sizeof(alt_tmp) / sizeof(alt_tmp[0]), 0, 0};
-            alt_control.data = PID_ALT.OUT;
-            Balance_Throttle=slide_filtering(alt_control);
+//		#define Balance_ALT 500
+//            static u16 alt_tmp[80];
+//            static SLIDE_FILTERING16 alt_control = {alt_tmp, 0, sizeof(alt_tmp) / sizeof(alt_tmp[0]), 0, 0};
+//            alt_control.data = PID_ALT.OUT;
+//            Balance_Throttle=slide_filtering(alt_control);
         ALT_Control(ALT_Set);
         Throttle_OUT += PID_ALT.OUT;
 
