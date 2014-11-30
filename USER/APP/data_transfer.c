@@ -757,6 +757,8 @@ void Data_Send_F3(void)
     _temp16 = (vs16)(PID_YAW.OUT ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
     _temp16 = (vs16)(PID_ALT.OUT ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
     _temp16 = (vs16)(Alt_Error   ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+		_temp16 = (vs16)(Balance_Throttle   ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+		
     //_temp16 = (vs16)(angle.yaw  * PID_PID_8_P_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
 
     data_to_send[3] = _cnt - 4;

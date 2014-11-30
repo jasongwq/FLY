@@ -20,7 +20,7 @@ extern PID PID_ROL, PID_PIT, PID_YAW, PID_ALT, PID_POS,
     PID_PID_9, PID_PID_10, PID_PID_11, PID_PID_12;
 //extern void Balance_Data(T_float_angle *att_in,S_INT16_XYZ *gyr_in, T_RC_Data *rc_in,T_Control *ctl_data);
 extern void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_RC_Data *rc_in, T_Control *ctl);
-
+extern int Balance_Throttle;
 //extern void Balance(void);
 
 #ifdef __cplusplus
