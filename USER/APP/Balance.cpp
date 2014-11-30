@@ -190,61 +190,60 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
     Rol_Control();
     Pit_Control();
 
-//    u16 ALT_Set = rc_in->AUX2 - 1000;
+    u16 ALT_Set = rc_in->AUX2 - 1000;
 
-//    if (0 == ctl->ALT_ON_OFF)
-//    {
-//        {
-////#define Balance_ALT 500
-////            static int i = 0;
-////            static u16 alt_tmp[80];
-////            static SLIDE_FILTERING16 alt_control = {alt_tmp, 0, sizeof(alt_tmp) / sizeof(alt_tmp[0]), 0, 0};
-////            alt_control.data = PID_ALT.OUT;
-////            Balance_Throttle=slide_filtering(alt_control);
-////            i++;
-//            //            if (1000 == i)
-//            //            {
-//            //                Balance_Throttle = slide_filtering16(alt_control) - 10;
-//            //            }
-//            //            else if (i > 1000)
-//            //            {
-//            //                extern u16 Alt_ultrasonic;
-//            //                if ((Alt_ultrasonic - (Balance_ALT - (i - 1000)/6 )) > 0)
-//            //                {
-//            //                    Balance_Throttle -= 10;
-//            //                    Throttle_OUT += Balance_Throttle;
-//            //                }
-//            //                else if ((Alt_ultrasonic - (Balance_ALT - (i - 1000)/6)) < 0)
-//            //                {
-//            //                    Balance_Throttle += 10;
-//            //                    Throttle_OUT += Balance_Throttle;
-//            //                }
-//            //                else
-//            //                    Throttle_OUT += Balance_Throttle; //Throttle_OUT = Balance_Throttle;
-//            //            }
-//            //            else if (i <= 0)
-//            //            {
-//            //                i = -2;
-//            //            }
-//            //            else if(i<1000)
-//            //            {
-//            //                ALT_Set = Balance_ALT;
-//            //                ALT_Control(ALT_Set);
-//            //                Throttle_OUT += PID_ALT.OUT;
-//            //            }
-//        }
-//    }
-//    else
-//    {
-////		#define Balance_ALT 500
-////            static u16 alt_tmp[80];
-////            static SLIDE_FILTERING16 alt_control = {alt_tmp, 0, sizeof(alt_tmp) / sizeof(alt_tmp[0]), 0, 0};
-////            alt_control.data = PID_ALT.OUT;
-////            Balance_Throttle=slide_filtering(alt_control);
-//        ALT_Control(ALT_Set);
-//        Throttle_OUT += PID_ALT.OUT;
-
-//    }
+    if (0 == ctl->ALT_ON_OFF)
+    {
+        {
+//#define Balance_ALT 500
+//            static int i = 0;
+//            static u16 alt_tmp[80];
+//            static SLIDE_FILTERING16 alt_control = {alt_tmp, 0, sizeof(alt_tmp) / sizeof(alt_tmp[0]), 0, 0};
+//            alt_control.data = PID_ALT.OUT;
+//            Balance_Throttle=slide_filtering(alt_control);
+//            i++;
+            //            if (1000 == i)
+            //            {
+            //                Balance_Throttle = slide_filtering16(alt_control) - 10;
+            //            }
+            //            else if (i > 1000)
+            //            {
+            //                extern u16 Alt_ultrasonic;
+            //                if ((Alt_ultrasonic - (Balance_ALT - (i - 1000)/6 )) > 0)
+            //                {
+            //                    Balance_Throttle -= 10;
+            //                    Throttle_OUT += Balance_Throttle;
+            //                }
+            //                else if ((Alt_ultrasonic - (Balance_ALT - (i - 1000)/6)) < 0)
+            //                {
+            //                    Balance_Throttle += 10;
+            //                    Throttle_OUT += Balance_Throttle;
+            //                }
+            //                else
+            //                    Throttle_OUT += Balance_Throttle; //Throttle_OUT = Balance_Throttle;
+            //            }
+            //            else if (i <= 0)
+            //            {
+            //                i = -2;
+            //            }
+            //            else if(i<1000)
+            //            {
+            //                ALT_Set = Balance_ALT;
+            //                ALT_Control(ALT_Set);
+            //                Throttle_OUT += PID_ALT.OUT;
+            //            }
+        }
+    }
+    else
+    {
+//		#define Balance_ALT 500
+//            static u16 alt_tmp[80];
+//            static SLIDE_FILTERING16 alt_control = {alt_tmp, 0, sizeof(alt_tmp) / sizeof(alt_tmp[0]), 0, 0};
+//            alt_control.data = PID_ALT.OUT;
+//            Balance_Throttle=slide_filtering(alt_control);
+        ALT_Control(ALT_Set);
+        Throttle_OUT += PID_ALT.OUT;
+    }
 
 
     /*****************************************************
