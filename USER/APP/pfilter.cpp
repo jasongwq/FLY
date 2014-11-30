@@ -1,5 +1,5 @@
 #include "sys.h"
-#include "filter.h"
+#include "pfilter.h"
 
 u8 slide_filtering(SLIDE_FILTERING8 dat)
 {
