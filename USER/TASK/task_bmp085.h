@@ -2,7 +2,7 @@
        extern "C" {
 #endif
 #include "../../GLIB/PERIPHERAL/BMP085/bmp085.h"
-float Alt_bmp;
+float Alt_bmp=0;
 
 int task_bmp085(void)
 {
