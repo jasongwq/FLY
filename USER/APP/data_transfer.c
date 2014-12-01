@@ -22,6 +22,7 @@ void Ex_Anl(void)
 #include "rc.h"
 #include "bak.h"
 #include "pwm.h"
+//#include "bmp085.h"
 #define DATA_TRANSFER_USE_USART
 
 #define PID_ROL_P_MULTIPLYING   (100 )
@@ -282,6 +283,8 @@ void Data_Send_Check(u16 check)
 #endif
 }
 extern u16 Alt_ultrasonic;
+extern float Alt_bmp;
+
 void Data_Send_Status(void)
 {
     u8 _cnt = 0;
@@ -301,22 +304,17 @@ void Data_Send_Status(void)
     _temp = (int)(Att_Angle.yaw * 100);
     data_to_send[_cnt++] = BYTE1(_temp);
     data_to_send[_cnt++] = BYTE0(_temp);
-    //    vs32 _temp2 = Alt_ultrasonic;
-    //    data_to_send[_cnt++] = BYTE3(_temp2);
-    //    data_to_send[_cnt++] = BYTE2(_temp2);
-    //    data_to_send[_cnt++] = BYTE1(_temp2);
-    //    data_to_send[_cnt++] = BYTE0(_temp2);
     _temp = Alt_ultrasonic;
     data_to_send[_cnt++] = BYTE1(_temp);
     data_to_send[_cnt++] = BYTE0(_temp);
-    vs32 _temp2 = 0;//Alt_ultrasonic;
+    vs32 _temp2 = Alt_bmp;
     data_to_send[_cnt++] = BYTE3(_temp2);
     data_to_send[_cnt++] = BYTE2(_temp2);
     data_to_send[_cnt++] = BYTE1(_temp2);
     data_to_send[_cnt++] = BYTE0(_temp2);
-    if (1) //RC_Control.ARMED==0)
+    if (0==RC_Control.ARMED)
         data_to_send[_cnt++] = 0xA0;
-    else if (1) //RC_Control.ARMED==1)
+    else if (1==RC_Control.ARMED)
         data_to_send[_cnt++] = 0xA1;
     data_to_send[3] = _cnt - 4;
     u8 sum = 0;
