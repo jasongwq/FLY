@@ -23,7 +23,7 @@ int task_bmp085(void)
             BMP085_pressure_start();
             WaitX(26);
             BMP085_Calculate(temp, &bmp085);
-            BMP085_Printf(&bmp085);
+            //BMP085_Printf(&bmp085);
         }
     }
     _EE
