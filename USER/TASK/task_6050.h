@@ -8,6 +8,7 @@
 //float KALMAN_Q    0.001
 //float KALMAN_R    10.0000
 //float KALMAN_P0   2210.0000
+int flag_ACC = 0;
 int task_6050(void)
 {
     extern S_INT16_XYZ Acc, Gyr, Mag, Average_Acc;

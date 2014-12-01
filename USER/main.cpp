@@ -45,7 +45,6 @@ void SYS_INIT(void)
 #include "rc.h"
 #include "bak.h"
 #include "./TASK/task_led.h"
-int flag_ACC = 0;
 #include "./TASK/task_6050.h"
 #include "./TASK/task_ultrasonic.h"
 #include "./TASK/task_pwm_ex.h"
@@ -61,25 +60,17 @@ int main(void)
     /***总循环***/
     while (1)
     {
-        //       RunLoop(loop_led,1);
         RunTaskA(task_6050, 0);
         RunTaskA(task_fast, 1);
-
-        //RunLoop(loop_fast, 1);
 #if VERSIONS ==1
         // RunTaskA(task_cap_rc, 3);
-#endif
-#if VERSIONS ==2
+#elif VERSIONS ==2
         RunTaskA(task_cap_rc, 2);
 #endif
         RunTaskA(task_ultrasonic, 3);
-
-        RunTaskA(task_pwm_ex, 4);
-
         //        RunTaskA(task_hmc5883l, 6);
-
-        RunTaskA(task_bmp085, 5);
-        //
+        RunTaskA(task_bmp085, 4);
+        RunTaskA(task_pwm_ex, 5);
         RunTaskA(task_led, 6);
     }
 }
