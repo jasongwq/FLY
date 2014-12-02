@@ -7,7 +7,8 @@ u32 Alt_bmp=0;
 #define I2c_ReadBuffer Soft_I2c1_ReadBuffer
 #define I2c_Init       Soft_I2c1_Init
 int task_bmp085(void)
-{
+{int16_t temp_up=0;
+		int16_t temp_ut=0;
     extern tg_BMP085_TYPE bmp085;
     _SS
     Soft_I2c1_Init();
@@ -15,8 +16,7 @@ int task_bmp085(void)
 		BMP085_Calibrate();
     while (1)
     {		
-		int16_t temp_up=0;
-		int16_t temp_ut=0;
+		
 
         WaitX(100);
 //        BMP085_Read(&bmp085);
