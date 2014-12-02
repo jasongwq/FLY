@@ -737,7 +737,7 @@ vs32 _temp32;
     for (u8 i = 0; i < _cnt; i++)
         sum += data_to_send[i];
     data_to_send[_cnt++] = sum;
-    #ifdef DATA_TRANSFER_USE_USART
+#ifdef DATA_TRANSFER_USE_USART
     Sys_sPrintf(Printf_USART, data_to_send, _cnt);
 #else
     NRF_TxPacket(data_to_send, _cnt);
