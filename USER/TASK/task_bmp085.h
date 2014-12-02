@@ -25,7 +25,7 @@ int task_bmp085(void)
         WaitX(5);
         temp_ut = BMP085_temperature_get();
 				           BMP085_pressure_start();
-            WaitX(5);
+            //WaitX(5);
 						temp_up=BMP085_pressure_get();
    // up = bmp085ReadPressure();  // 读取压强
     Calculate(temp_ut, temp_up,  &bmp085); //计算结果放入结构体
