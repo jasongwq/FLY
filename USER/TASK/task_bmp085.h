@@ -16,7 +16,7 @@ int task_bmp085(void)
 
     while (1)
     {
-//        WaitX(100);
+        WaitX(500);
 //        BMP085_Read(&bmp085);
 //				BMP085_Printf(&bmp085);
 
