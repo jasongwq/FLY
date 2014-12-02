@@ -12,14 +12,14 @@ int task_bmp085(void)
     BMP085_Init();
 		BMP085_Calibrate();
 		static int16_t temp_up=0,temp_ut=0;
-        BMP085_temperature_start();
-        WaitX(20);
-        temp_ut = BMP085_temperature_get();
+
     while (1)
     {
         //WaitX(100);
         //BMP085_Read(&bmp085);
-
+        BMP085_temperature_start();
+        WaitX(20);
+        temp_ut = BMP085_temperature_get();
         static int i;
         for (i = 0; i < 40; i++)
         {
