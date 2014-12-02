@@ -66,7 +66,7 @@ int main(void)
 #endif
 				
 //        RunTaskA(task_ultrasonic, 3);
-//				RunTaskA(task_bmp085, 4);
+				RunTaskA(task_bmp085, 4);
 //        //        RunTaskA(task_hmc5883l, 6);
 //        
         RunTaskA(task_pwm_ex, 5);
