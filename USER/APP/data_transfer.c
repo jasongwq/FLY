@@ -91,7 +91,7 @@ float *pit_just  = &PID_PID_12.D;
 
 void Ex_Init(void)
 {
-    *KALMAN_Q  = 0.0005;
+    *KALMAN_Q  = 0.001;
     *KALMAN_R  = 20.0000;
     *KALMAN_P0 = 2210.0000;
     PID_ROL.P = 4;
