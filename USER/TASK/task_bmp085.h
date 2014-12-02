@@ -10,6 +10,7 @@ int task_bmp085(void)
 {
     extern tg_BMP085_TYPE bmp085;
     _SS
+		
     Soft_I2c1_Init();
     BMP085_Init();
 		BMP085_Calibrate();
