@@ -56,7 +56,7 @@ int task_bmp085(void)
             Alt_bmp2 = (s32)(bmp085.altitude * 1000);
             {
                 static s32 Alt_bmp_tmp[16] = {0};
-                static SLIDE_FILTERING32 Alt_bmp_fil = {Alt_bmp_tmp, &Alt_bmp, sizeof(Alt_bmp_tmp) / sizeof(Alt_bmp_tmp[0]), 0, 0};
+                static SLIDE_FILTERING32 Alt_bmp_fil = {Alt_bmp_tmp, &Alt_bmp2, sizeof(Alt_bmp_tmp) / sizeof(Alt_bmp_tmp[0]), 0, 0};
                 Alt_bmp1 = slide_filtering32(&Alt_bmp_fil);
             }
             {

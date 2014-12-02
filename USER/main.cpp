@@ -51,8 +51,6 @@ void SYS_INIT(void)
 #include "./TASK/loop_fast.h"
 #include "./TASK/task_hmc5883l.h"
 
-#include "../../GLIB/PERIPHERAL/BMP085/bmp085.h"
-
 
 int main(void)
 {
