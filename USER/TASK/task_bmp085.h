@@ -3,7 +3,9 @@
 #endif
 #include "../../GLIB/PERIPHERAL/BMP085/bmp085.h"
 u32 Alt_bmp=0;
-
+#define I2c_Write      Soft_I2c1_Write
+#define I2c_ReadBuffer Soft_I2c1_ReadBuffer
+#define I2c_Init       Soft_I2c1_Init
 int task_bmp085(void)
 {
     extern tg_BMP085_TYPE bmp085;
@@ -23,11 +25,21 @@ int task_bmp085(void)
     //ut = bmp085ReadTemp();      // 读取温度
 		BMP085_temperature_start();
         WaitX(5);
-        temp_ut = BMP085_temperature_get();
-				           BMP085_pressure_start();
-            //WaitX(5);
-						temp_up=BMP085_pressure_get();
+//        temp_ut = BMP085_temperature_get();
+//				           BMP085_pressure_start();
+//            //WaitX(5);
+//						temp_up=BMP085_pressure_get();
    // up = bmp085ReadPressure();  // 读取压强
+	 {
+    //int32_t pressure = 0;
+    I2c_Write(BMP085_Addr, 0xF4, 0x34);
+    delay_ms(5); // max time is 4.5ms
+    uint8_t tmp[2];
+    I2c_ReadBuffer(BMP085_Addr, 0xF6, 2, tmp); //读出2个数据
+    temp_up = (int16_t)( (tmp[0] << 8) + tmp[1]  );
+    temp_up &= 0x0000FFFF; //不能去掉 原因未知
+    //return pressure;
+}
     Calculate(temp_ut, temp_up,  &bmp085); //计算结果放入结构体
 //        BMP085_temperature_start();
 //        WaitX(5);
