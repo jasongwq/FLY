@@ -15,22 +15,24 @@ int task_bmp085(void)
 
     while (1)
     {
-        //WaitX(100);
-        //BMP085_Read(&bmp085);
-        BMP085_temperature_start();
-        WaitX(6);
-        temp_ut = BMP085_temperature_get();
-        static int i;
-        for (i = 0; i < 40; i++)
-        {
-            BMP085_pressure_start();
-            WaitX(26);
-						temp_up=BMP085_pressure_get();
-						Calculate(temp_ut,temp_up,&bmp085);       // 计算温度气压和高度
-//            BMP085_Calculate(temp, &bmp085);
-//						Alt_bmp=(u32)(bmp085.altitude*100);
-            BMP085_Printf(&bmp085);
-        }
+        WaitX(100);
+        BMP085_Read(&bmp085);
+				            BMP085_Printf(&bmp085);
+
+//        BMP085_temperature_start();
+//        WaitX(6);
+//        temp_ut = BMP085_temperature_get();
+//        static int i;
+//        for (i = 0; i < 40; i++)
+//        {
+//            BMP085_pressure_start();
+//            WaitX(26);
+//						temp_up=BMP085_pressure_get();
+//						Calculate(temp_ut,temp_up,&bmp085);       // 计算温度气压和高度
+////            BMP085_Calculate(temp, &bmp085);
+////						Alt_bmp=(u32)(bmp085.altitude*100);
+//            BMP085_Printf(&bmp085);
+//        }
     }
     _EE
 }
