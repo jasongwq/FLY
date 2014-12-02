@@ -23,7 +23,7 @@
 #include <math.h>
 //----------------------------------------------------------------------------------------------------
 // Definitions
-#define Kp 0.5f       // proportional gain governs rate of convergence to accelerometer/magnetometer
+#define Kp 10.5f       // proportional gain governs rate of convergence to accelerometer/magnetometer
 #define Ki 0.0001//0.008f//0.008f     // integral gain governs rate of convergence of gyroscope biases
 #define halfT 0.001f  // half the sample period(s)
 
