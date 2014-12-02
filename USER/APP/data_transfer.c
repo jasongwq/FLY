@@ -284,6 +284,7 @@ void Data_Send_Check(u16 check)
 }
 extern u16 Alt_ultrasonic;
 extern s32 Alt_bmp;
+
 void Data_Send_Status(void)
 {
     u8 _cnt = 0;
@@ -719,6 +720,7 @@ void Data_Send_F1(void)
     //    NRF_TxPacket(data_to_send, _cnt);
     //#endif
 }
+extern s32 Alt_bmp1;
 void Data_Send_F2(void)
 {
     u8 _cnt = 0;
@@ -731,7 +733,8 @@ vs32 _temp32;
 
     //_temp16 = (vs16)(PID_PIT.OUT  ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
 		_temp32 = (vs32)(Alt_bmp); data_to_send[_cnt++] = BYTE3(_temp32); data_to_send[_cnt++] = BYTE2(_temp32);data_to_send[_cnt++] = BYTE1(_temp32); data_to_send[_cnt++] = BYTE0(_temp32);
-		
+        _temp32 = (vs32)(Alt_bmp1); data_to_send[_cnt++] = BYTE3(_temp32); data_to_send[_cnt++] = BYTE2(_temp32);data_to_send[_cnt++] = BYTE1(_temp32); data_to_send[_cnt++] = BYTE0(_temp32);
+        
     data_to_send[3] = _cnt - 4;
     u8 sum = 0;
     for (u8 i = 0; i < _cnt; i++)
