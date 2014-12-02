@@ -62,7 +62,6 @@ int main(void)
         RunTaskA(task_6050, 0);
         RunTaskA(task_fast, 1);
 #if VERSIONS ==1
-        // RunTaskA(task_cap_rc, 3);
 #elif VERSIONS ==2
         RunTaskA(task_cap_rc, 2);
 #endif
