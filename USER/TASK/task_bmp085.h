@@ -15,11 +15,11 @@ int task_bmp085(void)
     Soft_I2c1_Init();
     BMP085_Init();
 		BMP085_Calibrate();
-		int16_t temp_up=0;
-		int16_t temp_ut=0;
 
     while (1)
-    {
+    {		int16_t temp_up=0;
+		int16_t temp_ut=0;
+
         WaitX(100);
 //        BMP085_Read(&bmp085);
 		BMP085_Printf(&bmp085);
