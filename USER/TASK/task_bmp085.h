@@ -25,7 +25,7 @@ int task_bmp085(void)
             WaitX(26);
             BMP085_Calculate(temp, &bmp085);
 						Alt_bmp=(u32)(bmp085.altitude*100);
-            //BMP085_Printf(&bmp085);
+            BMP085_Printf(&bmp085);
         }
     }
     _EE
