@@ -283,7 +283,7 @@ void Data_Send_Check(u16 check)
 #endif
 }
 extern u16 Alt_ultrasonic;
-extern u32 Alt_bmp;
+extern s32 Alt_bmp;
 void Data_Send_Status(void)
 {
     u8 _cnt = 0;
@@ -298,8 +298,6 @@ void Data_Send_Status(void)
     _temp = (int)(Att_Angle.pit * 100);
     data_to_send[_cnt++] = BYTE1(_temp);
     data_to_send[_cnt++] = BYTE0(_temp);
-    //_temp = (int)(Q_ANGLE.YAW*100);
-    //_temp = (int)(Mag_Heading*100);
     _temp = (int)(Att_Angle.yaw * 100);
     data_to_send[_cnt++] = BYTE1(_temp);
     data_to_send[_cnt++] = BYTE0(_temp);
