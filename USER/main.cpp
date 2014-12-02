@@ -64,7 +64,7 @@ int main(void)
 #if VERSIONS ==1
         // RunTaskA(task_cap_rc, 3);
 #elif VERSIONS ==2
-        RunTaskA(task_cap_rc, 2);
+        //RunTaskA(task_cap_rc, 2);
 #endif
         RunTaskA(task_ultrasonic, 3);
         //        RunTaskA(task_hmc5883l, 6);
