@@ -14,7 +14,7 @@ int task_bmp085(void)
     BMP085_Init();
 		BMP085_Calibrate();
 		static int16_t temp_up=0;
-		static int16_t temp_ut=0;
+		int16_t temp_ut=0;
 
     while (1)
     {
