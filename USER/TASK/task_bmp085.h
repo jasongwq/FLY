@@ -9,6 +9,7 @@ u32 Alt_bmp=0;
 int task_bmp085(void)
 {
     extern tg_BMP085_TYPE bmp085;
+		
     _SS
 		
     Soft_I2c1_Init();
