@@ -208,11 +208,15 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
                 *alt_control.data = PID_ALT.OUT;
                 Balance_Throttle = slide_filtering16(&alt_control);
                 //i++;
-                if (10000 == i)
+                if (5000 == i)
                 {
                     Balance_Throttle = slide_filtering16(&alt_control) - 10;
                 }
-                else if (i > 10000)
+								else if (5250==i)
+                {								
+								Balance_Throttle+=10;
+								}
+                else if (i > 5000)
                 {
                     // extern u16 Alt_ultrasonic;
                     // if ((Alt_ultrasonic - (Balance_ALT - (i - 1000) / 6 )) > 0)
@@ -237,7 +241,7 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
                 {
                     i = -2;
                 }
-                else if (i < 10000)
+                else if (i < 5000)
                 {
                     ALT_Set = Balance_ALT;
                     ALT_Control(ALT_Set);
@@ -268,7 +272,7 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
     //      if(pitsinjust<0)pitsinjust=-rolsinjust;
 
     //Throttle_OUT = Throttle_OUT * (rolsinjust+pitsinjust + 1);
-    if (rc_in->THROTTLE > RC_FUN_MIN && ctl->ARMED)
+    if (rc_in->THROTTLE > RC_FUN_MIN && ctl->ARMED&&att_in->pit<60&&att_in->rol<60&&att_in->pit>-60&&att_in->rol>-60)
     {
 #if ROTATE90==0
         MOTO1_PWM = (int32_t)((int)Throttle_OUT - PID_ROL.OUT + PID_PIT.OUT - PID_YAW.OUT);
