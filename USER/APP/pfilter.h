@@ -1,6 +1,9 @@
 #ifndef _PFILTER_H_
 #define _PFILTER_H_
 #include "sys.h"
+#ifdef __cplusplus
+       extern "C" {
+#endif
 typedef struct
 {
     u8 *pbuf;
@@ -33,11 +36,13 @@ typedef struct
     u16 cnt;
     double sum;
 } SLIDE_FILTERINGF;
-extern u8    slide_filtering(SLIDE_FILTERING8 dat);
-extern u16   slide_filtering(SLIDE_FILTERING16 dat);
-extern s32   slide_filtering(SLIDE_FILTERING32 dat);
-extern float slide_filtering(SLIDE_FILTERINGF dat);
+extern u8    slide_filtering8(SLIDE_FILTERING8 dat);
+extern u16   slide_filtering16(SLIDE_FILTERING16 dat);
+extern s32   slide_filtering32(SLIDE_FILTERING32 dat);
+extern float slide_filteringf(SLIDE_FILTERINGF dat);
 
-
+#ifdef __cplusplus
+}
+#endif
 #endif
 

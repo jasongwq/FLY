@@ -926,7 +926,7 @@ I (.\USER\CONFIG\DS18B20_Config.h)(0x545D8B9C)
 I (..\GLIB\SYSTEM\minos_delay.h)(0x546AE303)
 I (..\GLIB\SYSTEM\sys_os.h)(0x547BFA1A)
 I (..\GLIB\HARDWARE\G32_timer.h)(0x546AE2E6)
-I (.\USER\APP\pfilter.h)(0x547D99B1)
+I (.\USER\APP\pfilter.h)(0x547DACDD)
 I (..\GLIB\SYSTEM\../../GLIB/PERIPHERAL/BMP085/bmp085.h)(0x547DA0EE)
 I (D:\Keil_v5\ARM\ARMCC\include\math.h)(0x52FDD27E)
 I (..\GLIB\HARDWARE\G32_I2c.h)(0x545D8B9D)
@@ -1815,37 +1815,6 @@ I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_tim.h)(0x545D8B9D)
 I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h)(0x545D8B9D)
 I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_wwdg.h)(0x545D8B9D)
 I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\misc.h)(0x545D8B9D)
-F (.\USER\APP\pfilter.cpp)(0x547DAACC)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I..\GLIB\SYSTEM -I..\GLIB\HARDWARE -I..\GLIB\STM32F10x_StdPeriph_Driver\inc -I.\USER -I..\GLIB\CMSIS\CM3\CoreSupport -I.\USER\APP -I..\GLIB\PERIPHERAL\LCD\lcd12864 -I..\GLIB\PERIPHERAL\DHT11 -I..\GLIB\PERIPHERAL\SD -I..\GLIB\FATFS\src -I..\GLIB\FATFS\exfuns -I..\GLIB\PERIPHERAL\LCD -I..\GLIB\PERIPHERAL\DS18B20 -I.\USER\CONFIG -I..\GLIB\PERIPHERAL\ULTRASONIC -I..\GLIB\PERIPHERAL\HMC5883L -I..\GLIB\PERIPHERAL\MPU6050 -I.\USER\APP\Kalman_Fliter-I D:\Keil_v5\ARM\RV31\INC-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I D:\Keil_v5\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -o .\obj\pfilter.o --omf_browse .\obj\pfilter.crf --depend .\obj\pfilter.d)
-I (USER\APP\pfilter.h)(0x547D99B1)
-I (..\GLIB\SYSTEM\sys.h)(0x546B0D9C)
-I (.\USER\stm32f10x.h)(0x545D8B9C)
-I (..\GLIB\CMSIS\CM3\CoreSupport\core_cm3.h)(0x545D8B9C)
-I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x52FDD27E)
-I (.\USER\system_stm32f10x.h)(0x545D8B9C)
-I (.\USER\stm32f10x_conf.h)(0x545D8B9C)
-I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_adc.h)(0x545D8B9D)
-I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_bkp.h)(0x545D8B9D)
-I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_can.h)(0x545D8B9D)
-I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_cec.h)(0x545D8B9D)
-I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_crc.h)(0x545D8B9D)
-I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_dac.h)(0x545D8B9D)
-I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_dbgmcu.h)(0x545D8B9D)
-I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_dma.h)(0x545D8B9D)
-I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_exti.h)(0x545D8B9D)
-I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_flash.h)(0x545D8B9D)
-I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_fsmc.h)(0x545D8B9D)
-I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_gpio.h)(0x545D8B9D)
-I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_i2c.h)(0x545D8B9D)
-I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_iwdg.h)(0x545D8B9D)
-I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_pwr.h)(0x545D8B9D)
-I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_rcc.h)(0x545D8B9D)
-I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_rtc.h)(0x545D8B9D)
-I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_sdio.h)(0x545D8B9D)
-I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_spi.h)(0x545D8B9D)
-I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_tim.h)(0x545D8B9D)
-I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h)(0x545D8B9D)
-I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_wwdg.h)(0x545D8B9D)
-I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\misc.h)(0x545D8B9D)
 F (.\USER\APP\Balance.cpp)(0x547B1C14)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I..\GLIB\SYSTEM -I..\GLIB\HARDWARE -I..\GLIB\STM32F10x_StdPeriph_Driver\inc -I.\USER -I..\GLIB\CMSIS\CM3\CoreSupport -I.\USER\APP -I..\GLIB\PERIPHERAL\LCD\lcd12864 -I..\GLIB\PERIPHERAL\DHT11 -I..\GLIB\PERIPHERAL\SD -I..\GLIB\FATFS\src -I..\GLIB\FATFS\exfuns -I..\GLIB\PERIPHERAL\LCD -I..\GLIB\PERIPHERAL\DS18B20 -I.\USER\CONFIG -I..\GLIB\PERIPHERAL\ULTRASONIC -I..\GLIB\PERIPHERAL\HMC5883L -I..\GLIB\PERIPHERAL\MPU6050 -I.\USER\APP\Kalman_Fliter-I D:\Keil_v5\ARM\RV31\INC-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I D:\Keil_v5\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -o .\obj\balance.o --omf_browse .\obj\balance.crf --depend .\obj\balance.d)
 I (USER\APP\Control.h)(0x546AE33B)
 I (USER\APP\Balance.h)(0x547ADA1B)
@@ -1898,9 +1867,40 @@ I (.\USER\CONFIG\DS18B20_Config.h)(0x545D8B9C)
 I (D:\Keil_v5\ARM\ARMCC\include\math.h)(0x52FDD27E)
 I (USER\APP\motor.h)(0x546B0E69)
 I (USER\APP\filter.h)(0x547AD940)
-I (USER\APP\pfilter.h)(0x547D99B1)
+I (USER\APP\pfilter.h)(0x547DACDD)
 I (..\GLIB\SYSTEM\delay.h)(0x5466C09F)
 I (..\GLIB\SYSTEM\minos_delay.h)(0x546AE303)
+F (.\USER\APP\pfilter.c)(0x547DAC9C)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I..\GLIB\SYSTEM -I..\GLIB\HARDWARE -I..\GLIB\STM32F10x_StdPeriph_Driver\inc -I.\USER -I..\GLIB\CMSIS\CM3\CoreSupport -I.\USER\APP -I..\GLIB\PERIPHERAL\LCD\lcd12864 -I..\GLIB\PERIPHERAL\DHT11 -I..\GLIB\PERIPHERAL\SD -I..\GLIB\FATFS\src -I..\GLIB\FATFS\exfuns -I..\GLIB\PERIPHERAL\LCD -I..\GLIB\PERIPHERAL\DS18B20 -I.\USER\CONFIG -I..\GLIB\PERIPHERAL\ULTRASONIC -I..\GLIB\PERIPHERAL\HMC5883L -I..\GLIB\PERIPHERAL\MPU6050 -I.\USER\APP\Kalman_Fliter-I D:\Keil_v5\ARM\RV31\INC-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I D:\Keil_v5\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -o .\obj\pfilter.o --omf_browse .\obj\pfilter.crf --depend .\obj\pfilter.d)
+I (USER\APP\pfilter.h)(0x547DACDD)
+I (..\GLIB\SYSTEM\sys.h)(0x546B0D9C)
+I (.\USER\stm32f10x.h)(0x545D8B9C)
+I (..\GLIB\CMSIS\CM3\CoreSupport\core_cm3.h)(0x545D8B9C)
+I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x52FDD27E)
+I (.\USER\system_stm32f10x.h)(0x545D8B9C)
+I (.\USER\stm32f10x_conf.h)(0x545D8B9C)
+I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_adc.h)(0x545D8B9D)
+I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_bkp.h)(0x545D8B9D)
+I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_can.h)(0x545D8B9D)
+I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_cec.h)(0x545D8B9D)
+I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_crc.h)(0x545D8B9D)
+I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_dac.h)(0x545D8B9D)
+I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_dbgmcu.h)(0x545D8B9D)
+I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_dma.h)(0x545D8B9D)
+I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_exti.h)(0x545D8B9D)
+I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_flash.h)(0x545D8B9D)
+I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_fsmc.h)(0x545D8B9D)
+I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_gpio.h)(0x545D8B9D)
+I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_i2c.h)(0x545D8B9D)
+I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_iwdg.h)(0x545D8B9D)
+I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_pwr.h)(0x545D8B9D)
+I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_rcc.h)(0x545D8B9D)
+I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_rtc.h)(0x545D8B9D)
+I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_sdio.h)(0x545D8B9D)
+I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_spi.h)(0x545D8B9D)
+I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_tim.h)(0x545D8B9D)
+I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h)(0x545D8B9D)
+I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\stm32f10x_wwdg.h)(0x545D8B9D)
+I (..\GLIB\STM32F10x_StdPeriph_Driver\inc\misc.h)(0x545D8B9D)
 F (.\USER\APP\bak.c)(0x546205D6)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I..\GLIB\SYSTEM -I..\GLIB\HARDWARE -I..\GLIB\STM32F10x_StdPeriph_Driver\inc -I.\USER -I..\GLIB\CMSIS\CM3\CoreSupport -I.\USER\APP -I..\GLIB\PERIPHERAL\LCD\lcd12864 -I..\GLIB\PERIPHERAL\DHT11 -I..\GLIB\PERIPHERAL\SD -I..\GLIB\FATFS\src -I..\GLIB\FATFS\exfuns -I..\GLIB\PERIPHERAL\LCD -I..\GLIB\PERIPHERAL\DS18B20 -I.\USER\CONFIG -I..\GLIB\PERIPHERAL\ULTRASONIC -I..\GLIB\PERIPHERAL\HMC5883L -I..\GLIB\PERIPHERAL\MPU6050 -I.\USER\APP\Kalman_Fliter-I D:\Keil_v5\ARM\RV31\INC-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I D:\Keil_v5\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -o .\obj\bak.o --omf_browse .\obj\bak.crf --depend .\obj\bak.d)
 I (USER\APP\bak.h)(0x546AE34D)
 I (..\GLIB\SYSTEM\sys.h)(0x546B0D9C)
