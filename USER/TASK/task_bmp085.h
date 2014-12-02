@@ -48,7 +48,7 @@ int task_bmp085(void)
         {
             BMP085_pressure_start();
             WaitX(5);
-						//temp_up=BMP085_pressure_get();
+						temp_up=BMP085_pressure_get();
 						Calculate(temp_ut,temp_up,&bmp085);       // 计算温度气压和高度
             //BMP085_Calculate(temp_ut, &bmp085);
 //						Alt_bmp=(u32)(bmp085.altitude*100);
