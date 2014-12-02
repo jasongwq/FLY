@@ -10,14 +10,15 @@ int task_bmp085(void)
     _SS
     Soft_I2c1_Init();
     BMP085_Init();
+		static int16_t temp;
+        BMP085_temperature_start();
+        WaitX(20);
+        temp = BMP085_temperature_get();
     while (1)
     {
         //WaitX(100);
         //BMP085_Read(&bmp085);
-        static int16_t temp;
-        BMP085_temperature_start();
-        WaitX(20);
-        temp = BMP085_temperature_get();
+
         static int i;
         for (i = 0; i < 40; i++)
         {
