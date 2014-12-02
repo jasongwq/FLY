@@ -19,6 +19,14 @@ typedef struct
 } SLIDE_FILTERING16;
 typedef struct
 {
+    s32 *pbuf;
+    s32 data;
+    u16 num;
+    u16 cnt;
+    s32 sum;
+} SLIDE_FILTERING32;
+typedef struct
+{
     float *pbuf;
     float data;
     u16 num;
@@ -27,6 +35,7 @@ typedef struct
 } SLIDE_FILTERINGF;
 extern u8    slide_filtering(SLIDE_FILTERING8 dat);
 extern u16   slide_filtering(SLIDE_FILTERING16 dat);
+extern s32   slide_filtering(SLIDE_FILTERING32 dat);
 extern float slide_filtering(SLIDE_FILTERINGF dat);
 
 

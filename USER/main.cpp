@@ -31,7 +31,6 @@ void SYS_INIT(void)
 
     delay_ms(500);
 }
-
 #include "usr_usart.h"
 #include "kalman.h"
 #include "MPU6050.h"
@@ -51,6 +50,8 @@ void SYS_INIT(void)
 #include "./TASK/task_bmp085.h"
 #include "./TASK/loop_fast.h"
 #include "./TASK/task_hmc5883l.h"
+
+#include "../../GLIB/PERIPHERAL/BMP085/bmp085.h"
 
 
 int main(void)
