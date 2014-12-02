@@ -254,7 +254,6 @@ void Data_Receive_Anl(u8 *data_buf, u8 num)
         AngleOffset_Pit = (float)((vs16)(*(data_buf + 6) << 8) | *(data_buf + 7)) / 1000;
         //          Data_Save();
     }
-
     /////////////////////////////////////////////////////////////////////////////////////////////////
     if (*(data_buf + 2) == 0x03)                        //
     {
@@ -310,9 +309,9 @@ void Data_Send_Status(void)
     data_to_send[_cnt++] = BYTE2(_temp2);
     data_to_send[_cnt++] = BYTE1(_temp2);
     data_to_send[_cnt++] = BYTE0(_temp2);
-    if (0==RC_Control.ARMED)
+    if (0 == RC_Control.ARMED)
         data_to_send[_cnt++] = 0xA0;
-    else if (1==RC_Control.ARMED)
+    else if (1 == RC_Control.ARMED)
         data_to_send[_cnt++] = 0xA1;
     data_to_send[3] = _cnt - 4;
     u8 sum = 0;
@@ -325,33 +324,6 @@ void Data_Send_Status(void)
     NRF_TxPacket(data_to_send, _cnt);
 #endif
 }
-//  u8 _cnt=0;
-//  data_to_send[_cnt++]=0xAA;
-//  data_to_send[_cnt++]=0xAA;
-//  data_to_send[_cnt++]=0x01;
-//  data_to_send[_cnt++]=0;
-//  vs16 _temp;
-//  _temp = (int)(Att_Angle.rol*100);
-//  data_to_send[_cnt++]=BYTE1(_temp);
-//  data_to_send[_cnt++]=BYTE0(_temp);
-//  _temp = (int)(Att_Angle.pit*100);
-//  data_to_send[_cnt++]=BYTE1(_temp);
-//  data_to_send[_cnt++]=BYTE0(_temp);
-//  //_temp = (int)(Q_ANGLE.YAW*100);
-//  _temp = (int)(Mag_Heading*100);
-//  data_to_send[_cnt++]=BYTE1(_temp);
-//  data_to_send[_cnt++]=BYTE0(_temp);
-//  _temp = Alt_CSB;
-//  data_to_send[_cnt++]=BYTE1(_temp);
-//  data_to_send[_cnt++]=BYTE0(_temp);
-//  vs32 _temp2 = Alt;
-//  data_to_send[_cnt++]=BYTE3(_temp2);
-//  data_to_send[_cnt++]=BYTE2(_temp2);
-//  data_to_send[_cnt++]=BYTE1(_temp2);
-//  data_to_send[_cnt++]=BYTE0(_temp2);
-//
-//  if(Rc_C.ARMED==0)       data_to_send[_cnt++]=0xA0;
-//  else if(Rc_C.ARMED==1)      data_to_send[_cnt++]=0xA1;
 extern float rol_i;
 //extern s32 Alt_Error;
 
@@ -363,14 +335,6 @@ void Data_Send_Senser(void)
     data_to_send[_cnt++] = 0x02;
     data_to_send[_cnt++] = 0;
     vs16 _temp;
-    //    _temp = (int)(Acc.x / -100);
-    //      data_to_send[_cnt++] = BYTE1(_temp);
-    //    data_to_send[_cnt++] = BYTE0(_temp);
-    //      _temp = (int)(Acc.y / -100);
-    //      data_to_send[_cnt++] = BYTE1(_temp);
-    //    data_to_send[_cnt++] = BYTE0(_temp);
-    //
-    //#define EX_ACC Average_Acc
 #define EX_ACC Acc
     data_to_send[_cnt++] = BYTE1(EX_ACC.x);
     data_to_send[_cnt++] = BYTE0(EX_ACC.x);
@@ -392,10 +356,31 @@ void Data_Send_Senser(void)
     data_to_send[_cnt++] = BYTE0(Mag.z);
     data_to_send[3] = _cnt - 4;
     u8 sum = 0;
-    for (u8 i = 0; i < _cnt; i++)
-        sum += data_to_send[i];
+    for (u8 i = 0; i < _cnt; i++)sum += data_to_send[i];
     data_to_send[_cnt++] = sum;
-
+#ifdef DATA_TRANSFER_USE_USART
+    Sys_sPrintf(Printf_USART, data_to_send, _cnt);
+#else
+    NRF_TxPacket(data_to_send, _cnt);
+#endif
+}
+void Data_Send_OFFSET(void)
+{
+    u8 _cnt = 0;
+    data_to_send[_cnt++] = 0xAA;
+    data_to_send[_cnt++] = 0xAA;
+    data_to_send[_cnt++] = 0x16;
+    data_to_send[_cnt++] = 0;
+    vs16 _temp = AngleOffset_Rol * 1000;
+    data_to_send[_cnt++] = BYTE1(_temp);
+    data_to_send[_cnt++] = BYTE0(_temp);
+    _temp = AngleOffset_Pit * 1000;
+    data_to_send[_cnt++] = BYTE1(_temp);
+    data_to_send[_cnt++] = BYTE0(_temp);
+    data_to_send[3] = _cnt - 4;
+    u8 sum = 0;
+    for (u8 i = 0; i < _cnt; i++)sum += data_to_send[i];
+    data_to_send[_cnt++] = sum;
 #ifdef DATA_TRANSFER_USE_USART
     Sys_sPrintf(Printf_USART, data_to_send, _cnt);
 #else
@@ -694,50 +679,21 @@ void Data_Send_MotoPWM(void)
 }
 void Data_Send_F1(void)
 {
-    //    u8 _cnt = 0;
-    //    data_to_send[_cnt++] = 0xAA;
-    //    data_to_send[_cnt++] = 0xAA;
-    //    data_to_send[_cnt++] = 0xF1;
-    //    data_to_send[_cnt++] = 0;
-    ////        __IO float _tempf;
-    ////        _tempf = position_x;data_to_send[_cnt++] = BYTE3(_tempf);data_to_send[_cnt++] = BYTE2(_tempf);data_to_send[_cnt++] = BYTE1(_tempf);data_to_send[_cnt++] = BYTE0(_tempf);
-    ////        _tempf = position_y;data_to_send[_cnt++] = BYTE3(_tempf);data_to_send[_cnt++] = BYTE2(_tempf);data_to_send[_cnt++] = BYTE1(_tempf);data_to_send[_cnt++] = BYTE0(_tempf);
-    ////        _tempf = position_z;data_to_send[_cnt++] = BYTE3(_tempf);data_to_send[_cnt++] = BYTE2(_tempf);data_to_send[_cnt++] = BYTE1(_tempf);data_to_send[_cnt++] = BYTE0(_tempf);
-    //      vs16 _temp16;
-    //    _temp16 = (vs16)(Acc.x  * PID_PID_8_P_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
-    //    _temp16 = (vs16)(Average_Acc.x  * PID_PID_8_I_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
-    //      _temp16 = (vs16)(Average2_Acc.x  * PID_PID_8_P_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
-    ////    _temp16 = (vs16)(Average3_Acc.x  * PID_PID_8_I_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
-    ////
-    //    data_to_send[3] = _cnt - 4;
-    //    u8 sum = 0;
-    //    for (u8 i = 0; i < _cnt; i++)
-    //        sum += data_to_send[i];
-    //    data_to_send[_cnt++] = sum;
-    //    #ifdef DATA_TRANSFER_USE_USART
-    //    Sys_sPrintf(Printf_USART, data_to_send, _cnt);
-    //#else
-    //    NRF_TxPacket(data_to_send, _cnt);
-    //#endif
-}
-extern s32 Alt_bmp1;
-extern s32 Alt_bmp2;
-
-void Data_Send_F2(void)
-{
     u8 _cnt = 0;
     data_to_send[_cnt++] = 0xAA;
     data_to_send[_cnt++] = 0xAA;
-    data_to_send[_cnt++] = 0xF2;
+    data_to_send[_cnt++] = 0xF1;
     data_to_send[_cnt++] = 0;
-vs16 _temp16;
-vs32 _temp32;
-
-    //_temp16 = (vs16)(PID_PIT.OUT  ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
-		_temp32 = (vs32)(Alt_bmp); data_to_send[_cnt++] = BYTE3(_temp32); data_to_send[_cnt++] = BYTE2(_temp32);data_to_send[_cnt++] = BYTE1(_temp32); data_to_send[_cnt++] = BYTE0(_temp32);
-        _temp32 = (vs32)(Alt_bmp1); data_to_send[_cnt++] = BYTE3(_temp32); data_to_send[_cnt++] = BYTE2(_temp32);data_to_send[_cnt++] = BYTE1(_temp32); data_to_send[_cnt++] = BYTE0(_temp32);
-        _temp32 = (vs32)(Alt_bmp2); data_to_send[_cnt++] = BYTE3(_temp32); data_to_send[_cnt++] = BYTE2(_temp32);data_to_send[_cnt++] = BYTE1(_temp32); data_to_send[_cnt++] = BYTE0(_temp32);
-        
+    //        __IO float _tempf;
+    //        _tempf = position_x;data_to_send[_cnt++] = BYTE3(_tempf);data_to_send[_cnt++] = BYTE2(_tempf);data_to_send[_cnt++] = BYTE1(_tempf);data_to_send[_cnt++] = BYTE0(_tempf);
+    //        _tempf = position_y;data_to_send[_cnt++] = BYTE3(_tempf);data_to_send[_cnt++] = BYTE2(_tempf);data_to_send[_cnt++] = BYTE1(_tempf);data_to_send[_cnt++] = BYTE0(_tempf);
+    //        _tempf = position_z;data_to_send[_cnt++] = BYTE3(_tempf);data_to_send[_cnt++] = BYTE2(_tempf);data_to_send[_cnt++] = BYTE1(_tempf);data_to_send[_cnt++] = BYTE0(_tempf);
+    vs16 _temp16;
+    _temp16 = (vs16)(Acc.x  * PID_PID_8_P_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+    _temp16 = (vs16)(Average_Acc.x  * PID_PID_8_I_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+    _temp16 = (vs16)(Average2_Acc.x  * PID_PID_8_P_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+    //    _temp16 = (vs16)(Average3_Acc.x  * PID_PID_8_I_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+    
     data_to_send[3] = _cnt - 4;
     u8 sum = 0;
     for (u8 i = 0; i < _cnt; i++)
@@ -749,6 +705,36 @@ vs32 _temp32;
     NRF_TxPacket(data_to_send, _cnt);
 #endif
 }
+extern s32 Alt_bmp1;
+extern s32 Alt_bmp2;
+//8
+void Data_Send_F2(void)
+{
+    u8 _cnt = 0;
+    data_to_send[_cnt++] = 0xAA;
+    data_to_send[_cnt++] = 0xAA;
+    data_to_send[_cnt++] = 0xF2;
+    data_to_send[_cnt++] = 0;
+    vs16 _temp16;
+    vs32 _temp32;
+
+    //_temp16 = (vs16)(PID_PIT.OUT  ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+    _temp32 = (vs32)(Alt_bmp); data_to_send[_cnt++] = BYTE3(_temp32); data_to_send[_cnt++] = BYTE2(_temp32); data_to_send[_cnt++] = BYTE1(_temp32); data_to_send[_cnt++] = BYTE0(_temp32);
+    _temp32 = (vs32)(Alt_bmp1); data_to_send[_cnt++] = BYTE3(_temp32); data_to_send[_cnt++] = BYTE2(_temp32); data_to_send[_cnt++] = BYTE1(_temp32); data_to_send[_cnt++] = BYTE0(_temp32);
+    _temp32 = (vs32)(Alt_bmp2); data_to_send[_cnt++] = BYTE3(_temp32); data_to_send[_cnt++] = BYTE2(_temp32); data_to_send[_cnt++] = BYTE1(_temp32); data_to_send[_cnt++] = BYTE0(_temp32);
+
+    data_to_send[3] = _cnt - 4;
+    u8 sum = 0;
+    for (u8 i = 0; i < _cnt; i++)
+        sum += data_to_send[i];
+    data_to_send[_cnt++] = sum;
+#ifdef DATA_TRANSFER_USE_USART
+    Sys_sPrintf(Printf_USART, data_to_send, _cnt);
+#else
+    NRF_TxPacket(data_to_send, _cnt);
+#endif
+}
+//16
 void Data_Send_F3(void)
 {
     extern u32 Throttle_OUT;
@@ -767,8 +753,8 @@ void Data_Send_F3(void)
     _temp16 = (vs16)(PID_YAW.OUT ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
     _temp16 = (vs16)(PID_ALT.OUT ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
     _temp16 = (vs16)(Alt_Error   ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
-		_temp16 = (vs16)(Balance_Throttle   ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
-		
+    _temp16 = (vs16)(Balance_Throttle   ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+
     //_temp16 = (vs16)(angle.yaw  * PID_PID_8_P_MULTIPLYING ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
 
     data_to_send[3] = _cnt - 4;
@@ -782,6 +768,7 @@ void Data_Send_F3(void)
     NRF_TxPacket(data_to_send, _cnt);
 #endif
 }
+//32
 void Data_Send_F4(void)
 {
     u8 _cnt = 0;
@@ -903,7 +890,7 @@ void Data_Exchange(void)
     if (Send.Offset)
     {
         Send.Offset = 0;
-        //Data_Send_OFFSET();
+        Data_Send_OFFSET();
     }
     if (Send.MotoPwm)
     {

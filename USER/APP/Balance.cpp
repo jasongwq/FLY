@@ -58,14 +58,14 @@ int ALT_Control_Out;
 extern u8 flag_ALT;
 vs16 Alt_Error, Alt_Error_Last;
 void ALT_Control(u32 ALT_Set)
-{   
-    static u16 Alt_time=0,flag_time=0;
-    Alt_time++;if (Alt_time>250)
+{
+    static u16 Alt_time = 0, flag_time = 0;
+    Alt_time++; if (Alt_time > 250)
     {
-        Alt_time=0;
-        flag_time=1;
+        Alt_time = 0;
+        flag_time = 1;
     }
-    if (1 == flag_ALT||1==flag_time)
+    if (1 == flag_ALT || 1 == flag_time)
     {
         extern u16 Alt_ultrasonic;
         extern s32 Alt_bmp;
@@ -73,7 +73,7 @@ void ALT_Control(u32 ALT_Set)
 
         flag_ALT = 0;
         //time = 0;
-        Alt = Alt_ultrasonic?Alt_ultrasonic:Alt_bmp;
+        Alt = Alt_ultrasonic ? Alt_ultrasonic : Alt_bmp;
         Alt_Error = ALT_Set - Alt;
         PID_ALT.pout = PID_ALT.P * Alt_Error;
         alt_i += Alt_Error;
@@ -201,43 +201,47 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
         {
             {
 #define Balance_ALT 500
-                static int i = 0;
+                static s32 i = 0;
                 static u16 alt_tmp[80];
-								static u16 data_tmp;
-                static SLIDE_FILTERING16 alt_control = {alt_tmp, &data_tmp, sizeof(alt_tmp) / sizeof(alt_tmp[0]), 0, 0};
-                *alt_control.data = PID_ALT.OUT;
-                Balance_Throttle = slide_filtering16(&alt_control);
-                i++;
-                //            if (1000 == i)
-                //            {
-                //                Balance_Throttle = slide_filtering16(alt_control) - 10;
-                //            }
-                //            else if (i > 1000)
-                //            {
-                //                extern u16 Alt_ultrasonic;
-                //                if ((Alt_ultrasonic - (Balance_ALT - (i - 1000)/6 )) > 0)
-                //                {
-                //                    Balance_Throttle -= 10;
-                //                    Throttle_OUT += Balance_Throttle;
-                //                }
-                //                else if ((Alt_ultrasonic - (Balance_ALT - (i - 1000)/6)) < 0)
-                //                {
-                //                    Balance_Throttle += 10;
-                //                    Throttle_OUT += Balance_Throttle;
-                //                }
-                //                else
-                //                    Throttle_OUT += Balance_Throttle; //Throttle_OUT = Balance_Throttle;
-                //            }
-                //            else if (i <= 0)
-                //            {
-                //                i = -2;
-                //            }
-                //            else if(i<1000)
-                //            {
-                //                ALT_Set = Balance_ALT;
-                //                ALT_Control(ALT_Set);
-                //                Throttle_OUT += PID_ALT.OUT;
-                //            }
+                static SLIDE_FILTERING16 alt_control = {alt_tmp, 0, sizeof(alt_tmp) / sizeof(alt_tmp[0]), 0, 0};
+                alt_control.data = PID_ALT.OUT;
+                Balance_Throttle = slide_filtering16(alt_control);
+                //i++;
+                if (10000 == i)
+                {
+                    Balance_Throttle = slide_filtering16(alt_control) - 10;
+                }
+                else if (i > 10000)
+                {
+                    // extern u16 Alt_ultrasonic;
+                    // if ((Alt_ultrasonic - (Balance_ALT - (i - 1000) / 6 )) > 0)
+                    // {
+                    //     Balance_Throttle -= 1;
+                    //     Throttle_OUT += Balance_Throttle;
+                    // }
+                    // else if ((Alt_ultrasonic - (Balance_ALT - (i - 1000) / 6)) < 0)
+                    // {
+                    //     Balance_Throttle += 1;
+                    //     Throttle_OUT += Balance_Throttle;
+                    // }
+                    // else
+                    //     Throttle_OUT += Balance_Throttle; //Throttle_OUT = Balance_Throttle;
+                    Throttle_OUT += Balance_Throttle;
+                    if (Throttle_OUT>700)
+                    {
+                        Throttle_OUT=0;
+                    }
+                }
+                else if (i <= 0)
+                {
+                    i = -2;
+                }
+                else if (i < 10000)
+                {
+                    ALT_Set = Balance_ALT;
+                    ALT_Control(ALT_Set);
+                    Throttle_OUT += PID_ALT.OUT;
+                }
             }
         }
         else
