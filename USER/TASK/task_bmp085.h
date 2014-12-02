@@ -23,7 +23,7 @@ int task_bmp085(void)
         for (i = 0; i < 40; i++)
         {
             BMP085_pressure_start();
-            WaitX(40);
+            WaitX(100);
             BMP085_Calculate(temp, &bmp085);
 						Alt_bmp=(u32)(bmp085.altitude*100);
             BMP085_Printf(&bmp085);
