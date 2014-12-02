@@ -3,7 +3,7 @@
 #ifdef __cplusplus
        extern "C" {
 #endif
-#define VERSIONS 2
+#define VERSIONS 1
 /* 
 1 黑板
 2 yyb绿板
