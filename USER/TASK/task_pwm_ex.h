@@ -84,7 +84,7 @@ int task_pwm_ex(void)
             Send.DataF1 = 1;
             Data_Exchange();
         }
-        if (1)//Ex_ON_OFF.DataF2)
+        if (Ex_ON_OFF.DataF2)
         {
             WaitX(EX_BaudRate);
             Send.DataF2 = 1;
