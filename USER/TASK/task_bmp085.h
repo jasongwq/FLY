@@ -26,7 +26,7 @@ int task_bmp085(void)
         WaitX(5);
         temp_ut = BMP085_temperature_get();
 				           BMP085_pressure_start();
-            //WaitX(5);
+            WaitX(5);
 //						temp_up=BMP085_pressure_get();
    //temp_up = bmp085ReadPressure();  // 读取压强
 	 {
