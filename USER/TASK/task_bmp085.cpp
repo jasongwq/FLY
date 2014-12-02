@@ -60,7 +60,7 @@ int task_bmp085(void)
 //                Alt_bmp1 = slide_filtering32(&Alt_bmp_fil);
 //            }
             {
-            //Alt_bmp=KalmanFilter((double)Alt_bmp2, *KALMAN_Q, *KALMAN_R, *KALMAN_P0,0);
+            Alt_bmp=KalmanFilter((double)Alt_bmp2, *KALMAN_Q, *KALMAN_R, *KALMAN_P0,0);
             }
             //            BMP085_Printf(&bmp085);
         }
