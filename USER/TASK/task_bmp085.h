@@ -20,9 +20,12 @@ int task_bmp085(void)
 //        BMP085_Read(&bmp085);
 		BMP085_Printf(&bmp085);
     int32_t  ut, up;
-    ut = bmp085ReadTemp();      // 读取温度
+    //ut = bmp085ReadTemp();      // 读取温度
+		        BMP085_temperature_start();
+        WaitX(5);
+        temp_ut = BMP085_temperature_get();
     up = bmp085ReadPressure();  // 读取压强
-    Calculate(ut, up,  &bmp085); //计算结果放入结构体
+    Calculate(temp_ut, up,  &bmp085); //计算结果放入结构体
 //        BMP085_temperature_start();
 //        WaitX(5);
 //        temp_ut = BMP085_temperature_get();
