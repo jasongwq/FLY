@@ -34,7 +34,7 @@ int task_bmp085(void)
     _SS
     Soft_I2c1_Init();
     BMP085_Init();
-    BMP085_Calibrate();
+    //BMP085_Calibrate();
     static int32_t temp_up = 0;
     static int32_t temp_ut = 0;
 
@@ -60,7 +60,7 @@ int task_bmp085(void)
 //                Alt_bmp1 = slide_filtering32(&Alt_bmp_fil);
 //            }
             {
-            Alt_bmp=KalmanFilter((double)Alt_bmp2, *KALMAN_Q, *KALMAN_R, *KALMAN_P0,0);
+            //Alt_bmp=KalmanFilter((double)Alt_bmp2, *KALMAN_Q, *KALMAN_R, *KALMAN_P0,0);
             }
             //            BMP085_Printf(&bmp085);
         }
