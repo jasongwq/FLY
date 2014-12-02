@@ -58,7 +58,7 @@ int main(void)
     SYS_INIT();
     /***总循环***/
     while (1)
-    {
+    {RunTaskA(task_bmp085, 4);
         RunTaskA(task_6050, 0);
         RunTaskA(task_fast, 1);
 #if VERSIONS ==1
@@ -67,7 +67,7 @@ int main(void)
 #endif
         RunTaskA(task_ultrasonic, 3);
         //        RunTaskA(task_hmc5883l, 6);
-        RunTaskA(task_bmp085, 4);
+        
         //RunTaskA(task_pwm_ex, 5);
         RunTaskA(task_led, 6);
     }
