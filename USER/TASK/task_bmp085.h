@@ -25,7 +25,7 @@ int task_bmp085(void)
     //ut = bmp085ReadTemp();      // 读取温度
 		BMP085_temperature_start();
         WaitX(5);
-//        temp_ut = BMP085_temperature_get();
+        temp_ut = BMP085_temperature_get();
 //				           BMP085_pressure_start();
 //            //WaitX(5);
 //						temp_up=BMP085_pressure_get();
