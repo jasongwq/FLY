@@ -283,7 +283,7 @@ void Data_Send_Check(u16 check)
 #endif
 }
 extern u16 Alt_ultrasonic;
-extern float Alt_bmp;
+extern u32 Alt_bmp;
 void Data_Send_Status(void)
 {
     u8 _cnt = 0;

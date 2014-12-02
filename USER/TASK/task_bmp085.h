@@ -2,7 +2,7 @@
        extern "C" {
 #endif
 #include "../../GLIB/PERIPHERAL/BMP085/bmp085.h"
-float Alt_bmp=0;
+u32 Alt_bmp=0;
 
 int task_bmp085(void)
 {
@@ -24,7 +24,7 @@ int task_bmp085(void)
             BMP085_pressure_start();
             WaitX(26);
             BMP085_Calculate(temp, &bmp085);
-						Alt_bmp=bmp085.altitude;
+						Alt_bmp=(u32)(bmp085.altitude*100);
             //BMP085_Printf(&bmp085);
         }
     }
