@@ -16,13 +16,13 @@ int task_bmp085(void)
         //BMP085_Read(&bmp085);
         static int16_t temp;
         BMP085_temperature_start();
-        WaitX(5);
+        WaitX(20);
         temp = BMP085_temperature_get();
         static int i;
         for (i = 0; i < 40; i++)
         {
             BMP085_pressure_start();
-            WaitX(26);
+            WaitX(40);
             BMP085_Calculate(temp, &bmp085);
 						Alt_bmp=(u32)(bmp085.altitude*100);
             BMP085_Printf(&bmp085);
