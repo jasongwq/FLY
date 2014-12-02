@@ -21,14 +21,14 @@ int task_bmp085(void)
         WaitX(100);
 //        BMP085_Read(&bmp085);
 		BMP085_Printf(&bmp085);
-    temp_ut = bmp085ReadTemp();      // 读取温度
-//		BMP085_temperature_start();
-//        WaitX(5);
-//        temp_ut = BMP085_temperature_get();
-//				           BMP085_pressure_start();
-//            //WaitX(5);
-//						temp_up=BMP085_pressure_get();
-   temp_up = bmp085ReadPressure();  // 读取压强
+    //temp_ut = bmp085ReadTemp();      // 读取温度
+		BMP085_temperature_start();
+        WaitX(5);
+        temp_ut = BMP085_temperature_get();
+				           BMP085_pressure_start();
+            //WaitX(5);
+						temp_up=BMP085_pressure_get();
+   //temp_up = bmp085ReadPressure();  // 读取压强
 //	 {
 //    //int32_t pressure = 0;
 //    I2c_Write(BMP085_Addr, 0xF4, 0x34);
