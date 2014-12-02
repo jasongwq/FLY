@@ -721,32 +721,27 @@ void Data_Send_F1(void)
 }
 void Data_Send_F2(void)
 {
-    //extern u32 Throttle_OUT;
-    //extern T_float_angle angle;
+    u8 _cnt = 0;
+    data_to_send[_cnt++] = 0xAA;
+    data_to_send[_cnt++] = 0xAA;
+    data_to_send[_cnt++] = 0xF2;
+    data_to_send[_cnt++] = 0;
+vs16 _temp16;
+vs32 _temp32;
 
-    //    u8 _cnt = 0;
-    //    data_to_send[_cnt++] = 0xAA;
-    //    data_to_send[_cnt++] = 0xAA;
-    //    data_to_send[_cnt++] = 0xF2;
-    //    data_to_send[_cnt++] = 0;
-    //vs16 _temp16;
-    //    _temp16 = (vs16)(PID_PIT.OUT  ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
-    //    _temp16 = (vs16)(PID_ROL.OUT  ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
-    //      _temp16 = (vs16)(PID_YAW.OUT  ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
-    //    _temp16 = (vs16)(angle.pit  ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
-    //    _temp16 = (vs16)(angle.rol  ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
-    //      _temp16 = (vs16)(angle.yaw   ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
-    //      _temp16 = (vs16)(Throttle_OUT   ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
-    //    data_to_send[3] = _cnt - 4;
-    //    u8 sum = 0;
-    //    for (u8 i = 0; i < _cnt; i++)
-    //        sum += data_to_send[i];
-    //    data_to_send[_cnt++] = sum;
-    //    #ifdef DATA_TRANSFER_USE_USART
-    //    Sys_sPrintf(Printf_USART, data_to_send, _cnt);
-    //#else
-    //    NRF_TxPacket(data_to_send, _cnt);
-    //#endif
+    //_temp16 = (vs16)(PID_PIT.OUT  ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+		_temp32 = (vs16)(PID_PIT.OUT  ); data_to_send[_cnt++] = BYTE3(_temp32); data_to_send[_cnt++] = BYTE2(_temp32);data_to_send[_cnt++] = BYTE1(_temp32); data_to_send[_cnt++] = BYTE0(_temp32);
+		
+    data_to_send[3] = _cnt - 4;
+    u8 sum = 0;
+    for (u8 i = 0; i < _cnt; i++)
+        sum += data_to_send[i];
+    data_to_send[_cnt++] = sum;
+    #ifdef DATA_TRANSFER_USE_USART
+    Sys_sPrintf(Printf_USART, data_to_send, _cnt);
+#else
+    NRF_TxPacket(data_to_send, _cnt);
+#endif
 }
 void Data_Send_F3(void)
 {
