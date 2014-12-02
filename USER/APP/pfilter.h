@@ -38,7 +38,7 @@ typedef struct
 } SLIDE_FILTERINGF;
 extern u8    slide_filtering8(SLIDE_FILTERING8 dat);
 extern u16   slide_filtering16(SLIDE_FILTERING16 dat);
-extern s32   slide_filtering32(SLIDE_FILTERING32 dat);
+extern s32   slide_filtering32(SLIDE_FILTERING32* dat);
 extern float slide_filteringf(SLIDE_FILTERINGF dat);
 
 #ifdef __cplusplus
