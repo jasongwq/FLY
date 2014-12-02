@@ -11,7 +11,7 @@ int task_bmp085(void)
     Soft_I2c1_Init();
     BMP085_Init();
 		BMP085_Calibrate();
-		static int16_t temp_up=0,temp_ut=0;
+//		static int16_t temp_up=0,temp_ut=0;
 
     while (1)
     {
