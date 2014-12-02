@@ -730,7 +730,7 @@ vs16 _temp16;
 vs32 _temp32;
 
     //_temp16 = (vs16)(PID_PIT.OUT  ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
-		_temp32 = (vs16)(PID_PIT.OUT  ); data_to_send[_cnt++] = BYTE3(_temp32); data_to_send[_cnt++] = BYTE2(_temp32);data_to_send[_cnt++] = BYTE1(_temp32); data_to_send[_cnt++] = BYTE0(_temp32);
+		_temp32 = (vs32)(Alt_bmp); data_to_send[_cnt++] = BYTE3(_temp32); data_to_send[_cnt++] = BYTE2(_temp32);data_to_send[_cnt++] = BYTE1(_temp32); data_to_send[_cnt++] = BYTE0(_temp32);
 		
     data_to_send[3] = _cnt - 4;
     u8 sum = 0;
