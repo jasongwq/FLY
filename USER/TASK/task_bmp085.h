@@ -10,10 +10,10 @@ int task_bmp085(void)
     _SS
     Soft_I2c1_Init();
     BMP085_Init();
-		static int16_t temp;
+		static int16_t temp_up=0,temp_ut=0;
         BMP085_temperature_start();
         WaitX(20);
-        temp = BMP085_temperature_get();
+        temp_ut = BMP085_temperature_get();
     while (1)
     {
         //WaitX(100);
@@ -24,8 +24,10 @@ int task_bmp085(void)
         {
             BMP085_pressure_start();
             WaitX(100);
-            BMP085_Calculate(temp, &bmp085);
-						Alt_bmp=(u32)(bmp085.altitude*100);
+						temp_up=BMP085_pressure_get();
+						Calculate(temp_ut,temp_up,&bmp085);       // 计算温度气压和高度
+//            BMP085_Calculate(temp, &bmp085);
+//						Alt_bmp=(u32)(bmp085.altitude*100);
             BMP085_Printf(&bmp085);
         }
     }
