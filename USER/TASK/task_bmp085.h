@@ -20,7 +20,7 @@ int task_bmp085(void)
 //        BMP085_Read(&bmp085);
 //				BMP085_Printf(&bmp085);
         BMP085_temperature_start();
-        WaitX(5);
+        WaitX(3);
         temp_ut = BMP085_temperature_get();
         static int i;
         for (i = 0; i < 40; i++)
