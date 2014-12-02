@@ -10,6 +10,7 @@ int task_bmp085(void)
     _SS
     Soft_I2c1_Init();
     BMP085_Init();
+		BMP085_Calibrate();
 		static int16_t temp_up=0,temp_ut=0;
         BMP085_temperature_start();
         WaitX(20);
