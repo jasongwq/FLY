@@ -12,6 +12,8 @@ u16 Alt_ultrasonic1t;
 u16 Alt_ultrasonic2t;
 
 u16 Alt_temp;
+u16 Alt_temp_l;
+
 
 u8 flag_ALT;
 u8 flag_ALT1;
@@ -27,6 +29,8 @@ int task_ultrasonic(void)
         Alt_ultrasonic1t = Alt_ultrasonic1;
         Alt_ultrasonic2t = Alt_ultrasonic2;
         Alt_temp = Alt_ultrasonic1 >= Alt_ultrasonic2 ? Alt_ultrasonic1 : Alt_ultrasonic2;
+				if(Alt_temp==0)Alt_temp=Alt_temp_l;
+				else Alt_temp_l=Alt_temp;
         {
             static s16 alt_tmp[5] = {0};
             static SLIDE_FILTERING16 alt_ultrasonic_fil = {alt_tmp, 0, sizeof(alt_tmp) / sizeof(alt_tmp[0]), 0, 0};
