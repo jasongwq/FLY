@@ -65,7 +65,7 @@ int task_ultrasonic(void)
             utime++;
             if (utime > 10)
             {
-                Alt_ultrasonic1 = Alt_ultrasonic2 = Alt_ultrasonic = 0;
+                //Alt_ultrasonic1 = Alt_ultrasonic2 = Alt_ultrasonic = 0;
                 break;
             }
         }
