@@ -235,10 +235,10 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
                     // else
                     //     Throttle_OUT += Balance_Throttle; //Throttle_OUT = Balance_Throttle;
                     Throttle_OUT += Balance_Throttle1;
-                    if (Throttle_OUT > 700)
-                    {
-                        Throttle_OUT = 0;
-                    }
+//                    if (Throttle_OUT > 700)
+//                    {
+//                        Throttle_OUT = 0;
+//                    }
                 }
                 else if (i <= 0)
                 {
