@@ -24,7 +24,7 @@ int task_ultrasonic(void)
     while (1)
     {
         static u8 utime;
-        Alt_ultrasonic = Alt_ultrasonic1 > Alt_ultrasonic2 ? Alt_ultrasonic1 : Alt_ultrasonic2;
+        Alt_ultrasonic = Alt_ultrasonic1 >= Alt_ultrasonic2 ? Alt_ultrasonic1 : Alt_ultrasonic2;
         flag_ALT = 1; flag_ALT2 = flag_ALT1 = 0;
         Alt_ultrasonic1 = Alt_ultrasonic2 = 0;
         WaitX(30 - utime);
@@ -65,6 +65,14 @@ int task_ultrasonic(void)
             utime++;
             if (utime > 10)
             {
+                if (0==flag_ALT1)
+                {
+                    Alt_ultrasonic1t=Alt_ultrasonic1=0;
+                }
+                if (1==flag_ALT2)
+                {
+                    Alt_ultrasonic2t=Alt_ultrasonic2=0;
+                }
                 //Alt_ultrasonic1 = Alt_ultrasonic2 = Alt_ultrasonic = 0;
                 break;
             }
