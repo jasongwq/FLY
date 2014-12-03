@@ -8,7 +8,7 @@
 1 黑板
 2 yyb绿板
 */
-#define ROTATE90 0
+#define ROTATE90 1
 /*
 1 
 Rothmarketing 90 CCW
@@ -16,8 +16,10 @@ Rothmarketing 90 CCW
 0
 不旋转
 */
-#define THROTTLE_INVERTED 1 //throttleinverted 1
+#define THROTTLE_INVERTED 0 //throttleinverted 1
 /*
+1 反转
+0 不反转
 油门反相 学长遥控需要反相
 */
 
