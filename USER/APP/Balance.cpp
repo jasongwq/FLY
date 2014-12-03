@@ -246,7 +246,7 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
                 }
                 else if (i < 5000)
                 {
-                    Throttle_OUT += PID_ALT.OUT;
+                    //Throttle_OUT += PID_ALT.OUT;
                 }
         }
         else
