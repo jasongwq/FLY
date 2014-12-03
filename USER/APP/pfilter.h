@@ -15,7 +15,7 @@ typedef struct
 typedef struct
 {
     s16 *pbuf;
-    s16 *data;
+    s16 data;
     u16 num;
     u16 cnt;
     u32 sum;
