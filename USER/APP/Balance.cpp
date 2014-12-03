@@ -185,6 +185,7 @@ void Autoland(void)
     //slide_filtering16(alt_control);
 }
 int Balance_Throttle = 0;//平衡时的 油门大小
+int Balance_Throttle1 = 0;//平衡时的 油门大小
 
 void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_RC_Data *Rc_in, T_Control *Ctl)
 {
@@ -206,12 +207,13 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
                 static SLIDE_FILTERING16 alt_control = {alt_tmp, 0, sizeof(alt_tmp) / sizeof(alt_tmp[0]), 0, 0};
                 alt_control.data = (s16)PID_ALT.OUT;
                 Balance_Throttle = slide_filtering16(&alt_control);
+								
         if (0 == ctl->ALT_ON_OFF)
         {
                 i++;
                 if (5000 == i)
                 {
-                    Balance_Throttle = slide_filtering16(&alt_control) - 10;
+                    Balance_Throttle1 = Balance_Throttle - 10;
                 }
 								else if (5250==i)
                 {								
@@ -232,7 +234,7 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
                     // }
                     // else
                     //     Throttle_OUT += Balance_Throttle; //Throttle_OUT = Balance_Throttle;
-                    Throttle_OUT += Balance_Throttle;
+                    Throttle_OUT += Balance_Throttle1;
                     if (Throttle_OUT > 700)
                     {
                         Throttle_OUT = 0;
