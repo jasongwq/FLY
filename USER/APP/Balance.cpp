@@ -14,7 +14,6 @@
 #define RC_PIT_P 50
 
 
-
 #define RC_FUN_MIN  1200
 #define RC_FUN_MAX  1800
 #define RC_FUN_CNT  20

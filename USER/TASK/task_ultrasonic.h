@@ -25,9 +25,9 @@ int task_ultrasonic(void)
     {
         static u8 utime;
 				Alt_ultrasonic1t=Alt_ultrasonic1;
-				 Alt_ultrasonic2t=Alt_ultrasonic2;
-        Alt_ultrasonic = Alt_ultrasonic1 >= Alt_ultrasonic2 ? Alt_ultrasonic1 : Alt_ultrasonic2;
-        flag_ALT = 1; flag_ALT2 = flag_ALT1 = 0;
+				Alt_ultrasonic2t=Alt_ultrasonic2;
+        //Alt_ultrasonic = Alt_ultrasonic1 >= Alt_ultrasonic2 ? Alt_ultrasonic1 : Alt_ultrasonic2;
+        //flag_ALT = 1; flag_ALT2 = flag_ALT1 = 0;
         Alt_ultrasonic1 = Alt_ultrasonic2 = 0;
         WaitX(30 - utime);
         TRIG1_H;
@@ -48,8 +48,10 @@ int task_ultrasonic(void)
                 temp  = TIM1_CAPTURE_STA_CH1 & 0X3F;
                 temp *= 65536;
                 temp = TIM1_CAPTURE_VAL_CH1;
-                Alt_ultrasonic1 = (temp * 340 / 1000 / 2);//mm
+                Alt_ultrasonic=Alt_ultrasonic1 = (temp * 340 / 1000 / 2);//mm
                 flag_ALT1 = 1;
+								flag_ALT = 1;
+								break;
             }
             if ((TIM1_CAPTURE_STA_CH2 & 0X80) && (0 == flag_ALT2))
             {
