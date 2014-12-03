@@ -217,7 +217,7 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
                 }
 								else if (5250==i)
                 {								
-								Balance_Throttle+=10;
+									Balance_Throttle=Balance_Throttle;
 								}
                 else if (i > 5000)
                 {
@@ -234,7 +234,7 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
                     // }
                     // else
                     //     Throttle_OUT += Balance_Throttle; //Throttle_OUT = Balance_Throttle;
-                    //Throttle_OUT += Balance_Throttle1;
+                Throttle_OUT += Balance_Throttle1;
 //                    if (Throttle_OUT > 700)
 //                    {
 //                        Throttle_OUT = 0;
@@ -246,7 +246,7 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
                 }
                 else if (i < 5000)
                 {
-                    //Throttle_OUT += PID_ALT.OUT;
+                    Throttle_OUT += PID_ALT.OUT;
                 }
         }
         else
