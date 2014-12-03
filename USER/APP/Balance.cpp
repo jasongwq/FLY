@@ -211,15 +211,15 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
         if (0 == ctl->ALT_ON_OFF)
         {
                 i++;
-                if (5000 == i)
+                if (1000 == i)
                 {
                     Balance_Throttle1 = Balance_Throttle - 40;
                 }
-								else if (5250==i)
+								else if (1250==i)
                 {								
 									Balance_Throttle=Balance_Throttle-10;
 								}
-                else if (i > 5000)
+                else if (i > 1000)
                 {
                     // extern u16 Alt_ultrasonic;
                     // if ((Alt_ultrasonic - (Balance_ALT - (i - 1000) / 6 )) > 0)
@@ -244,7 +244,7 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
                 {
                     i = -2;
                 }
-                else if (i < 5000)
+                else if (i < 1000)
                 {
                     Throttle_OUT += PID_ALT.OUT;
                 }
