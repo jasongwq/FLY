@@ -29,7 +29,7 @@ int task_ultrasonic(void)
         Alt_ultrasonic1t = Alt_ultrasonic1;
         Alt_ultrasonic2t = Alt_ultrasonic2;
         Alt_temp = Alt_ultrasonic1 >= Alt_ultrasonic2 ? Alt_ultrasonic1 : Alt_ultrasonic2;
-				if(Alt_temp==0)Alt_temp=Alt_temp_l;
+				if(Alt_temp==0||Alt_temp>2000)Alt_temp=Alt_temp_l;
 				else Alt_temp_l=Alt_temp;
         {
             static s16 alt_tmp[8] = {0};
