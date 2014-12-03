@@ -199,17 +199,16 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
         //u32 ALT_Set = (rc_in->THROTTLE - RC_FUN_MIN);
         u32 ALT_Set = (rc_in->AUX2 - 1000);
         ALT_Control(ALT_Set);
-        if (0 == ctl->ALT_ON_OFF)
-        {
-            {
-#define Balance_ALT 500
+//				#define Balance_ALT 500
                 static s32 i = 0;
                 static s16 alt_tmp[80]={0};
                 //static s16 data_tmp = 0;
                 static SLIDE_FILTERING16 alt_control = {alt_tmp, 0, sizeof(alt_tmp) / sizeof(alt_tmp[0]), 0, 0};
                 alt_control.data = (s16)PID_ALT.OUT;
                 Balance_Throttle = slide_filtering16(&alt_control);
-                //i++;
+        if (0 == ctl->ALT_ON_OFF)
+        {
+                i++;
                 if (5000 == i)
                 {
                     Balance_Throttle = slide_filtering16(&alt_control) - 10;
@@ -245,11 +244,8 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
                 }
                 else if (i < 5000)
                 {
-                    ALT_Set = Balance_ALT;
-                    ALT_Control(ALT_Set);
                     Throttle_OUT += PID_ALT.OUT;
                 }
-            }
         }
         else
         {
