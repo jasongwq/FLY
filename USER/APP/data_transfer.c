@@ -109,7 +109,7 @@ void Ex_Init(void)
 
     *ex_on_off = 3;
     *yaw_just = 10;
-    *rol_just = 10;
+    *rol_just = 8;
     *pit_just = 10;
 }
 void Ex_Anl(void)
