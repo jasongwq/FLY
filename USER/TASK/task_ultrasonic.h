@@ -33,7 +33,7 @@ int task_ultrasonic(void)
                 temp *= 65536;
                 temp = TIM1_CAPTURE_VAL_CH1;
                 Alt_temp = (temp * 340 / 1000 / 2);//mm
-								static s16 alt_tmp[10]={0};
+								static s16 alt_tmp[2]={0};
                 static SLIDE_FILTERING16 alt_ultrasonic_fil = {alt_tmp, 0, sizeof(alt_tmp) / sizeof(alt_tmp[0]), 0, 0};
                 alt_ultrasonic_fil.data = (s16)Alt_temp;
                 Alt_ultrasonic = slide_filtering16(&alt_ultrasonic_fil);
