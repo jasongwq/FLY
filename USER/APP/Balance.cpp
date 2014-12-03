@@ -205,7 +205,7 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
                 static s16 alt_tmp[1000]={0};
                 //static s16 data_tmp = 0;
                 static SLIDE_FILTERING16 alt_control = {alt_tmp, 0, sizeof(alt_tmp) / sizeof(alt_tmp[0]), 0, 0};
-                alt_control.data = (s16)PID_ALT.OUT;
+                alt_control.data = (s16)Throttle_IN;//(s16)PID_ALT.OUT;
                 Balance_Throttle = slide_filtering16(&alt_control);
 								
         if (0 == ctl->ALT_ON_OFF)
