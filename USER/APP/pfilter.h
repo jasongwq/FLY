@@ -14,8 +14,8 @@ typedef struct
 } SLIDE_FILTERING8;
 typedef struct
 {
-    u16 *pbuf;
-    u16 *data;
+    s16 *pbuf;
+    s16 *data;
     u16 num;
     u16 cnt;
     u32 sum;
