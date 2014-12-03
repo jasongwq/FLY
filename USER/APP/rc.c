@@ -1,4 +1,6 @@
 #include "rc.h"
+#include "stm32_config.h"
+
 #include "bak.h"
 
 T_RC_Data Rc_Data;//1000~2000
@@ -9,7 +11,7 @@ void Rc_DataAnl(u16 Rc_Pwm_In[5])
 {
  #if 1==THROTTLE_INVERTED
  Rc_Data.THROTTLE        =   3000-Rc_Pwm_In[4];
- #error
+ //#error
  #elif 0==THROTTLE_INVERTED
  Rc_Data.THROTTLE        =   Rc_Pwm_In[4];
  #endif
