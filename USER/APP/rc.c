@@ -9,6 +9,7 @@ void Rc_DataAnl(u16 Rc_Pwm_In[5])
 {
  #if 1==THROTTLE_INVERTED
  Rc_Data.THROTTLE        =   3000-Rc_Pwm_In[4];
+ #error
  #elif 0==THROTTLE_INVERTED
  Rc_Data.THROTTLE        =   Rc_Pwm_In[4];
  #endif
