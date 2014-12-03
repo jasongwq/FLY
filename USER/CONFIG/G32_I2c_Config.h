@@ -10,6 +10,7 @@
 #define RCC_Soft_I2c1_SDA RCC_APB2Periph_GPIOB
 #define     Soft_I2c1_SDA_GPIO           GPIOB
 #define     Soft_I2c1_SDA_PIN      GPIO_Pin_7
+//#error
 /***I2C1 CONGIG ***/
 #endif
 /****************************************/
