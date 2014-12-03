@@ -16,7 +16,7 @@ Rothmarketing 90 CCW
 0
 不旋转
 */
-#define THROTTLE_INVERTED 0 //throttleinverted 1
+#define THROTTLE_INVERTED 1 //throttleinverted 1
 /*
 油门反相 学长遥控需要反相
 */
