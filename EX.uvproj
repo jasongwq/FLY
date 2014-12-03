@@ -609,6 +609,11 @@
               <FileType>5</FileType>
               <FilePath>.\USER\TASK\task_led.h</FilePath>
             </File>
+            <File>
+              <FileName>task_bmp085.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\USER\TASK\task_bmp085.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -710,6 +715,11 @@
           <GroupName>PERIPHERAL</GroupName>
           <Files>
             <File>
+              <FileName>MPU6050.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\GLIB\PERIPHERAL\MPU6050\MPU6050.c</FilePath>
+            </File>
+            <File>
               <FileName>G32_Nrf24l01.C</FileName>
               <FileType>1</FileType>
               <FilePath>..\GLIB\PERIPHERAL\NRF24L01\G32_Nrf24l01.C</FilePath>
@@ -723,11 +733,6 @@
               <FileName>hmc5883l.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\GLIB\PERIPHERAL\HMC5883L\hmc5883l.c</FilePath>
-            </File>
-            <File>
-              <FileName>MPU6050.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\GLIB\PERIPHERAL\MPU6050\MPU6050.c</FilePath>
             </File>
             <File>
               <FileName>bmp085.c</FileName>
@@ -778,14 +783,14 @@
               <FilePath>.\USER\APP\motor.c</FilePath>
             </File>
             <File>
-              <FileName>pfilter.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\USER\APP\pfilter.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Balance.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\USER\APP\Balance.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>pfilter.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\USER\APP\pfilter.c</FilePath>
             </File>
           </Files>
         </Group>
