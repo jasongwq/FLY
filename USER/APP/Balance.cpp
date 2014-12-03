@@ -53,7 +53,7 @@ void Balance_Data(T_float_angle *Att_in, S_INT16_XYZ *Gyr_in, S_INT16_XYZ *Acc_i
 //float Throttle2;// HROTTLE;
 static u32 Throttle_OUT;
 static u32 Throttle_IN;
-
+float PID_ALT_OUT_last=0;
 int ALT_Control_Out;
 extern u8 flag_ALT;
 vs16 Alt_Error, Alt_Error_Last;
@@ -65,7 +65,7 @@ void ALT_Control(u32 ALT_Set)
         Alt_time = 0;
         flag_time = 1;
     }
-    if (1 == flag_ALT || (1 == flag_time&&0 == flag_ALT))
+    if (1 == flag_ALT || (1 == flag_time && 0 == flag_ALT))
     {
         extern u16 Alt_ultrasonic;
         extern s32 Alt_bmp;
@@ -73,7 +73,7 @@ void ALT_Control(u32 ALT_Set)
 
         flag_ALT = 0;
         //time = 0;
-        Alt = Alt_ultrasonic ? Alt_ultrasonic : Alt_bmp;
+        Alt = Alt_ultrasonic;// ? Alt_ultrasonic : Alt_bmp;
         Alt_Error = ALT_Set - Alt;
         PID_ALT.pout = PID_ALT.P * Alt_Error;
         alt_i += Alt_Error;
@@ -87,13 +87,14 @@ void ALT_Control(u32 ALT_Set)
         Alt_Error_Last = Alt_Error;
         //PID_ALT.dout = PID_ALT.D * (acc_in->z-8192);
         //if (ctl->ALT_ON_OFF && Alt_ultrasonic != 0)
-        if (1)//Alt_ultrasonic != 0)
-				{
+        if (Alt_ultrasonic != 0)
+        {
             PID_ALT.OUT = PID_ALT.pout + PID_ALT.iout + PID_ALT.dout;
+            PID_ALT_OUT_last=PID_ALT.OUT;
         }
         else
         {
-            PID_ALT.OUT = 0;
+            PID_ALT.OUT = PID_ALT_OUT_last;
         }
     }
 }
@@ -198,60 +199,60 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
     if (rc_in->THROTTLE > RC_FUN_MIN)
     {
         //u32 ALT_Set = (rc_in->THROTTLE - RC_FUN_MIN);
-        u32 ALT_Set =500;// (rc_in->AUX2 - 1000);
+        u32 ALT_Set = 500; // (rc_in->AUX2 - 1000);
         ALT_Control(ALT_Set);
-//				#define Balance_ALT 500
-                static s32 i = 999;
-                static s16 alt_tmp[1000]={0};
-                //static s16 data_tmp = 0;
-                static SLIDE_FILTERING16 alt_control = {alt_tmp, 0, sizeof(alt_tmp) / sizeof(alt_tmp[0]), 0, 0};
-                alt_control.data = (s16)Throttle_IN;//(s16)PID_ALT.OUT;
-                Balance_Throttle = slide_filtering16(&alt_control);
-								
+        //              #define Balance_ALT 500
+        static s32 i = 999;
+        static s16 alt_tmp[1000] = {0};
+        //static s16 data_tmp = 0;
+        static SLIDE_FILTERING16 alt_control = {alt_tmp, 0, sizeof(alt_tmp) / sizeof(alt_tmp[0]), 0, 0};
+        alt_control.data = (s16)Throttle_IN;//(s16)PID_ALT.OUT;
+        Balance_Throttle = slide_filtering16(&alt_control);
+
         if (0 == ctl->ALT_ON_OFF)
         {
-                i++;
-                if (1000 == i)
-                {
-                    Balance_Throttle1 = 140;//Balance_Throttle - 40;
-                }
-								else if (1250==i)
-                {								
-									Balance_Throttle=150;//Balance_Throttle-10;
-								}
-                else if (i > 1000)
-                {
-                    // extern u16 Alt_ultrasonic;
-                    // if ((Alt_ultrasonic - (Balance_ALT - (i - 1000) / 6 )) > 0)
-                    // {
-                    //     Balance_Throttle -= 1;
-                    //     Throttle_OUT += Balance_Throttle;
-                    // }
-                    // else if ((Alt_ultrasonic - (Balance_ALT - (i - 1000) / 6)) < 0)
-                    // {
-                    //     Balance_Throttle += 1;
-                    //     Throttle_OUT += Balance_Throttle;
-                    // }
-                    // else
-                    //     Throttle_OUT += Balance_Throttle; //Throttle_OUT = Balance_Throttle;
+            i++;
+            if (1000 == i)
+            {
+                Balance_Throttle1 = 140;//Balance_Throttle - 40;
+            }
+            else if (1250 == i)
+            {
+                Balance_Throttle = 150; //Balance_Throttle-10;
+            }
+            else if (i > 1000)
+            {
+                // extern u16 Alt_ultrasonic;
+                // if ((Alt_ultrasonic - (Balance_ALT - (i - 1000) / 6 )) > 0)
+                // {
+                //     Balance_Throttle -= 1;
+                //     Throttle_OUT += Balance_Throttle;
+                // }
+                // else if ((Alt_ultrasonic - (Balance_ALT - (i - 1000) / 6)) < 0)
+                // {
+                //     Balance_Throttle += 1;
+                //     Throttle_OUT += Balance_Throttle;
+                // }
+                // else
+                //     Throttle_OUT += Balance_Throttle; //Throttle_OUT = Balance_Throttle;
                 Throttle_OUT += Balance_Throttle1;
-//                    if (Throttle_OUT > 700)
-//                    {
-//                        Throttle_OUT = 0;
-//                    }
-                }
-                else if (i <= 0)
-                {
-                    i = -2;
-                }
-                else if (i < 1000)
-                {
-                    Throttle_OUT += PID_ALT.OUT;
-                }
+                //                    if (Throttle_OUT > 700)
+                //                    {
+                //                        Throttle_OUT = 0;
+                //                    }
+            }
+            else if (i <= 0)
+            {
+                i = -2;
+            }
+            else if (i < 1000)
+            {
+                Throttle_OUT += PID_ALT.OUT;
+            }
         }
         else
         {
-           // Throttle_OUT += PID_ALT.OUT;
+            // Throttle_OUT += PID_ALT.OUT;
         }
     }
     /*****************************************************
@@ -272,7 +273,7 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
     //      if(pitsinjust<0)pitsinjust=-rolsinjust;
 
     //Throttle_OUT = Throttle_OUT * (rolsinjust+pitsinjust + 1);
-    if (rc_in->THROTTLE > RC_FUN_MIN && ctl->ARMED&&att_in->pit<60&&att_in->rol<60&&att_in->pit>-60&&att_in->rol>-60)
+    if (rc_in->THROTTLE > RC_FUN_MIN && ctl->ARMED && att_in->pit < 60 && att_in->rol < 60 && att_in->pit > -60 && att_in->rol > -60)
     {
 #if ROTATE90==0
         MOTO1_PWM = (int32_t)((int)Throttle_OUT - PID_ROL.OUT + PID_PIT.OUT - PID_YAW.OUT);
