@@ -32,7 +32,7 @@ int task_ultrasonic(void)
 				if(Alt_temp==0)Alt_temp=Alt_temp_l;
 				else Alt_temp_l=Alt_temp;
         {
-            static s16 alt_tmp[5] = {0};
+            static s16 alt_tmp[8] = {0};
             static SLIDE_FILTERING16 alt_ultrasonic_fil = {alt_tmp, 0, sizeof(alt_tmp) / sizeof(alt_tmp[0]), 0, 0};
             alt_ultrasonic_fil.data = (s16)Alt_temp;
             Alt_ultrasonic = slide_filtering16(&alt_ultrasonic_fil);
