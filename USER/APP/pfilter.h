@@ -18,7 +18,7 @@ typedef struct
     s16 data;
     u16 num;
     u16 cnt;
-    u32 sum;
+    s32 sum;
 } SLIDE_FILTERING16;
 typedef struct
 {
