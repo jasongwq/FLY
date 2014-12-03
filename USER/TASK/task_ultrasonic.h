@@ -8,6 +8,8 @@ extern "C" {
 u16 Alt_ultrasonic;
 u16 Alt_ultrasonic1;
 u16 Alt_ultrasonic2;
+u16 Alt_ultrasonic1t;
+u16 Alt_ultrasonic2t;
 
 u16 Alt_temp;
 
@@ -44,7 +46,7 @@ int task_ultrasonic(void)
                 temp  = TIM1_CAPTURE_STA_CH1 & 0X3F;
                 temp *= 65536;
                 temp = TIM1_CAPTURE_VAL_CH1;
-                Alt_ultrasonic1 = (temp * 340 / 1000 / 2);//mm
+                Alt_ultrasonic1t=Alt_ultrasonic1 = (temp * 340 / 1000 / 2);//mm
                 flag_ALT1 = 1;
             }
             if ((TIM1_CAPTURE_STA_CH2 & 0X80) && (0 == flag_ALT2))
@@ -52,7 +54,7 @@ int task_ultrasonic(void)
                 temp  = TIM1_CAPTURE_STA_CH2 & 0X3F;
                 temp *= 65536;
                 temp = TIM1_CAPTURE_VAL_CH2;
-                Alt_ultrasonic2 = (temp * 340 / 1000 / 2);//mm
+                Alt_ultrasonic2t=Alt_ultrasonic2 = (temp * 340 / 1000 / 2);//mm
                 flag_ALT2 = 1;
             }
             if (flag_ALT2 && flag_ALT1)
