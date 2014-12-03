@@ -65,7 +65,7 @@ void ALT_Control(u32 ALT_Set)
         Alt_time = 0;
         flag_time = 1;
     }
-    if (1 == flag_ALT || 1 == flag_time)
+    if (1 == flag_ALT || (1 == flag_time&&0 == flag_ALT))
     {
         extern u16 Alt_ultrasonic;
         extern s32 Alt_bmp;
@@ -86,8 +86,9 @@ void ALT_Control(u32 ALT_Set)
 
         Alt_Error_Last = Alt_Error;
         //PID_ALT.dout = PID_ALT.D * (acc_in->z-8192);
-        if (ctl->ALT_ON_OFF && Alt_ultrasonic != 0)
-        {
+        //if (ctl->ALT_ON_OFF && Alt_ultrasonic != 0)
+        if (1)//Alt_ultrasonic != 0)
+				{
             PID_ALT.OUT = PID_ALT.pout + PID_ALT.iout + PID_ALT.dout;
         }
         else
