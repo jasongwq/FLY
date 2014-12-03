@@ -65,7 +65,7 @@ int task_ultrasonic(void)
                 break;
             }
             utime++;
-            if (utime > 10)
+            if (utime > 20)
             {
                 if (0==flag_ALT1)
                 {
