@@ -213,7 +213,7 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
                 i++;
                 if (5000 == i)
                 {
-                    Balance_Throttle1 = Balance_Throttle - 10;
+                    Balance_Throttle1 = Balance_Throttle - 20;
                 }
 								else if (5250==i)
                 {								
