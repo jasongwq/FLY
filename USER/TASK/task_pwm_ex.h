@@ -4,7 +4,7 @@
 #include "data_transfer.h"
 #include "control.h"
 #include "pwm.h"
-#define EX_BaudRate 4
+#define EX_BaudRate 8
 int task_pwm_ex(void)
 {
     _SS
