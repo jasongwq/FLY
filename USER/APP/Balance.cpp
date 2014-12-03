@@ -50,7 +50,7 @@ void Balance_Data(T_float_angle *Att_in, S_INT16_XYZ *Gyr_in, S_INT16_XYZ *Acc_i
 #define INTEGRAL_WINDUP_Y 3000
 #define INTEGRAL_WINDUP_A 400
 //float Throttle2;// HROTTLE;
-static u32 Throttle_OUT;
+u32 Throttle_OUT;
 static u32 Throttle_IN;
 float PID_ALT_OUT_last=0;
 int ALT_Control_Out;

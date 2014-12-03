@@ -742,6 +742,8 @@ void Data_Send_F3(void)
     extern s16 Alt_Error;
     extern u16 Alt_ultrasonic1t;
     extern u16 Alt_ultrasonic2t;
+		extern u32 Throttle_OUT;
+		
 
     u8 _cnt = 0;
     data_to_send[_cnt++] = 0xAA;
@@ -751,7 +753,7 @@ void Data_Send_F3(void)
     vs16 _temp16;
     _temp16 = (vs16)(Alt_ultrasonic1t); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
     _temp16 = (vs16)(Alt_ultrasonic2t ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
-//    _temp16 = (vs16)(PID_YAW.OUT ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
+    _temp16 = (vs16)(Throttle_OUT ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
     _temp16 = (vs16)(Alt_ultrasonic); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
     _temp16 = (vs16)(PID_ALT.OUT ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
     _temp16 = (vs16)(Alt_Error   ); data_to_send[_cnt++] = BYTE1(_temp16); data_to_send[_cnt++] = BYTE0(_temp16);
