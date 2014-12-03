@@ -10,8 +10,8 @@
 
 
 #define RC_Yaw_P 4
-#define RC_ROL_P 20
-#define RC_PIT_P 20
+#define RC_ROL_P 50
+#define RC_PIT_P 50
 
 
 
