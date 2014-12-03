@@ -24,9 +24,15 @@ int task_ultrasonic(void)
     while (1)
     {
         static u8 utime;
-				Alt_ultrasonic1t=Alt_ultrasonic1;
-				Alt_ultrasonic2t=Alt_ultrasonic2;
-        Alt_ultrasonic = Alt_ultrasonic1 >= Alt_ultrasonic2 ? Alt_ultrasonic1 : Alt_ultrasonic2;
+        Alt_ultrasonic1t = Alt_ultrasonic1;
+        Alt_ultrasonic2t = Alt_ultrasonic2;
+        Alt_temp = Alt_ultrasonic1 >= Alt_ultrasonic2 ? Alt_ultrasonic1 : Alt_ultrasonic2;
+        {
+            static s16 alt_tmp[5] = {0};
+            static SLIDE_FILTERING16 alt_ultrasonic_fil = {alt_tmp, 0, sizeof(alt_tmp) / sizeof(alt_tmp[0]), 0, 0};
+            alt_ultrasonic_fil.data = (s16)Alt_temp;
+            Alt_ultrasonic = slide_filtering16(&alt_ultrasonic_fil);
+        }
         flag_ALT = 1; flag_ALT2 = flag_ALT1 = 0;
         Alt_ultrasonic1 = Alt_ultrasonic2 = 0;
         WaitX(30 - utime);
@@ -67,13 +73,13 @@ int task_ultrasonic(void)
             utime++;
             if (utime > 20)
             {
-                if (0==flag_ALT1)
+                if (0 == flag_ALT1)
                 {
-                    Alt_ultrasonic1=0;
+                    Alt_ultrasonic1 = 0;
                 }
-                if (1==flag_ALT2)
+                if (1 == flag_ALT2)
                 {
-                    Alt_ultrasonic2=0;
+                    Alt_ultrasonic2 = 0;
                 }
                 //Alt_ultrasonic1 = Alt_ultrasonic2 = Alt_ultrasonic = 0;
                 break;
