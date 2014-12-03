@@ -195,7 +195,8 @@ void Balance(T_float_angle *att_in, S_INT16_XYZ *gyr_in, S_INT16_XYZ *acc_in, T_
     Pit_Control();
     if (rc_in->THROTTLE > RC_FUN_MIN)
     {
-        u32 ALT_Set = (rc_in->THROTTLE - RC_FUN_MIN);
+        //u32 ALT_Set = (rc_in->THROTTLE - RC_FUN_MIN);
+        u32 ALT_Set = (rc_in->AUX2 - 1000);
         ALT_Control(ALT_Set);
         if (0 == ctl->ALT_ON_OFF)
         {
