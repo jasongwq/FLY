@@ -107,7 +107,7 @@ void Ex_Init(void)
     PID_ALT.I = 0.01;
     PID_ALT.D = 0.2;
 
-    *ex_on_off = 3;
+    *ex_on_off = 1;
     *yaw_just = 10;
     *rol_just = 8;
     *pit_just = 10;
