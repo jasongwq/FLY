@@ -1,0 +1,3 @@
+[submodule "GLIB"]
+	path = GLIB
+	url = https://github.com/jasongwq/GLIB.git
