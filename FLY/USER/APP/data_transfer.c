@@ -23,6 +23,11 @@ void Ex_Anl(void)
 #include "bak.h"
 #include "pwm.h"
 //#include "bmp085.h"
+PID PID_ROL, PID_PIT, PID_YAW, PID_ALT, PID_POS,
+    PID_PID_1, PID_PID_2, PID_PID_3, PID_PID_4,
+    PID_PID_5, PID_PID_6, PID_PID_7, PID_PID_8,
+    PID_PID_9, PID_PID_10, PID_PID_11, PID_PID_12;
+		
 #define DATA_TRANSFER_USE_USART
 
 #define PID_ROL_P_MULTIPLYING   (100 )

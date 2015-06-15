@@ -1,17 +1,17 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x_it.h"
 #include "G32_timer_cap.h"
-void (*TIM1_IRQ)(void);
-void (*TIM2_IRQ)(void);
-void (*TIM3_IRQ)(void);
-void (*TIM4_IRQ)(void);
-void (*TIM5_IRQ)(void);
-void (*TIM6_IRQ)(void);
-void (*TIM7_IRQ)(void);
-void (*TIM1_BRK_IRQ)(void);
-void (*TIM1_UP_IRQ)(void);
-void (*TIM1_TRG_COM_IRQ)(void);
-void (*TIM1_CC_IRQ)(void);
+//void (*TIM1_IRQ)(void);
+//void (*TIM2_IRQ)(void);
+//void (*TIM3_IRQ)(void);
+//void (*TIM4_IRQ)(void);
+//void (*TIM5_IRQ)(void);
+//void (*TIM6_IRQ)(void);
+//void (*TIM7_IRQ)(void);
+//void (*TIM1_BRK_IRQ)(void);
+//void (*TIM1_UP_IRQ)(void);
+//void (*TIM1_TRG_COM_IRQ)(void);
+//void (*TIM1_CC_IRQ)(void);
 extern void SYS_UART_IQR(USART_TypeDef *USARTx);
 void USART1_IRQHandler(void)  //串口中断函数
 {
@@ -38,87 +38,83 @@ void DMA1_Channel1_IRQHandler(void)
 }
 void TIM1_BRK_IRQHandler(void)
 {
-    TIM1_BRK_IRQ();
+    //TIM1_BRK_IRQ();
 }
 
 void TIM1_TRG_COM_IRQHandler(void)
 {
-    TIM1_TRG_COM_IRQ();
+    //TIM1_TRG_COM_IRQ();
 }
-extern void TIM1_Cap_IRQ(void);
-
-extern void TIM3_Cap_IRQ(void);
-extern void TIM4_Cap_IRQ(void);
-extern void TIM8_Cap_IRQ(void);
-
 
 void TIM1_UP_IRQHandler(void)
 {
-    #include "G32_Timer_Cap_Config.h"
+#include "G32_Timer_Cap_Config.h"
 #if (CAP_TIM1_CH1)||(CAP_TIM1_CH2)||(CAP_TIM1_CH3)||(CAP_TIM1_CH4)
-  extern void TIM1_Cap_IRQ(void);
-	TIM1_Cap_IRQ();
+    extern void TIM1_Cap_IRQ(void);
+    TIM1_Cap_IRQ();
 #endif
 }
 void TIM1_CC_IRQHandler(void)
 {
-	#include "G32_Timer_Cap_Config.h"
+#include "G32_Timer_Cap_Config.h"
 #if (CAP_TIM1_CH1)||(CAP_TIM1_CH2)||(CAP_TIM1_CH3)||(CAP_TIM1_CH4)
-  extern void TIM1_Cap_IRQ(void);
-	TIM1_Cap_IRQ();
+    extern void TIM1_Cap_IRQ(void);
+    TIM1_Cap_IRQ();
 #endif
 }
 void TIM8_UP_IRQHandler(void)
 {
-    #include "G32_Timer_Cap_Config.h"
+#include "G32_Timer_Cap_Config.h"
 #if (CAP_TIM8_CH1)||(CAP_TIM8_CH2)||(CAP_TIM8_CH3)||(CAP_TIM8_CH4)
-  extern void TIM8_Cap_IRQ(void);
-	TIM8_Cap_IRQ();
+    extern void TIM8_Cap_IRQ(void);
+    TIM8_Cap_IRQ();
 #endif
 }
 void TIM8_CC_IRQHandler(void)
 {
-	#include "G32_Timer_Cap_Config.h"
+#include "G32_Timer_Cap_Config.h"
 #if (CAP_TIM8_CH1)||(CAP_TIM8_CH2)||(CAP_TIM8_CH3)||(CAP_TIM8_CH4)
-  extern void TIM8_Cap_IRQ(void);
-	TIM8_Cap_IRQ();
+    extern void TIM8_Cap_IRQ(void);
+    TIM8_Cap_IRQ();
 #endif
 }
 void TIM2_IRQHandler(void)
 {
 #include "G32_Timer_Cap_Config.h"
 #if (CAP_TIM2_CH1)||(CAP_TIM2_CH2)||(CAP_TIM2_CH3)||(CAP_TIM2_CH4)
-  extern void TIM2_Cap_IRQ(void);
-	TIM2_Cap_IRQ();
+    extern void TIM2_Cap_IRQ(void);
+    TIM2_Cap_IRQ();
 #endif
 }
 void TIM3_IRQHandler(void)
 {
+#include "G32_Timer_Cap_Config.h"
+#if (CAP_TIM3_CH1)||(CAP_TIM3_CH2)||(CAP_TIM3_CH3)||(CAP_TIM3_CH4)
+    extern void TIM3_Cap_IRQ(void);
     TIM3_Cap_IRQ();
+#endif
 }
 void TIM4_IRQHandler(void)
 {
+#include "G32_Timer_Cap_Config.h"
+#if (CAP_TIM4_CH1)||(CAP_TIM4_CH2)||(CAP_TIM4_CH3)||(CAP_TIM4_CH4)
+    extern void TIM4_Cap_IRQ(void);
     TIM4_Cap_IRQ();
+#endif
 }
-//void TIM5_IRQHandler(void)
-//{
-//    if (TIM5->SR & TIM_IT_Update)
-//    {
-//        TIM5_IRQ();
-//        TIM5->SR = ~TIM_FLAG_Update;
-//    }
-//}
-//extern void TIM5_Cap_IRQ(void);
 void TIM5_IRQHandler(void)
 {
-    //TIM5_Cap_IRQ();
-    // TIM5_IRQ();
+#include "G32_Timer_Cap_Config.h"
+#if (CAP_TIM5_CH1)||(CAP_TIM5_CH2)||(CAP_TIM5_CH3)||(CAP_TIM5_CH4)
+    extern void TIM5_Cap_IRQ(void);
+    TIM5_Cap_IRQ();
+#endif
 }
 void TIM6_IRQHandler(void)
 {
     if (TIM6->SR & TIM_IT_Update)
     {
-        TIM6_IRQ();
+        //TIM6_IRQ();
         TIM6->SR = ~TIM_FLAG_Update;
     }
 }
@@ -126,7 +122,7 @@ void TIM7_IRQHandler(void)
 {
     if (TIM7->SR & TIM_IT_Update)
     {
-        TIM7_IRQ();
+        //TIM7_IRQ();
         TIM7->SR = ~TIM_FLAG_Update;
     }
 }
@@ -164,10 +160,10 @@ void USBWakeUp_IRQHandler(void)
 //systick中断服务函数,使用ucos时用到
 #include "usr_usart.h"
 // int mytime;
-u32 SysTick_Time=0;
+u32 SysTick_Time = 0;
 void SysTick_Handler(void)
 {
-		SysTick_Time++;if(SysTick_Time>=(OS_TICKS_PER_SEC*60*60))SysTick_Time=0;
+    SysTick_Time++; if (SysTick_Time >= (OS_TICKS_PER_SEC * 60 * 60))SysTick_Time = 0;
     // static int i = 0;
     // if (i++ >= 1000)
     // {

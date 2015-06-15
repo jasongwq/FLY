@@ -20,11 +20,6 @@
 #define RC_FUN_ZERO 1000
 
 static float rol_i = 0, pit_i = 0, yaw_i = 0, alt_i = 0;
-PID PID_ROL, PID_PIT, PID_YAW, PID_ALT, PID_POS,
-    PID_PID_1, PID_PID_2, PID_PID_3, PID_PID_4,
-    PID_PID_5, PID_PID_6, PID_PID_7, PID_PID_8,
-    PID_PID_9, PID_PID_10, PID_PID_11, PID_PID_12;
-
 
 static T_float_angle *att_in;
 static S_INT16_XYZ   *gyr_in;

@@ -47,6 +47,11 @@ extern float *pit_just;
 extern float *KALMAN_Q ;
 extern float *KALMAN_R ;
 extern float *KALMAN_P0 ;
+typedef struct {float P,pout,I,iout,D,dout,IMAX,OUT;}PID;
+extern PID PID_ROL, PID_PIT, PID_YAW, PID_ALT, PID_POS,
+    PID_PID_1, PID_PID_2, PID_PID_3, PID_PID_4,
+    PID_PID_5, PID_PID_6, PID_PID_7, PID_PID_8,
+    PID_PID_9, PID_PID_10, PID_PID_11, PID_PID_12;
 
 #endif
 
